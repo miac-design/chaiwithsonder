@@ -25,11 +25,6 @@ const Footer = () => {
                   Become a Mentor
                 </Link>
               </li>
-              <li>
-                <Link href="/partner" className="text-gray-600 hover:text-indigo-600">
-                  Find a Partner
-                </Link>
-              </li>
             </ul>
           </div>
           
