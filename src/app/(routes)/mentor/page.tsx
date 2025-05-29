@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -205,6 +206,8 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
 
 export default function Mentor() {
   const [formData, setFormData] = useState({
