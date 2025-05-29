@@ -1,10 +1,11 @@
 'use client';
 
-export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+
+export const dynamic = "force-dynamic";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },

@@ -1,8 +1,9 @@
 'use client';
 
-export const dynamic = "force-dynamic";
 import { useState } from 'react';
 import Image from 'next/image';
+
+export const dynamic = "force-dynamic";
 
 function FAQSection() {
   const [activeTab, setActiveTab] = useState('mentees' as 'mentees' | 'mentors');

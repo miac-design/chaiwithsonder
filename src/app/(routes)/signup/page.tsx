@@ -1,11 +1,11 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useState } from "react";
 // If you have react-icons installed, you can use these imports:
 // import { FcGoogle } from "react-icons/fc";
 // import { SiMicrosoft } from "react-icons/si";
+
+export const dynamic = "force-dynamic";
 
 export default function SignUp() {
   const [form, setForm] = useState({
