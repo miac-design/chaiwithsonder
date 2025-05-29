@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { useSession, signOut } from "next-auth/react";
 import { SessionProvider } from "next-auth/react";
+import React from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,11 +95,11 @@ const Navbar = () => {
     alert('Outlook/Microsoft sign up coming soon!');
   };
 
-  const handleSignupChange = (e) => {
+  const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
