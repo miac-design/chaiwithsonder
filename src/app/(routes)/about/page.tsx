@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 
 function FAQSection() {
   const [activeTab, setActiveTab] = useState('mentees' as 'mentees' | 'mentors');
@@ -132,9 +133,11 @@ function TestimonialsSection() {
         {testimonials.map((t, i) => (
           <div key={t.name} className="bg-white p-6 rounded-2xl shadow-md transition hover:shadow-lg flex flex-col items-center text-center animate-fadeInUp" style={{animationDelay: `${i * 80}ms`}}>
             <div className="flex justify-center mb-4">
-              <img
+              <Image
                 src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(t.name)}`}
                 alt={`Avatar of ${t.name}`}
+                width={64}
+                height={64}
                 className="w-16 h-16 rounded-full object-cover mx-auto ring-1 ring-indigo-100 bg-indigo-50"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
@@ -169,21 +172,21 @@ export default function About() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Moein Razavi */}
           <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <img src="/team/moein.jpg" alt="Moein Razavi" className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
+            <Image src="/team/moein.jpg" alt="Moein Razavi" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
             <div className="text-center">
               <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Moein Razavi, PhD</div>
             </div>
           </div>
           {/* Hamed Alikhani */}
           <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <img src="/team/hamed.jpg" alt="Hamed Alikhani" className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
+            <Image src="/team/hamed.jpg" alt="Hamed Alikhani" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
             <div className="text-center">
               <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Hamed Alikhani, PhD</div>
             </div>
           </div>
           {/* Mia C */}
           <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <img src="/team/mia.jpeg" alt="Mia C" className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
+            <Image src="/team/mia.jpeg" alt="Mia C" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
             <div className="text-center">
               <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Mia C, PhD</div>
             </div>

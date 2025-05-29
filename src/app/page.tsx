@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const fadeIn = {
@@ -16,11 +16,6 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-};
-
-const bannerFade = {
-  initial: { opacity: 0, y: -30 },
-  animate: { opacity: 1, y: 0, transition: { duration: 1.2, ease: 'easeOut' } },
 };
 
 function HowItWorksSection() {
