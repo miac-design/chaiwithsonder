@@ -328,7 +328,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   );
-                } else {
+                } else if (item.href) {
                   return (
                     <motion.div key={item.name} custom={i} variants={menuItemVariants}>
                       <Link
@@ -340,6 +340,8 @@ const Navbar = () => {
                       </Link>
                     </motion.div>
                   );
+                } else {
+                  return null;
                 }
               })}
               <div className="flex flex-col gap-2 mt-2">
