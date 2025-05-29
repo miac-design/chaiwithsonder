@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 // If you have react-icons installed, you can use these imports:
 // import { FcGoogle } from "react-icons/fc";
