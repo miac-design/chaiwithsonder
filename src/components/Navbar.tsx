@@ -9,6 +9,20 @@ import { useSession, signOut } from "next-auth/react";
 import { SessionProvider } from "next-auth/react";
 import React from 'react';
 
+type NavItem = { name: string; href?: string; dropdown?: boolean };
+const navItems: NavItem[] = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Mentorship', dropdown: true },
+  { name: 'What Members Say', href: '/about#testimonials' },
+  { name: 'FAQ', href: '/about#faq' },
+  { name: 'Contact', href: '/contact' },
+];
+const mentorshipLinks = [
+  { name: 'Become a Mentor', href: '/mentor#application' },
+  { name: 'Meet the Mentors', href: '/mentor' },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,19 +42,6 @@ const Navbar = () => {
   const { data: session } = useSession();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-
-  const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Mentorship', dropdown: true },
-    { name: 'What Members Say', href: '/about#testimonials' },
-    { name: 'FAQ', href: '/about#faq' },
-    { name: 'Contact', href: '/contact' },
-  ];
-  const mentorshipLinks = [
-    { name: 'Become a Mentor', href: '/mentor#application' },
-    { name: 'Meet the Mentors', href: '/mentor' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -170,8 +171,8 @@ const Navbar = () => {
                         </div>
                       </div>
                     );
-                  } else {
-                    const isActive = item.href && (pathname === item.href || (item.href.includes('#') && pathname + window.location.hash === item.href));
+                  } else if (item.href) {
+                    const isActive = pathname === item.href || (item.href.includes('#') && pathname + window.location.hash === item.href);
                     return (
                       <Link
                         key={item.name}
@@ -183,6 +184,8 @@ const Navbar = () => {
                         {item.name}
                       </Link>
                     );
+                  } else {
+                    return null;
                   }
                 })}
               </nav>
