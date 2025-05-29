@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${poppins.variable}`}>
+    <html lang="en" className="font-sans bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
       <body className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
         <div className="min-h-screen flex flex-col">
           <Navbar />
