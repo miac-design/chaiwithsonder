@@ -5,8 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { useSession, signOut } from "next-auth/react";
-import { SessionProvider } from "next-auth/react";
+import { useSession, signOut, SessionProvider } from "next-auth/react";
 import React from 'react';
 
 type NavItem = { name: string; href?: string; dropdown?: boolean };
@@ -23,7 +22,7 @@ const mentorshipLinks = [
   { name: 'Meet the Mentors', href: '/mentor' },
 ];
 
-const Navbar = () => {
+const Navbar = (props: Record<string, unknown>) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
@@ -527,10 +526,12 @@ const Navbar = () => {
   );
 };
 
-export default function NavbarWithSessionProvider(props: Record<string, unknown>) {
+const WrappedNavbar = (props: Record<string, unknown>) => {
   return (
     <SessionProvider>
       <Navbar {...props} />
     </SessionProvider>
   );
-} 
+};
+
+export default WrappedNavbar; 
