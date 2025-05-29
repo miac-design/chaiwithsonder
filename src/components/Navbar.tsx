@@ -523,7 +523,7 @@ const Navbar = () => {
   );
 };
 
-export default function NavbarWithSessionProvider(props) {
+export default function NavbarWithSessionProvider(props: Record<string, unknown>) {
   return (
     <SessionProvider>
       <Navbar {...props} />
