@@ -153,7 +153,7 @@ function TestimonialsSection() {
             </div>
             <div className="font-semibold text-gray-800 mt-4">{t.name}</div>
             <div className="text-sm italic text-gray-500">{t.title}</div>
-            <div className="text-base text-gray-700 leading-relaxed mt-3">"{t.quote}"</div>
+            <div className="text-base text-gray-700 leading-relaxed mt-3">&quot;{t.quote}&quot;</div>
           </div>
         ))}
       </div>

@@ -150,7 +150,7 @@ export default function Home() {
                   The word <span className="font-bold" style={{ color: '#6C63FF' }}>sonder</span> was created by writer John Koenig in <span className="italic">The Dictionary of Obscure Sorrows</span>. It captures a powerful realization:
                 </motion.p>
                 <motion.blockquote variants={fadeIn} className="italic text-gray-700 text-sm md:text-base font-medium mb-2 border-l-4 border-[#6C63FF] pl-4">
-                  "<span className="font-bold" style={{ color: '#6C63FF' }}>Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you."
+                  &quot;<span className="font-bold" style={{ color: '#6C63FF' }}>Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&quot;
                 </motion.blockquote>
                 <motion.p variants={fadeIn} className="text-base md:text-lg text-gray-700 leading-relaxed">
                   At Sonder Sessions, we embrace this idea — that everyone's story matters. Through mentorship, we connect individuals whose experiences, dreams, and challenges all deserve to be seen and shared.
