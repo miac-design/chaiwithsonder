@@ -108,11 +108,8 @@ export default function Home() {
         {/* Centered Content on Overlay */}
         <div className="relative z-10 text-center text-white max-w-2xl mx-auto w-full px-4">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">
-            Empowering Growth<br />Through <span className="text-indigo-300">Mentorship</span>
+            Start your growth journey with a <span className="text-indigo-300">ChaiChat</span>
           </h1>
-          <p className="text-lg md:text-2xl mb-10 leading-relaxed drop-shadow">
-            Connect. Commit. Grow — Together.
-          </p>
           <Link
             href="/mentor#application"
             className="px-8 py-4 rounded-2xl bg-white/80 text-indigo-700 font-semibold text-lg shadow-lg backdrop-blur-md transition-all duration-300 ease-in-out hover:shadow-indigo-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
