@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-indigo-700 mb-4 tracking-tight">Sonder Sessions</h3>
+            <h3 className="text-2xl md:text-3xl font-extrabold text-indigo-700 mb-4 tracking-tight">Chai Chat</h3>
             <p className="text-gray-600 text-base leading-relaxed">
               Empowering growth through community-driven mentoring and accountability.
             </p>
@@ -43,7 +43,7 @@ const Footer = () => {
         
         <div className="mt-12 border-t border-gray-200 pt-8">
           <p className="text-center text-gray-500 text-base tracking-wide">
-            © {new Date().getFullYear()} Sonder Sessions. All rights reserved.
+            © {new Date().getFullYear()} Chai Chat. All rights reserved.
           </p>
         </div>
       </div>

@@ -141,7 +141,7 @@ const Navbar = (props: Record<string, unknown>) => {
                 <span className={`text-2xl font-bold align-middle ${
                   isScrolled || !isHomePage ? 'text-indigo-600' : 'text-white'
                 }`}>
-                  Sonder Sessions
+                  Chai Chat
                 </span>
               </Link>
             </div>
