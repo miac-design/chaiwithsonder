@@ -20,6 +20,7 @@ const navItems: NavItem[] = [
 const mentorshipLinks = [
   { name: 'Become a Mentor', href: '/mentor#application' },
   { name: 'Meet the Mentors', href: '/mentor' },
+  { name: 'Other Platforms', href: '/mentor#other-platforms' },
 ];
 
 const Navbar = (props: Record<string, unknown>) => {
