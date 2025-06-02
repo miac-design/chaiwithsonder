@@ -16,7 +16,7 @@ function FAQSection() {
       a: 'Use the mentor directory to explore profiles, topics, and availability that align with your goals.',
     },
     {
-      q: 'Is Sonder Sessions free for mentees?',
+      q: 'Is Chai Chat free for mentees?',
       a: 'Yes! Our platform is completely free for mentees seeking guidance and support.',
     },
     {
@@ -114,7 +114,7 @@ function TestimonialsSection() {
       name: 'Saleh',
       title: 'Power Systems Engineer',
       initials: 'Sa',
-      quote: 'Sonder Sessions helped me give back and stay grounded. The connections I\'ve made are more than professional — they\'re personal.'
+      quote: 'Chai Chat helped me give back and stay grounded. The connections I\'ve made are more than professional — they\'re personal.'
     },
     {
       name: 'Raheleh',
@@ -209,7 +209,7 @@ export default function About() {
             <div className="bg-neutral-50 rounded-xl shadow-sm p-6">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
               <p className="text-base leading-relaxed text-gray-600">
-                At Sonder Sessions, we believe that everyone deserves access to quality mentorship and support in their personal and professional journey. Our platform connects mentors and mentees, creating meaningful relationships that foster growth and development.
+                At Chai Chat, we believe that everyone deserves access to quality mentorship and support in their personal and professional journey. Our platform connects mentors and mentees, creating meaningful relationships that foster growth and development.
               </p>
             </div>
 
@@ -262,7 +262,7 @@ export default function About() {
         <div className="mt-20 text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Community</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Whether you're looking to mentor others, find a mentor, or connect with accountability partners, Sonder Sessions is here to support your journey.
+            Whether you're looking to mentor others, find a mentor, or connect with accountability partners, Chai Chat is here to support your journey.
           </p>
         </div>
 

@@ -132,7 +132,7 @@ const Navbar = (props: Record<string, unknown>) => {
               <Link href="/" className="flex items-center gap-x-3">
                 <Image
                   src="/logo-new.png"
-                  alt="Sonder Sessions Logo"
+                  alt="Chai Chat Logo"
                   width={36}
                   height={36}
                   className="h-9 w-auto object-contain"

@@ -100,7 +100,7 @@ export default function Donate() {
               <div className="bg-gray-50 p-6 rounded-lg shadow">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Enable Growth</h3>
                 <p className="text-gray-600">
-                  By supporting Sonder Sessions, you're helping individuals achieve their personal and professional goals through mentorship.
+                  By supporting Chai Chat, you're helping individuals achieve their personal and professional goals through mentorship.
                 </p>
               </div>
             </div>

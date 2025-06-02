@@ -125,7 +125,7 @@ export default function Contact() {
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">Email</h3>
                   <p className="text-sm text-gray-500 text-center mb-2">Reach us anytime via email.</p>
-                  <p className="text-sm text-gray-800 font-medium text-center select-all hover:text-indigo-600 transition-colors">support@sondersessions.com</p>
+                  <p className="text-sm text-gray-800 font-medium text-center select-all hover:text-indigo-600 transition-colors">support@chaichat.com</p>
                 </div>
               </div>
               {/* LinkedIn Card */}
@@ -137,7 +137,7 @@ export default function Contact() {
                   </div>
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">LinkedIn</h3>
                   <p className="text-sm text-gray-500 text-center mb-2">Connect with us on LinkedIn</p>
-                  <p className="text-sm text-gray-800 font-medium text-center">@sonder.sessions</p>
+                  <p className="text-sm text-gray-800 font-medium text-center">@chai.chat</p>
                 </div>
               </div>
             </div>

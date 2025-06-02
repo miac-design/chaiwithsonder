@@ -410,6 +410,39 @@ export default function Mentor() {
             </form>
           </div>
         </section>
+        {/* Explore Other Mentorship Platforms Section */}
+        <section className="mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Explore Other Mentorship Platforms</h2>
+          <div className="overflow-x-auto rounded-2xl shadow-lg bg-white">
+            <table className="min-w-full divide-y divide-gray-200 text-left">
+              <thead className="bg-indigo-50">
+                <tr>
+                  <th scope="col" className="px-6 py-4 text-lg font-semibold text-gray-700 whitespace-nowrap">Platform Name</th>
+                  <th scope="col" className="px-6 py-4 text-lg font-semibold text-gray-700 whitespace-nowrap">Offerings</th>
+                  <th scope="col" className="px-6 py-4 text-lg font-semibold text-gray-700 whitespace-nowrap">Pricing Model</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                <tr>
+                  <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://www.qooper.io/blog/top-10-online-mentoring-platforms?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">Qooper</a></td>
+                  <td className="px-6 py-4">Career development mentoring, DEI, leadership development, peer mentoring, onboarding</td>
+                  <td className="px-6 py-4">Pricing based on each program; contact for details</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://www.qooper.io/blog/top-10-online-mentoring-platforms?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">MentorcliQ</a></td>
+                  <td className="px-6 py-4">Diversity, equity, and inclusion, enterprise mentoring</td>
+                  <td className="px-6 py-4">Pricing based on each program; contact for details</td>
+                </tr>
+                <tr>
+                  <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://chronus.com/blog/best-mentoring-software?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">Chronus</a></td>
+                  <td className="px-6 py-4">Career development, leadership development, reverse mentoring, peer mentoring, knowledge-sharing</td>
+                  <td className="px-6 py-4">Core package starts at $14,995/year; enterprise package starts at $24,995/year</td>
+                </tr>
+                {/* Add more platforms here as needed */}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </div>
   );

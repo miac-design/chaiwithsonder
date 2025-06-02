@@ -143,7 +143,7 @@ export default function Home() {
             {/* Text Column */}
             <div className="flex-1 flex flex-col justify-center items-start max-w-xl mx-auto lg:mx-0 animate-fadeInUp duration-700 delay-200">
               <motion.h2 variants={fadeIn} className="text-4xl font-extrabold text-gray-900 mb-6 text-left">
-                Why Sonder Matters
+                Why Chai Chat Matters
               </motion.h2>
               <div className="space-y-4 text-left">
                 <motion.p variants={fadeIn} className="text-base md:text-lg text-gray-700 leading-relaxed mb-2">
@@ -153,7 +153,7 @@ export default function Home() {
                   &quot;<span className="font-bold" style={{ color: '#6C63FF' }}>Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&quot;
                 </motion.blockquote>
                 <motion.p variants={fadeIn} className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  At Sonder Sessions, we embrace this idea — that everyone's story matters. Through mentorship, we connect individuals whose experiences, dreams, and challenges all deserve to be seen and shared.
+                  At Chai Chat, we embrace this idea — that everyone's story matters. Through mentorship, we connect individuals whose experiences, dreams, and challenges all deserve to be seen and shared.
                 </motion.p>
               </div>
             </div>

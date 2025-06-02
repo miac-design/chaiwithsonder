@@ -12,7 +12,7 @@ const poppins = Poppins({
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Sonder Sessions - Community-Driven Mentoring Platform",
+  title: "Chai Chat - Community-Driven Mentoring Platform",
   description: "Empowering growth through community-driven mentoring and accountability.",
 };
 
