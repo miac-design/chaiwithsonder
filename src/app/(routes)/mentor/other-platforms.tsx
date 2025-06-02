@@ -58,6 +58,31 @@ export default function OtherPlatforms() {
                 <td className="px-6 py-4">Businesses and professionals</td>
                 <td className="px-6 py-4">Freemium + business plans available</td>
               </tr>
+              <tr>
+                <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://micromentor.org/" target="_blank" rel="noopener noreferrer">MicroMentor</a></td>
+                <td className="px-6 py-4">Entrepreneurs and small business owners</td>
+                <td className="px-6 py-4">Free</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://mentorloop.com/" target="_blank" rel="noopener noreferrer">Mentorloop</a></td>
+                <td className="px-6 py-4">Organizations, associations, and individuals</td>
+                <td className="px-6 py-4">Contact for pricing</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://score.org/" target="_blank" rel="noopener noreferrer">SCORE</a></td>
+                <td className="px-6 py-4">Small business owners (US)</td>
+                <td className="px-6 py-4">Free</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://mentoring.org/" target="_blank" rel="noopener noreferrer">MENTOR</a></td>
+                <td className="px-6 py-4">Youth and youth-serving organizations</td>
+                <td className="px-6 py-4">Free</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-indigo-700 font-medium underline"><a href="https://www.mentoringclub.com/" target="_blank" rel="noopener noreferrer">Mentoring Club</a></td>
+                <td className="px-6 py-4">Tech professionals, career changers</td>
+                <td className="px-6 py-4">Free</td>
+              </tr>
             </tbody>
           </table>
         </div>
