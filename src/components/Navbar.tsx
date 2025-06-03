@@ -129,17 +129,17 @@ const Navbar = (props: Record<string, unknown>) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 w-full">
             {/* Logo Section */}
-            <div className="flex items-center gap-x-3 flex-shrink-0">
-              <Link href="/" className="flex items-center gap-x-3">
+            <div className="flex items-center gap-x-4 flex-shrink-0">
+              <Link href="/" className="flex items-center gap-x-4">
                 <Image
                   src="/logo-new.png"
                   alt="Chai Chat Logo"
-                  width={36}
-                  height={36}
-                  className="h-9 w-auto object-contain"
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 object-contain bg-transparent"
                   priority
                 />
-                <span className={`text-2xl font-bold align-middle ${
+                <span className={`text-3xl font-bold align-middle tracking-tight ${
                   isScrolled || !isHomePage ? 'text-indigo-600' : 'text-white'
                 }`}>
                   Chai Chat
