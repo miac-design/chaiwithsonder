@@ -167,35 +167,7 @@ function TestimonialsSection() {
 export default function About() {
   return (
     <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
-      {/* Website Makeover Team Section */}
-      <section className="mt-12 py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#FFF9F3] to-[#F8F6F0]">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12 tracking-tight">
-          Passionate minds building this platform
-        </h2>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Moein Razavi */}
-          <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <Image src="/team/moein.jpg" alt="Moein Razavi" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
-            <div className="text-center">
-              <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Moein Razavi, PhD</div>
-            </div>
-          </div>
-          {/* Hamed Alikhani */}
-          <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <Image src="/team/hamed.jpg" alt="Hamed Alikhani" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
-            <div className="text-center">
-              <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Hamed Alikhani, PhD</div>
-            </div>
-          </div>
-          {/* Mia C */}
-          <div className="bg-white rounded-3xl shadow-xl flex flex-col items-center p-8">
-            <Image src="/team/mia.jpeg" alt="Mia C" width={128} height={128} className="w-32 h-32 object-cover rounded-full mb-6 border-4 border-[#FFF9F3] shadow" />
-            <div className="text-center">
-              <div className="font-semibold text-xl md:text-2xl text-gray-900 tracking-tight mb-1">Mia C, PhD</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Website Makeover Team Section REMOVED */}
 
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center">
@@ -222,16 +194,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Warm, inclusive text block below team */}
-        <div className="mt-4 flex justify-center fade-in">
-          <div className="relative max-w-xl w-full rounded-2xl p-1 bg-gradient-to-br from-indigo-400/30 via-indigo-200/10 to-purple-300/20 shadow-2xl">
-            <div className="bg-white/70 backdrop-blur-lg rounded-2xl py-6 px-4 flex flex-col items-center">
-              <p className="font-medium text-lg md:text-xl text-gray-800 text-center max-w-md mx-auto leading-relaxed">
-                This platform is our way of giving back—building a welcoming community, together.
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* Warm, inclusive text block below team REMOVED */}
 
         <div className="mt-20">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Values</h2>
