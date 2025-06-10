@@ -82,24 +82,37 @@ export default function Home() {
         </div>
         {/* Centered Content on Overlay */}
         <div className="relative z-10 text-center text-white max-w-2xl mx-auto w-full px-4">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">
-            <span role="img" aria-label="teapot" className="align-middle mr-2" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif', fontSize:'1.2em'}}>🫖</span> Everyone has something to share.<br/>
-            <span className="text-lg font-medium block mt-4">Whether you've just started or been around the block — your story can warm someone's day. And theirs might warm yours.</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg leading-tight flex flex-col items-center">
+            <span className="inline-flex items-center justify-center mb-2">
+              {/* Subtle teacup SVG icon */}
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="inline-block align-middle mr-2 opacity-80" style={{marginBottom:'2px'}}><ellipse cx="16" cy="24" rx="10" ry="3" fill="#E0E7FF"/><path d="M8 14c0-3.314 3.134-6 7-6s7 2.686 7 6v4c0 2.21-3.134 4-7 4s-7-1.79-7-4v-4z" fill="#fff" stroke="#6366F1" strokeWidth="2"/><path d="M24 18c2.5 0 4.5-1.5 4.5-3.5S26.5 11 24 11" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/></svg>
+              <span className="ml-1">Everyone has something to share.</span>
+            </span>
+            <span className="text-base md:text-lg font-medium block mt-2 text-indigo-100 max-w-xl">
+              Whether you're starting out or have stories to tell — your words might just brighten someone's day. And theirs might brighten yours.
+            </span>
           </h1>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 w-full max-w-md mx-auto">
             <Link
-              href="/explore"
-              className="btn-primary flex items-center justify-center gap-2 text-lg"
+              href="/signup?type=share"
+              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold bg-indigo-600 text-white shadow hover:bg-indigo-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              style={{minWidth:'140px'}}
             >
-              <span role="img" aria-label="point right" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>👉</span> Start Brewing Connections
+              {/* Chat bubble SVG */}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" strokeWidth="2" strokeLinejoin="round"/></svg>
+              <span>Share a Chat</span>
             </Link>
             <Link
-              href="/profile"
-              className="btn-secondary flex items-center justify-center gap-2 text-lg"
+              href="/signup?type=sip"
+              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold border border-indigo-200 text-indigo-100 bg-white/10 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              style={{minWidth:'140px'}}
             >
-              <span role="img" aria-label="coffee" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>☕️</span> Or just Sip a Chat. No pressure.
+              {/* Sprout SVG */}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M12 19V5m0 0C9 5 5 7 5 11c0 2.5 2 4 4 4m3-10c3 0 7 2 7 6 0 2.5-2 4-4 4" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="19" r="2" fill="#6366F1"/></svg>
+              <span>Sip a Chat</span>
             </Link>
           </div>
+          <div className="mt-2 text-xs text-indigo-100 opacity-80">Low-pressure, peer-to-peer, community-first</div>
         </div>
         {/* Scroll Down Icon */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center z-10">
