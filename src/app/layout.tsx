@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Chai Chat - Community-Driven Mentoring Platform",
-  description: "Empowering growth through community-driven mentoring and accountability.",
+  description: "Empowering growth through story-sharing and mutual support — one cup at a time.",
 };
 
 export default function RootLayout({

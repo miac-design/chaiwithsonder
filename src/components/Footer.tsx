@@ -8,7 +8,7 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl md:text-3xl font-extrabold text-indigo-700 mb-4 tracking-tight">Chai Chat</h3>
             <p className="text-gray-600 text-base leading-relaxed">
-              Empowering growth through community-driven mentoring and accountability.
+              Empowering growth through story-sharing and mutual support — one cup at a time.
             </p>
           </div>
           

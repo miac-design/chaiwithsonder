@@ -34,46 +34,21 @@ function HowItWorksSection() {
     >
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">How It Works</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Step 1: Join */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl group">
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              {/* User Plus Icon (Heroicons/Tabler/Lucide style) */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition duration-200 group-hover:scale-105 group-hover:stroke-indigo-600">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <line x1="19" x2="19" y1="8" y2="14" />
-                <line x1="22" x2="16" y1="11" y2="11" />
-              </svg>
-            </div>
-            <div className="font-bold text-lg mb-2">Join</div>
-            <div className="text-gray-500 text-base">Create your profile and set your mentorship goals.</div>
+        <div className="flex flex-col gap-10 items-center max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-md p-8 text-center">
+            <div className="text-2xl mb-4" role="img" aria-label="profile">🧑‍🎤</div>
+            <div className="font-bold text-lg mb-2">Create your profile and share your flavor</div>
+            <div className="text-gray-500 text-base">Your story, your vibe, your interests.</div>
           </div>
-          {/* Step 2: Match */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl group">
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              {/* Handshake Icon (Heroicons/Tabler/Lucide style) */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition duration-200 group-hover:scale-105 group-hover:stroke-indigo-600">
-                <path d="M4 20h4l3-3" />
-                <path d="M9 17l-5-5a2.828 2.828 0 0 1 4-4l1 1 1-1a2.828 2.828 0 0 1 4 4l-5 5" />
-                <path d="M14 17l3 3h4" />
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" opacity="0" />
-              </svg>
-            </div>
-            <div className="font-bold text-lg mb-2">Match</div>
-            <div className="text-gray-500 text-base">Browse mentors, find your match,<br/>and book a session.</div>
+          <div className="bg-white rounded-2xl shadow-md p-8 text-center">
+            <div className="text-2xl mb-4" role="img" aria-label="chat">💬</div>
+            <div className="font-bold text-lg mb-2">Connect with someone</div>
+            <div className="text-gray-500 text-base">Over a relaxed 1-on-1 conversation.</div>
           </div>
-          {/* Step 3: Grow */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl group">
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              {/* Trending Up Icon (Heroicons/Tabler/Lucide style) */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition duration-200 group-hover:scale-105 group-hover:stroke-indigo-600">
-                <polyline points="3 17 9 11 13 15 21 7" />
-                <polyline points="14 7 21 7 21 14" />
-              </svg>
-            </div>
-            <div className="font-bold text-lg mb-2">Grow</div>
-            <div className="text-gray-500 text-base">Track your progress and share<br/>success stories with the community.</div>
+          <div className="bg-white rounded-2xl shadow-md p-8 text-center">
+            <div className="text-2xl mb-4" role="img" aria-label="sparkles">✨</div>
+            <div className="font-bold text-lg mb-2">Grow together</div>
+            <div className="text-gray-500 text-base">Sometimes you listen. Sometimes you share. That's the magic of it.</div>
           </div>
         </div>
       </div>
@@ -108,15 +83,23 @@ export default function Home() {
         {/* Centered Content on Overlay */}
         <div className="relative z-10 text-center text-white max-w-2xl mx-auto w-full px-4">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">
-            Start your growth journey with a <span className="text-indigo-300">ChaiChat</span>
+            <span role="img" aria-label="teapot" className="align-middle mr-2" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif', fontSize:'1.2em'}}>🫖</span> Everyone has something to share.<br/>
+            <span className="text-lg font-medium block mt-4">Whether you've just started or been around the block — your story can warm someone's day. And theirs might warm yours.</span>
           </h1>
-          <Link
-            href="/mentor#application"
-            className="px-8 py-4 rounded-2xl bg-white/80 text-indigo-700 font-semibold text-lg shadow-lg backdrop-blur-md transition-all duration-300 ease-in-out hover:shadow-indigo-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-            style={{boxShadow:'0 4px 24px rgba(80,80,180,0.10)'}}
-          >
-            Become a Mentor
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Link
+              href="/explore"
+              className="btn-primary flex items-center justify-center gap-2 text-lg"
+            >
+              <span role="img" aria-label="point right" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>👉</span> Start Brewing Connections
+            </Link>
+            <Link
+              href="/profile"
+              className="btn-secondary flex items-center justify-center gap-2 text-lg"
+            >
+              <span role="img" aria-label="coffee" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>☕️</span> Or just Sip a Chat. No pressure.
+            </Link>
+          </div>
         </div>
         {/* Scroll Down Icon */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center z-10">
@@ -153,7 +136,8 @@ export default function Home() {
                   &quot;<span className="font-bold" style={{ color: '#6C63FF' }}>Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&quot;
                 </motion.blockquote>
                 <motion.p variants={fadeIn} className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  At Chai Chat, we embrace this idea — that everyone's story matters. Through mentorship, we connect individuals whose experiences, dreams, and challenges all deserve to be seen and shared.
+                  That's why we created Chaichat — a place where sharing a story is just as powerful as hearing one.<br/>
+                  We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
                 </motion.p>
               </div>
             </div>
@@ -251,35 +235,35 @@ export default function Home() {
             Get Involved
           </motion.h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* Join as Mentor Card */}
+            {/* Share a Chat Card */}
             <motion.div
               variants={fadeIn}
               className="glass-card p-6 hover:shadow-2xl transition-shadow duration-300"
             >
-              <motion.h3 variants={fadeIn} className="heading-3 mb-2">
-                Join as Mentor
+              <motion.h3 variants={fadeIn} className="heading-3 mb-2 flex items-center gap-2">
+                <span role="img" aria-label="outbox" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>📤</span> Share a Chat
               </motion.h3>
               <motion.p variants={fadeIn} className="text-body mb-4">
-                Share your knowledge and experience to help others grow in their journey.
+                Give a little time. Be a listener. Offer what you've learned.
               </motion.p>
               <Link href="/mentor#application" className="btn-primary">
-                Become a Mentor
+                Share a Chat
               </Link>
             </motion.div>
 
-            {/* Join as Mentee Card */}
+            {/* Sip a Chat Card */}
             <motion.div
               variants={fadeIn}
               className="glass-card p-6 hover:shadow-2xl transition-shadow duration-300"
             >
-              <motion.h3 variants={fadeIn} className="heading-3 mb-2">
-                Join as Mentee
+              <motion.h3 variants={fadeIn} className="heading-3 mb-2 flex items-center gap-2">
+                <span role="img" aria-label="inbox" style={{fontFamily:'Apple Color Emoji,Segoe UI Emoji,NotoColorEmoji,Segoe UI Symbol,sans-serif'}}>📥</span> Sip a Chat
               </motion.h3>
               <motion.p variants={fadeIn} className="text-body mb-4">
-                Connect with experienced mentors who can guide you in your journey.
+                Book a conversation. Get perspective, clarity, or just someone who listens.
               </motion.p>
-              <Link href="/mentor" className="btn-primary">
-                Find a Mentor
+              <Link href="/mentor" className="btn-secondary">
+                Sip a Chat
               </Link>
             </motion.div>
           </div>
