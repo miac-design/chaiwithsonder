@@ -30,42 +30,42 @@ function HowItWorksSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="bg-[#fafafc] py-16 px-4 sm:px-6 lg:px-8"
+      className="bg-[#fafafc] py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {/* Step 1: Create Profile */}
-          <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center min-h-[260px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Tea bag/profile SVG icon */}
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="6" y="10" width="32" height="24" rx="6" fill="#E0E7FF"/><rect x="12" y="16" width="20" height="12" rx="4" fill="#6366F1"/><circle cx="22" cy="22" r="3" fill="#FDBA74"/><rect x="20" y="26" width="4" height="2" rx="1" fill="#FDBA74"/></svg>
+          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+            {/* Larger Tea bag/profile SVG icon */}
+            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
+              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><rect x="6" y="10" width="32" height="24" rx="6" fill="#E0E7FF"/><rect x="12" y="16" width="20" height="12" rx="4" fill="#6366F1"/><circle cx="22" cy="22" r="3" fill="#FDBA74"/><rect x="20" y="26" width="4" height="2" rx="1" fill="#FDBA74"/></svg>
             </div>
             <div>
-              <div className="font-bold text-lg mb-2 text-indigo-700">Create your profile and share your flavor</div>
-              <div className="text-gray-500 text-base">Your story, your vibe, your interests.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Create your profile & share your flavor</div>
+              <div className="text-gray-500 text-base md:text-base leading-normal">Your story, your vibe, your interests.</div>
             </div>
           </div>
           {/* Step 2: Connect */}
-          <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center min-h-[260px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Chat bubble SVG icon */}
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="6" y="14" width="32" height="16" rx="8" fill="#E0E7FF"/><rect x="12" y="18" width="20" height="8" rx="4" fill="#6366F1"/><rect x="16" y="26" width="12" height="4" rx="2" fill="#FDBA74"/></svg>
+          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+            {/* Larger Chat bubble SVG icon */}
+            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
+              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><rect x="6" y="14" width="32" height="16" rx="8" fill="#E0E7FF"/><rect x="12" y="18" width="20" height="8" rx="4" fill="#6366F1"/><rect x="16" y="26" width="12" height="4" rx="2" fill="#FDBA74"/></svg>
             </div>
             <div>
-              <div className="font-bold text-lg mb-2 text-indigo-700">Connect with someone</div>
-              <div className="text-gray-500 text-base">Over a relaxed 1-on-1 conversation.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Connect with someone</div>
+              <div className="text-gray-500 text-base md:text-base leading-normal">Over a relaxed 1-on-1 conversation.</div>
             </div>
           </div>
           {/* Step 3: Grow Together */}
-          <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center min-h-[260px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Sprout SVG icon */}
-            <div className="mb-4 flex items-center justify-center w-12 h-12">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="32" rx="10" ry="3" fill="#E0E7FF"/><path d="M22 32V18" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c-4 0-8 2-8 6 0 2 2 4 4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c4 0 8 2 8 6 0 2-2 4-4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><circle cx="22" cy="16" r="2" fill="#6366F1"/></svg>
+          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
+            {/* Larger Sprout SVG icon */}
+            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
+              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="32" rx="10" ry="3" fill="#E0E7FF"/><path d="M22 32V18" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c-4 0-8 2-8 6 0 2 2 4 4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c4 0 8 2 8 6 0 2-2 4-4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><circle cx="22" cy="16" r="2" fill="#6366F1"/></svg>
             </div>
             <div>
-              <div className="font-bold text-lg mb-2 text-indigo-700">Grow together</div>
-              <div className="text-gray-500 text-base">Sometimes you listen. Sometimes you share. That's the magic of it.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Grow together</div>
+              <div className="text-gray-500 text-base md:text-base leading-normal">Sometimes you listen. Sometimes you share. That's the magic of it.</div>
             </div>
           </div>
         </div>
