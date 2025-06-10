@@ -42,10 +42,10 @@ export default function BecomeMentor() {
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Become a Mentor
+            Share a Chat
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            Ready to inspire and guide others? Join our community of mentors and help shape the future.
+            Ready to inspire and support others? Join our community of chat sharers and help shape the future through story-sharing.
           </p>
         </div>
         <div className="max-w-xl mx-auto fade-in-up">
@@ -78,7 +78,7 @@ export default function BecomeMentor() {
                 />
               </div>
               <div>
-                <label htmlFor="expertise" className="block text-sm font-medium text-gray-700 mb-1">Areas of Expertise</label>
+                <label htmlFor="expertise" className="block text-sm font-medium text-gray-700 mb-1">Areas of Experience</label>
                 <input
                   type="text"
                   name="expertise"
@@ -117,7 +117,7 @@ export default function BecomeMentor() {
                 />
               </div>
               <div>
-                <label htmlFor="goals" className="block text-sm font-medium text-gray-700 mb-1">What do you hope to achieve as a mentor?</label>
+                <label htmlFor="goals" className="block text-sm font-medium text-gray-700 mb-1">What do you hope to achieve by sharing a chat?</label>
                 <textarea
                   name="goals"
                   id="goals"
@@ -140,18 +140,18 @@ export default function BecomeMentor() {
             </form>
           </div>
           <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Become a Mentor?</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Share a Chat?</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mt-8">
               <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Share Your Knowledge</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Share Your Story</h3>
                 <p className="text-gray-600">
-                  Help others grow by sharing your expertise and experience. Make a meaningful impact in someone's life.
+                  Give a little time, be a listener, or offer what you've learned. Make a meaningful impact in someone's life.
                 </p>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Grow Your Network</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Grow Together</h3>
                 <p className="text-gray-600">
-                  Connect with like-minded individuals and expand your professional network while making a difference.
+                  Connect with others and grow together through story-sharing and support.
                 </p>
               </div>
             </div>

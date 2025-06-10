@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { name: 'Contact', href: '/contact' },
 ];
 const mentorshipLinks = [
-  { name: 'Become a Mentor', href: '/mentor#application' },
+  { name: 'Share a Chat', href: '/mentor#application' },
   { name: 'Meet the Mentors', href: '/mentor' },
   { name: 'Other Platforms', href: '/mentor/other-platforms' },
 ];
