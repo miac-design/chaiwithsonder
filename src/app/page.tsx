@@ -101,11 +101,7 @@ export default function Home() {
         {/* Centered Content on Overlay */}
         <div className="relative z-10 text-center text-white max-w-2xl mx-auto w-full px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg leading-tight flex flex-col items-center">
-            <span className="inline-flex items-center justify-center mb-2">
-              {/* Subtle teacup SVG icon */}
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" className="inline-block align-middle mr-2 opacity-80" style={{marginBottom:'2px'}}><ellipse cx="16" cy="24" rx="10" ry="3" fill="#E0E7FF"/><path d="M8 14c0-3.314 3.134-6 7-6s7 2.686 7 6v4c0 2.21-3.134 4-7 4s-7-1.79-7-4v-4z" fill="#fff" stroke="#6366F1" strokeWidth="2"/><path d="M24 18c2.5 0 4.5-1.5 4.5-3.5S26.5 11 24 11" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/></svg>
-              <span className="ml-1">Everyone has something to share.</span>
-            </span>
+            Everyone has something to share.
             <span className="text-base md:text-lg font-medium block mt-2 text-indigo-100 max-w-xl">
               Whether you're starting out or have stories to tell — your words might just brighten someone's day. And theirs might brighten yours.
             </span>
