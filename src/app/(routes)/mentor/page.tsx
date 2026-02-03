@@ -7,19 +7,19 @@ import Image from 'next/image';
 // Modern SVG icons for badges
 const BadgeIcons = {
   sprout: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M7 20a5 5 0 0 1 10 0"/><path d="M12 20V10"/><path d="M9 6.5A3.5 3.5 0 0 1 12 10"/><path d="M12 10a3.5 3.5 0 0 0 3-3.5V2.5"/></svg>
+    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M7 20a5 5 0 0 1 10 0" /><path d="M12 20V10" /><path d="M9 6.5A3.5 3.5 0 0 1 12 10" /><path d="M12 10a3.5 3.5 0 0 0 3-3.5V2.5" /></svg>
   ),
   handshake: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 20h4l3-3"/><path d="M9 17l-5-5a2.828 2.828 0 0 1 4-4l1 1 1-1a2.828 2.828 0 0 1 4 4l-5 5"/><path d="M14 17l3 3h4"/></svg>
+    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 20h4l3-3" /><path d="M9 17l-5-5a2.828 2.828 0 0 1 4-4l1 1 1-1a2.828 2.828 0 0 1 4 4l-5 5" /><path d="M14 17l3 3h4" /></svg>
   ),
   trophy: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M17 17a5 5 0 0 0 5-5V5H2v7a5 5 0 0 0 5 5"/><path d="M7 4V2"/><path d="M17 4V2"/></svg>
+    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M8 21h8" /><path d="M12 17v4" /><path d="M17 17a5 5 0 0 0 5-5V5H2v7a5 5 0 0 0 5 5" /><path d="M7 4V2" /><path d="M17 4V2" /></svg>
   ),
   barchart: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5" rx="1"/><rect x="12" y="9" width="3" height="9" rx="1"/><rect x="17" y="5" width="3" height="13" rx="1"/></svg>
+    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 3v18h18" /><rect x="7" y="13" width="3" height="5" rx="1" /><rect x="12" y="9" width="3" height="9" rx="1" /><rect x="17" y="5" width="3" height="13" rx="1" /></svg>
   ),
   star: (
-    <svg width="22" height="22" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <svg width="22" height="22" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
   ),
 };
 
@@ -159,11 +159,11 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
     ? mentor.photo
     : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-transform hover:-translate-y-1 flex flex-col items-center">
+    <div className="bg-white/85 backdrop-blur-xl border border-white/30 rounded-2xl shadow-xl p-6 text-center hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
       <img
         src={avatarUrl}
         alt={`Photo of ${mentor.name}`}
-        className="rounded-full w-32 h-32 mx-auto object-cover ring-2 ring-indigo-200"
+        className="rounded-full w-32 h-32 mx-auto object-cover ring-2 ring-blue-200"
         onError={(e) => {
           e.currentTarget.onerror = null;
           e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
@@ -178,7 +178,7 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
           target={mentor.calendly ? '_blank' : undefined}
           rel={mentor.calendly ? 'noopener noreferrer' : undefined}
           aria-label={mentor.calendly ? `Book a session with ${mentor.name}` : 'Calendly not available'}
-          className="text-indigo-500 hover:text-indigo-700 transition"
+          className="text-blue-500 hover:text-blue-700 transition"
           title={mentor.calendly ? 'Book a session' : 'Not available'}
           tabIndex={0}
           onClick={e => { if (!mentor.calendly) e.preventDefault(); }}
@@ -263,7 +263,7 @@ export default function Mentor() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
+    <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -283,7 +283,7 @@ export default function Mentor() {
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-white border border-gray-300 rounded-full px-5 py-3 pl-12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-gray-700 placeholder-gray-400"
+            className="w-full bg-white/85 backdrop-blur-xl border border-white/30 rounded-full px-5 py-3 pl-12 shadow-lg focus:ring-blue-500 focus:border-blue-500 text-gray-700 placeholder-gray-400"
             placeholder="Search by name, expertise, or role…"
             aria-label="Search mentors by name, expertise, or role"
           />
@@ -402,7 +402,7 @@ export default function Mentor() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`bg-indigo-600 text-white font-semibold rounded-full py-3 w-full shadow-md hover:bg-indigo-700 hover:shadow-lg transition ease-in-out duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
+                  className={`bg-blue-600 text-white font-semibold rounded-full py-3 w-full shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>

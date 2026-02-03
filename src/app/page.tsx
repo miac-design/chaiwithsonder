@@ -30,42 +30,57 @@ function HowItWorksSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="bg-[#fafafc] py-12 px-4 sm:px-6 lg:px-8"
+      className="bg-gradient-to-b from-slate-50 to-white py-16 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight">How It Works</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-tight text-slate-900">How It Works</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {/* Step 1: Create Profile */}
-          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Larger Tea bag/profile SVG icon */}
-            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
-              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><rect x="6" y="10" width="32" height="24" rx="6" fill="#E0E7FF"/><rect x="12" y="16" width="20" height="12" rx="4" fill="#6366F1"/><circle cx="22" cy="22" r="3" fill="#FDBA74"/><rect x="20" y="26" width="4" height="2" rx="1" fill="#FDBA74"/></svg>
+          <div className="bg-white/85 backdrop-blur-xl border border-white/50 rounded-3xl shadow-lg p-6 md:p-8 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-100/50 group">
+            {/* Tea bag/profile SVG icon */}
+            <div className="mb-6 flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl shadow-inner">
+              <svg width="48" height="48" viewBox="0 0 44 44" fill="none">
+                <rect x="6" y="10" width="32" height="24" rx="6" fill="#DBEAFE" />
+                <rect x="12" y="16" width="20" height="12" rx="4" fill="#3B82F6" />
+                <circle cx="22" cy="22" r="3" fill="#F97316" />
+                <rect x="20" y="26" width="4" height="2" rx="1" fill="#F97316" />
+              </svg>
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Create your profile & share your flavor</div>
-              <div className="text-gray-500 text-base md:text-base leading-normal">Your story, your vibe, your interests.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-blue-700 leading-tight">Create your profile & share your flavor</div>
+              <div className="text-slate-500 text-base leading-relaxed">Your story, your vibe, your interests.</div>
             </div>
           </div>
           {/* Step 2: Connect */}
-          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Larger Chat bubble SVG icon */}
-            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
-              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><rect x="6" y="14" width="32" height="16" rx="8" fill="#E0E7FF"/><rect x="12" y="18" width="20" height="8" rx="4" fill="#6366F1"/><rect x="16" y="26" width="12" height="4" rx="2" fill="#FDBA74"/></svg>
+          <div className="bg-white/85 backdrop-blur-xl border border-white/50 rounded-3xl shadow-lg p-6 md:p-8 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-100/50 group">
+            {/* Chat bubble SVG icon */}
+            <div className="mb-6 flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl shadow-inner">
+              <svg width="48" height="48" viewBox="0 0 44 44" fill="none">
+                <rect x="6" y="14" width="32" height="16" rx="8" fill="#DBEAFE" />
+                <rect x="12" y="18" width="20" height="8" rx="4" fill="#3B82F6" />
+                <rect x="16" y="26" width="12" height="4" rx="2" fill="#F97316" />
+              </svg>
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Connect with someone</div>
-              <div className="text-gray-500 text-base md:text-base leading-normal">Over a relaxed 1-on-1 conversation.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-blue-700 leading-tight">Connect with someone</div>
+              <div className="text-slate-500 text-base leading-relaxed">Over a relaxed 1-on-1 conversation.</div>
             </div>
           </div>
           {/* Step 3: Grow Together */}
-          <div className="bg-white rounded-2xl shadow-md p-5 md:p-6 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl group">
-            {/* Larger Sprout SVG icon */}
-            <div className="mb-6 flex items-center justify-center" style={{height:'72px'}}>
-              <svg width="64" height="64" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="32" rx="10" ry="3" fill="#E0E7FF"/><path d="M22 32V18" stroke="#6366F1" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c-4 0-8 2-8 6 0 2 2 4 4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><path d="M22 18c4 0 8 2 8 6 0 2-2 4-4 4" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"/><circle cx="22" cy="16" r="2" fill="#6366F1"/></svg>
+          <div className="bg-white/85 backdrop-blur-xl border border-white/50 rounded-3xl shadow-lg p-6 md:p-8 flex flex-col items-center text-center min-h-[320px] h-full justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-100/50 group">
+            {/* Sprout SVG icon */}
+            <div className="mb-6 flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl shadow-inner">
+              <svg width="48" height="48" viewBox="0 0 44 44" fill="none">
+                <ellipse cx="22" cy="32" rx="10" ry="3" fill="#DBEAFE" />
+                <path d="M22 32V18" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+                <path d="M22 18c-4 0-8 2-8 6 0 2 2 4 4 4" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
+                <path d="M22 18c4 0 8 2 8 6 0 2-2 4-4 4" stroke="#F97316" strokeWidth="2" strokeLinecap="round" />
+                <circle cx="22" cy="16" r="2" fill="#3B82F6" />
+              </svg>
             </div>
             <div>
-              <div className="font-bold text-lg md:text-xl mb-2 text-indigo-700 leading-tight whitespace-nowrap">Grow together</div>
-              <div className="text-gray-500 text-base md:text-base leading-normal">Sometimes you listen. Sometimes you share. That's the magic of it.</div>
+              <div className="font-bold text-lg md:text-xl mb-2 text-blue-700 leading-tight">Grow together</div>
+              <div className="text-slate-500 text-base leading-relaxed">Sometimes you listen. Sometimes you share. That's the magic of it.</div>
             </div>
           </div>
         </div>
@@ -73,6 +88,7 @@ function HowItWorksSection() {
     </motion.section>
   );
 }
+
 
 export default function Home() {
   return (
@@ -102,31 +118,31 @@ export default function Home() {
         <div className="relative z-10 text-center text-white max-w-2xl mx-auto w-full px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg leading-tight flex flex-col items-center">
             Everyone has something to share.
-            <span className="text-base md:text-lg font-medium block mt-2 text-indigo-100 max-w-xl">
+            <span className="text-base md:text-lg font-medium block mt-2 text-blue-100 max-w-xl">
               Whether you're starting out or have stories to tell — your words might just brighten someone's day. And theirs might brighten yours.
             </span>
           </h1>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 w-full max-w-md mx-auto">
             <Link
               href="/signup?type=share"
-              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold bg-indigo-600 text-white shadow hover:bg-indigo-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-              style={{minWidth:'140px'}}
+              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-xl font-semibold bg-blue-600 text-white shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              style={{ minWidth: '140px' }}
             >
               {/* Chat bubble SVG */}
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" strokeWidth="2" strokeLinejoin="round"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" strokeWidth="2" strokeLinejoin="round" /></svg>
               <span>Share a Chat</span>
             </Link>
             <Link
               href="/signup?type=sip"
-              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold border border-indigo-200 text-indigo-100 bg-white/10 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-              style={{minWidth:'140px'}}
+              className="flex items-center justify-center gap-2 text-base md:text-lg px-5 py-2 md:px-6 md:py-2.5 rounded-xl font-semibold border border-blue-200/50 text-blue-100 bg-white/15 backdrop-blur-sm hover:bg-blue-50 hover:text-blue-700 hover:border-blue-400 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              style={{ minWidth: '140px' }}
             >
               {/* Sprout SVG */}
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M12 19V5m0 0C9 5 5 7 5 11c0 2.5 2 4 4 4m3-10c3 0 7 2 7 6 0 2.5-2 4-4 4" stroke="#6366F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="19" r="2" fill="#6366F1"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="inline-block align-middle"><path d="M12 19V5m0 0C9 5 5 7 5 11c0 2.5 2 4 4 4m3-10c3 0 7 2 7 6 0 2.5-2 4-4 4" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="19" r="2" fill="#3B82F6" /></svg>
               <span>Sip a Chat</span>
             </Link>
           </div>
-          <div className="mt-2 text-xs text-indigo-100 opacity-80">Low-pressure, peer-to-peer, community-first</div>
+          <div className="mt-2 text-xs text-blue-100 opacity-80">Low-pressure, peer-to-peer, community-first</div>
         </div>
         {/* Scroll Down Icon */}
         <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex flex-col items-center z-10">
@@ -146,7 +162,7 @@ export default function Home() {
         whileInView="animate"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="py-16 px-4 sm:py-10 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-indigo-50"
+        className="py-16 px-4 sm:py-10 sm:px-6 lg:px-8 bg-gradient-to-br from-white to-blue-50"
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
@@ -163,7 +179,7 @@ export default function Home() {
                   &quot;<span className="font-bold" style={{ color: '#6C63FF' }}>Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&quot;
                 </motion.blockquote>
                 <motion.p variants={fadeIn} className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  That's why we created Chaichat — a place where sharing a story is just as powerful as hearing one.<br/>
+                  That's why we created Chaichat — a place where sharing a story is just as powerful as hearing one.<br />
                   We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
                 </motion.p>
               </div>
@@ -271,10 +287,10 @@ export default function Home() {
                 {/* Share a Chat Icon (Envelope with red up arrow) */}
                 <span className="inline-block align-middle">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF"/>
-                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff"/>
-                    <path d="M14 6v6" stroke="#EF4444" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M12 8l2-2 2 2" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF" />
+                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff" />
+                    <path d="M14 6v6" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M12 8l2-2 2 2" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
                 Share a Chat
@@ -296,10 +312,10 @@ export default function Home() {
                 {/* Sip a Chat Icon (Envelope with blue down arrow, same style as Share a Chat) */}
                 <span className="inline-block align-middle">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF"/>
-                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff"/>
-                    <path d="M14 16v-6" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M12 14l2 2 2-2" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF" />
+                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff" />
+                    <path d="M14 16v-6" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M12 14l2 2 2-2" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
                 Sip a Chat
