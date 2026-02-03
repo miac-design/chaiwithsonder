@@ -120,11 +120,10 @@ const Navbar = (props: Record<string, unknown>) => {
         initial="hidden"
         animate="visible"
         variants={navbarVariants}
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled || !isHomePage
+        className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
             ? 'bg-neutral-50 shadow-md'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 w-full">
@@ -139,9 +138,8 @@ const Navbar = (props: Record<string, unknown>) => {
                   className="h-12 w-12 object-contain bg-transparent"
                   priority
                 />
-                <span className={`text-3xl font-bold align-middle tracking-tight ${
-                  isScrolled || !isHomePage ? 'text-indigo-600' : 'text-white'
-                }`}>
+                <span className={`font-[--font-space-grotesk] text-3xl font-bold align-middle tracking-tight ${isScrolled || !isHomePage ? 'text-blue-600' : 'text-white'
+                  }`}>
                   Chai Chat
                 </span>
               </Link>
@@ -154,7 +152,7 @@ const Navbar = (props: Record<string, unknown>) => {
                     return (
                       <div key="mentorship-dropdown" className="relative group">
                         <button
-                          className="text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-indigo-600 hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
+                          className="text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
                           tabIndex={0}
                         >
                           Mentorship
@@ -166,7 +164,7 @@ const Navbar = (props: Record<string, unknown>) => {
                               <Link
                                 key={link.name}
                                 href={link.href}
-                                className="block text-gray-700 font-medium hover:text-indigo-600 transition duration-200 px-1 py-1 rounded"
+                                className="block text-gray-700 font-medium hover:text-blue-600 transition duration-200 px-1 py-1 rounded"
                               >
                                 {link.name}
                               </Link>
@@ -181,9 +179,8 @@ const Navbar = (props: Record<string, unknown>) => {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className={`text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-indigo-600 hover:underline underline-offset-4 ${
-                          isActive ? 'font-semibold text-indigo-600' : ''
-                        }`}
+                        className={`text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 ${isActive ? 'font-semibold text-indigo-600' : ''
+                          }`}
                       >
                         {item.name}
                       </Link>
@@ -196,20 +193,20 @@ const Navbar = (props: Record<string, unknown>) => {
               <div className="flex items-center space-x-2 ml-6">
                 <Link
                   href="/donate"
-                  className="rounded-full px-4 py-1 text-sm bg-indigo-600 text-white font-semibold shadow-sm hover:bg-indigo-700 transition duration-200"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-200"
                 >
                   Support Us
                 </Link>
                 <Link
                   href="/login"
-                  className="rounded-full px-4 py-1 text-sm bg-white border border-indigo-300 text-indigo-600 font-semibold shadow-sm hover:bg-indigo-50 transition-colors duration-200 align-middle"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-white border border-blue-300 text-blue-600 font-semibold shadow-sm hover:bg-blue-50 transition-colors duration-200 align-middle"
                 >
                   Login
                 </Link>
                 <button
                   type="button"
                   onClick={() => setShowSignupModal(true)}
-                  className="rounded-full px-4 py-1 text-sm bg-indigo-500 text-white font-bold shadow-md hover:bg-indigo-600 transition duration-200 ml-2"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-blue-500 text-white font-bold shadow-md hover:bg-blue-600 transition duration-200 ml-2"
                 >
                   Sign Up
                 </button>
@@ -260,11 +257,10 @@ const Navbar = (props: Record<string, unknown>) => {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`inline-flex items-center justify-center p-2 rounded-md ${
-                  isScrolled || !isHomePage
+                className={`inline-flex items-center justify-center p-2 rounded-md ${isScrolled || !isHomePage
                     ? 'text-gray-700 hover:text-indigo-600'
                     : 'text-white hover:text-indigo-200'
-                } focus:outline-none`}
+                  } focus:outline-none`}
               >
                 <span className="sr-only">Open main menu</span>
                 <motion.div
@@ -393,7 +389,7 @@ const Navbar = (props: Record<string, unknown>) => {
                 className="flex-1 bg-white border border-gray-300 text-gray-700 rounded-full px-6 py-3 flex items-center justify-center gap-2 hover:shadow-md transition"
               >
                 {/* Google Icon */}
-                <svg className="w-6 h-6" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.9 33.1 30.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15.5 16.2 19.4 13 24 13c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 15.6 3 8.3 8.6 6.3 14.7z"/><path fill="#FBBC05" d="M24 45c6.1 0 11.2-2 14.9-5.4l-6.9-5.7C29.7 35.6 27 36.5 24 36.5c-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.7c-1.2 3.2-4.7 7.5-11.7 7.5-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z"/></g></svg>
+                <svg className="w-6 h-6" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.9 33.1 30.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z" /><path fill="#34A853" d="M6.3 14.7l7 5.1C15.5 16.2 19.4 13 24 13c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 15.6 3 8.3 8.6 6.3 14.7z" /><path fill="#FBBC05" d="M24 45c6.1 0 11.2-2 14.9-5.4l-6.9-5.7C29.7 35.6 27 36.5 24 36.5c-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45z" /><path fill="#EA4335" d="M44.5 20H24v8.5h11.7c-1.2 3.2-4.7 7.5-11.7 7.5-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z" /></g></svg>
                 <span className="font-medium">Sign up with Google</span>
               </button>
               <button
@@ -402,7 +398,7 @@ const Navbar = (props: Record<string, unknown>) => {
                 className="flex-1 bg-white border border-gray-300 text-gray-700 rounded-full px-6 py-3 flex items-center justify-center gap-2 hover:shadow-md transition"
               >
                 {/* Microsoft Icon */}
-                <svg className="w-6 h-6" viewBox="0 0 24 24"><g><rect fill="#F25022" x="1" y="1" width="10" height="10"/><rect fill="#7FBA00" x="13" y="1" width="10" height="10"/><rect fill="#00A4EF" x="1" y="13" width="10" height="10"/><rect fill="#FFB900" x="13" y="13" width="10" height="10"/></g></svg>
+                <svg className="w-6 h-6" viewBox="0 0 24 24"><g><rect fill="#F25022" x="1" y="1" width="10" height="10" /><rect fill="#7FBA00" x="13" y="1" width="10" height="10" /><rect fill="#00A4EF" x="1" y="13" width="10" height="10" /><rect fill="#FFB900" x="13" y="13" width="10" height="10" /></g></svg>
                 <span className="font-medium">Sign up with Outlook</span>
               </button>
             </div>

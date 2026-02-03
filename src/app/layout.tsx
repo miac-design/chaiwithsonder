@@ -20,6 +20,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Chai Chat - Community-Driven Mentoring Platform",
   description: "Empowering growth through story-sharing and mutual support — one cup at a time.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
