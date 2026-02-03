@@ -13,32 +13,24 @@ type DropdownItem = { name: string; href: string; description?: string };
 type NavItem = { name: string; href?: string; dropdown?: DropdownItem[] };
 
 const exploreLinks: DropdownItem[] = [
-  { name: 'Topics', href: '/explore/topics', description: 'Browse all topics' },
-  { name: 'Trending', href: '/explore/trending', description: 'Popular this week' },
-  { name: 'Popular Chats', href: '/explore/popular', description: 'Most-loved conversations' },
-  { name: 'New This Week', href: '/explore/new', description: 'Fresh perspectives' },
-  { name: 'Search', href: '/search', description: 'Find anything' },
+  { name: 'Find Mentors', href: '/mentor', description: 'Connect with guides' },
+  { name: 'About ChaiChat', href: '/about', description: 'Our story & mission' },
 ];
 
 const learnLinks: DropdownItem[] = [
-  { name: 'Learning Paths', href: '/learn/paths', description: 'Guided journeys' },
-  { name: 'AI Basics', href: '/learn/ai-basics', description: 'Start with AI' },
-  { name: 'Resources', href: '/learn/resources', description: 'Articles & guides' },
-  { name: 'Certificates', href: '/learn/certificates', description: 'Coming soon' },
+  { name: 'Start Here', href: '/start-here', description: 'Begin your journey' },
+  { name: 'Find a Mentor', href: '/mentor', description: 'Connect with guides' },
 ];
 
 const mentorshipLinks: DropdownItem[] = [
   { name: 'Find a Mentor', href: '/mentor', description: 'Connect with guides' },
-  { name: 'Become a Mentor', href: '/mentor#application', description: 'Share your wisdom' },
-  { name: 'How It Works', href: '/mentor/how-it-works', description: 'The process' },
-  { name: 'Success Stories', href: '/mentor/stories', description: 'Impact in action' },
+  { name: 'Become a Mentor', href: '/mentor/become', description: 'Share your wisdom' },
 ];
 
 const communityLinks: DropdownItem[] = [
-  { name: 'Events', href: '/community/events', description: 'Upcoming gatherings' },
-  { name: 'Members', href: '/community/members', description: 'Meet the community' },
-  { name: 'Discussions', href: '/community/discussions', description: 'Join conversations' },
-  { name: 'Community Stories', href: '/community/stories', description: 'Shared experiences' },
+  { name: 'Contact Us', href: '/contact', description: 'Get in touch' },
+  { name: 'Support ChaiChat', href: '/donate', description: 'Help us grow' },
+  { name: 'Partner With Us', href: '/partner', description: 'Work together' },
 ];
 
 const aboutLinks: DropdownItem[] = [
@@ -217,8 +209,8 @@ const Navbar = () => {
         animate="visible"
         variants={navbarVariants}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-            ? 'bg-chai-navy/95 backdrop-blur-2xl border-b border-chai-sky/10 shadow-xl shadow-black/30'
-            : 'bg-gradient-to-b from-chai-dark/80 to-transparent'
+          ? 'bg-chai-navy/95 backdrop-blur-2xl border-b border-chai-sky/10 shadow-xl shadow-black/30'
+          : 'bg-gradient-to-b from-chai-dark/80 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -277,7 +269,7 @@ const Navbar = () => {
 
               {/* Start Here - First-time user guide */}
               <Link
-                href="/start"
+                href="/start-here"
                 className="flex items-center gap-1 text-chai-amber font-medium px-3 py-2 rounded-lg hover:bg-chai-amber/10 transition-all duration-200 ml-2"
               >
                 <span>Start Here</span>
@@ -458,7 +450,7 @@ const Navbar = () => {
 
               {/* Start Here */}
               <Link
-                href="/start"
+                href="/start-here"
                 className="flex items-center gap-2 px-4 py-3 text-chai-amber font-semibold hover:bg-chai-amber/10 rounded-lg transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
