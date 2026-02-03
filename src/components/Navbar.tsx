@@ -4,28 +4,131 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
 import { useSession, signOut, SessionProvider } from "next-auth/react";
 import React from 'react';
+import AnimatedLogo from './AnimatedLogo';
 
-type NavItem = { name: string; href?: string; dropdown?: boolean };
+// Navigation structure with dropdowns
+type DropdownItem = { name: string; href: string; description?: string };
+type NavItem = { name: string; href?: string; dropdown?: DropdownItem[] };
+
+const exploreLinks: DropdownItem[] = [
+  { name: 'Topics', href: '/explore/topics', description: 'Browse all topics' },
+  { name: 'Trending', href: '/explore/trending', description: 'Popular this week' },
+  { name: 'Popular Chats', href: '/explore/popular', description: 'Most-loved conversations' },
+  { name: 'New This Week', href: '/explore/new', description: 'Fresh perspectives' },
+  { name: 'Search', href: '/search', description: 'Find anything' },
+];
+
+const learnLinks: DropdownItem[] = [
+  { name: 'Learning Paths', href: '/learn/paths', description: 'Guided journeys' },
+  { name: 'AI Basics', href: '/learn/ai-basics', description: 'Start with AI' },
+  { name: 'Resources', href: '/learn/resources', description: 'Articles & guides' },
+  { name: 'Certificates', href: '/learn/certificates', description: 'Coming soon' },
+];
+
+const mentorshipLinks: DropdownItem[] = [
+  { name: 'Find a Mentor', href: '/mentor', description: 'Connect with guides' },
+  { name: 'Become a Mentor', href: '/mentor#application', description: 'Share your wisdom' },
+  { name: 'How It Works', href: '/mentor/how-it-works', description: 'The process' },
+  { name: 'Success Stories', href: '/mentor/stories', description: 'Impact in action' },
+];
+
+const communityLinks: DropdownItem[] = [
+  { name: 'Events', href: '/community/events', description: 'Upcoming gatherings' },
+  { name: 'Members', href: '/community/members', description: 'Meet the community' },
+  { name: 'Discussions', href: '/community/discussions', description: 'Join conversations' },
+  { name: 'Community Stories', href: '/community/stories', description: 'Shared experiences' },
+];
+
+const aboutLinks: DropdownItem[] = [
+  { name: 'Our Story', href: '/about', description: 'Why we exist' },
+  { name: 'Impact', href: '/about#impact', description: 'Our difference' },
+  { name: 'Team', href: '/about#team', description: 'The people' },
+  { name: 'Ethics & Privacy', href: '/about#ethics', description: 'Our values' },
+  { name: 'Partners', href: '/partner', description: 'Work with us' },
+];
+
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Mentorship', dropdown: true },
-  { name: 'What Members Say', href: '/about#testimonials' },
-  { name: 'FAQ', href: '/about#faq' },
-  { name: 'Contact', href: '/contact' },
-];
-const mentorshipLinks = [
-  { name: 'Share a Chat', href: '/mentor#application' },
-  { name: 'Meet the Mentors', href: '/mentor' },
-  { name: 'Other Platforms', href: '/mentor/other-platforms' },
+  { name: 'Explore', dropdown: exploreLinks },
+  { name: 'Learn', dropdown: learnLinks },
+  { name: 'Mentorship', dropdown: mentorshipLinks },
+  { name: 'Community', dropdown: communityLinks },
+  { name: 'About', dropdown: aboutLinks },
 ];
 
-const Navbar = (props: Record<string, unknown>) => {
+// Dropdown component
+const NavDropdown = ({ name, items, isOpen, onToggle }: {
+  name: string;
+  items: DropdownItem[];
+  isOpen: boolean;
+  onToggle: () => void;
+}) => {
+  return (
+    <div className="relative group">
+      <button
+        onClick={onToggle}
+        className="flex items-center gap-1 text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-chai-amber hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-chai-amber/50"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+      >
+        {name}
+        <motion.svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </motion.svg>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-full left-0 mt-2 w-64 z-50"
+          >
+            <div className="bg-chai-navy/95 backdrop-blur-2xl border border-chai-sky/20 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden">
+              {/* Gradient accent at top */}
+              <div className="h-1 bg-gradient-to-r from-chai-sky via-chai-amber to-chai-sky" />
+              <div className="p-2">
+                {items.map((item, idx) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="flex flex-col px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group/item"
+                  >
+                    <span className="text-white font-medium group-hover/item:text-chai-amber transition-colors">
+                      {item.name}
+                    </span>
+                    {item.description && (
+                      <span className="text-white/50 text-sm mt-0.5">
+                        {item.description}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [signupForm, setSignupForm] = useState({
     name: '',
@@ -42,6 +145,7 @@ const Navbar = (props: Record<string, unknown>) => {
   const { data: session } = useSession();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,9 +154,19 @@ const Navbar = (props: Record<string, unknown>) => {
       }
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
     }
   }, []);
 
@@ -65,40 +179,17 @@ const Navbar = (props: Record<string, unknown>) => {
     closed: {
       opacity: 0,
       x: "100%",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
     open: {
       opacity: 1,
       x: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
 
-  const menuItemVariants = {
-    closed: { opacity: 0, x: 20 },
-    open: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.3,
-      },
-    }),
-  };
-
-  // Social sign up handlers (placeholder)
-  const handleGoogleSignUp = () => {
-    alert('Google sign up coming soon!');
-  };
-  const handleMicrosoftSignUp = () => {
-    alert('Outlook/Microsoft sign up coming soon!');
-  };
+  const handleGoogleSignUp = () => { alert('Google sign up coming soon!'); };
+  const handleMicrosoftSignUp = () => { alert('Outlook/Microsoft sign up coming soon!'); };
 
   const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value });
@@ -114,162 +205,180 @@ const Navbar = (props: Record<string, unknown>) => {
     }, 1500);
   };
 
+  const toggleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
+
   return (
     <>
       <motion.nav
+        ref={navRef}
         initial="hidden"
         animate="visible"
         variants={navbarVariants}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-          ? 'bg-cosmic-navy/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
-          : 'bg-transparent'
+            ? 'bg-chai-navy/95 backdrop-blur-2xl border-b border-chai-sky/10 shadow-xl shadow-black/30'
+            : 'bg-gradient-to-b from-chai-dark/80 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 w-full">
+          <div className="flex items-center justify-between h-20">
             {/* Logo Section */}
-            <div className="flex items-center gap-x-4 flex-shrink-0">
-              <Link href="/" className="flex items-center gap-x-4">
-                <Image
-                  src="/logo-new.png"
-                  alt="Chai Chat Logo"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 object-contain bg-transparent"
-                  priority
-                />
-                <span className={`font-[--font-space-grotesk] text-3xl font-bold align-middle tracking-tight text-white
-                  `}>
-                  Chai Chat
-                </span>
+            <div className="flex items-center gap-x-3 flex-shrink-0">
+              <Link href="/" className="flex items-center gap-x-3 group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="relative"
+                >
+                  <AnimatedLogo size={52} />
+                </motion.div>
+                <div className="flex flex-col">
+                  <motion.span
+                    className="font-[--font-space-grotesk] text-2xl font-bold tracking-tight text-white group-hover:text-chai-sky transition-colors duration-300"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    Chai Chat
+                  </motion.span>
+                  <span className="text-xs text-white/40 hidden sm:block">
+                    Where Sonder Becomes Connection
+                  </span>
+                </div>
               </Link>
             </div>
-            {/* Desktop menu */}
-            <div className="hidden md:flex items-center flex-1 justify-center">
-              <nav className="flex items-center gap-6 relative">
-                {navItems.map((item) => {
-                  if (item.dropdown) {
-                    return (
-                      <div key="mentorship-dropdown" className="relative group">
-                        <button
-                          className="text-white/80 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-cosmic-teal hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
-                          tabIndex={0}
-                        >
-                          Mentorship
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                        </button>
-                        <div className="absolute top-full left-0 mt-2 hidden group-hover:block group-focus-within:block z-50 min-w-[180px]">
-                          <div className="bg-cosmic-navy/90 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/30 rounded-xl px-4 py-2 space-y-2 z-50">
-                            {mentorshipLinks.map((link) => (
-                              <Link
-                                key={link.name}
-                                href={link.href}
-                                className="block text-white/80 font-medium hover:text-cosmic-teal transition duration-200 px-1 py-1 rounded"
-                              >
-                                {link.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  } else if (item.href) {
-                    const isActive = pathname === item.href || (item.href.includes('#') && pathname + window.location.hash === item.href);
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={`text-white/80 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-cosmic-teal hover:underline underline-offset-4 ${isActive ? 'font-semibold text-cosmic-teal' : ''
-                          }`}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
-              </nav>
-              <div className="flex items-center space-x-2 ml-6">
-                <Link
-                  href="/donate"
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-gradient-to-r from-cosmic-teal to-cosmic-cerulean text-cosmic-deep font-semibold shadow-lg shadow-cosmic-teal/30 hover:-translate-y-0.5 hover:shadow-cosmic-teal/50 transition-all duration-200"
-                >
-                  Support Us
-                </Link>
-                <Link
-                  href="/login"
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-cosmic-teal/50 transition-all duration-200 align-middle"
-                >
-                  Login
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setShowSignupModal(true)}
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-gradient-to-r from-cosmic-purple to-accent-500 text-white font-bold shadow-lg shadow-cosmic-purple/30 hover:-translate-y-0.5 hover:shadow-cosmic-purple/50 transition-all duration-200 ml-2"
-                >
-                  Sign Up
-                </button>
-                {/* NextAuth Login/Logout */}
-                {session ? (
-                  <div className="relative flex items-center space-x-2 ml-2" ref={userMenuRef}>
-                    <button
-                      onClick={() => setUserMenuOpen((v) => !v)}
-                      onBlur={() => setTimeout(() => setUserMenuOpen(false), 150)}
-                      className="flex items-center space-x-2 focus:outline-none group"
-                      aria-haspopup="true"
-                      aria-expanded={userMenuOpen}
-                    >
-                      {session.user?.image && (
-                        <img
-                          src={session.user.image}
-                          alt={session.user.name || 'User avatar'}
-                          className="w-8 h-8 rounded-full object-cover border border-gray-300 shadow"
-                        />
-                      )}
-                      {session.user?.name && (
-                        <span className="text-gray-700 font-medium text-sm truncate max-w-[120px] group-hover:text-indigo-700">{session.user.name}</span>
-                      )}
-                      <svg className="w-4 h-4 text-gray-400 ml-1 group-hover:text-indigo-600 transition" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                    </button>
-                    {userMenuOpen && (
-                      <div className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg ring-1 ring-black/10 z-50 animate-fadeInUp">
-                        <a
-                          href="/profile"
-                          className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-t-xl transition-colors text-sm font-medium"
-                          onClick={() => setUserMenuOpen(false)}
-                        >
-                          Profile
-                        </a>
-                        <button
-                          onClick={() => { setUserMenuOpen(false); signOut(); }}
-                          className="w-full text-left px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-b-xl transition-colors text-sm font-medium"
-                        >
-                          Sign out
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : null}
-              </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navItems.map((item) => {
+                if (item.dropdown) {
+                  return (
+                    <NavDropdown
+                      key={item.name}
+                      name={item.name}
+                      items={item.dropdown}
+                      isOpen={openDropdown === item.name}
+                      onToggle={() => toggleDropdown(item.name)}
+                    />
+                  );
+                }
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href || '/'}
+                    className={`text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-chai-amber hover:bg-white/5 ${isActive ? 'text-chai-sky bg-white/5' : ''
+                      }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+
+              {/* Start Here - First-time user guide */}
+              <Link
+                href="/start"
+                className="flex items-center gap-1 text-chai-amber font-medium px-3 py-2 rounded-lg hover:bg-chai-amber/10 transition-all duration-200 ml-2"
+              >
+                <span>Start Here</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
             </div>
+
+            {/* Action Zone (Right side) */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* Support - Tertiary */}
+              <Link
+                href="/donate"
+                className="flex items-center gap-1.5 text-white/60 hover:text-chai-amber text-sm font-medium transition-all duration-200"
+              >
+                <span className="text-lg">❤️</span>
+                <span>Support</span>
+              </Link>
+
+              {/* Login - Secondary */}
+              <Link
+                href="/login"
+                className="px-5 py-2 text-sm font-semibold text-white/80 hover:text-white border border-white/20 hover:border-chai-sky/50 rounded-full transition-all duration-200 hover:bg-white/5"
+              >
+                Login
+              </Link>
+
+              {/* Join Free - Primary CTA */}
+              <button
+                onClick={() => setShowSignupModal(true)}
+                className="group relative overflow-hidden px-6 py-2.5 text-sm font-bold rounded-full bg-gradient-to-r from-chai-sky to-chai-blue text-white shadow-lg shadow-chai-sky/30 hover:shadow-xl hover:shadow-chai-sky/40 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <span className="relative z-10">Join Free</span>
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              </button>
+
+              {/* User menu when logged in */}
+              {session && (
+                <div className="relative flex items-center ml-2" ref={userMenuRef}>
+                  <button
+                    onClick={() => setUserMenuOpen((v) => !v)}
+                    onBlur={() => setTimeout(() => setUserMenuOpen(false), 150)}
+                    className="flex items-center gap-2 focus:outline-none group"
+                    aria-haspopup="true"
+                    aria-expanded={userMenuOpen}
+                  >
+                    {session.user?.image && (
+                      <img
+                        src={session.user.image}
+                        alt={session.user.name || 'User avatar'}
+                        className="w-9 h-9 rounded-full object-cover border-2 border-chai-sky/30 shadow"
+                      />
+                    )}
+                    <svg className="w-4 h-4 text-white/50 group-hover:text-chai-amber transition" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {userMenuOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-chai-navy/95 backdrop-blur-xl rounded-xl shadow-lg border border-chai-sky/20 z-50 overflow-hidden">
+                      <div className="h-1 bg-gradient-to-r from-chai-sky to-chai-amber" />
+                      <a
+                        href="/dashboard"
+                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-chai-amber transition-colors text-sm font-medium"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        My Dashboard
+                      </a>
+                      <a
+                        href="/profile"
+                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-chai-amber transition-colors text-sm font-medium"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        Profile
+                      </a>
+                      <button
+                        onClick={() => { setUserMenuOpen(false); signOut(); }}
+                        className="w-full text-left px-4 py-3 text-white/80 hover:bg-white/10 hover:text-red-400 transition-colors text-sm font-medium border-t border-white/10"
+                      >
+                        Sign out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
             {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
+            <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className={`inline-flex items-center justify-center p-2 rounded-md ${isScrolled || !isHomePage
-                  ? 'text-gray-700 hover:text-indigo-600'
-                  : 'text-white hover:text-indigo-200'
-                  } focus:outline-none`}
+                className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-chai-amber/50"
+                aria-label="Toggle menu"
               >
-                <span className="sr-only">Open main menu</span>
                 <motion.div
                   animate={isMenuOpen ? "open" : "closed"}
                   className="w-6 h-6 flex flex-col justify-center items-center"
                 >
                   <motion.span
                     className="w-6 h-0.5 bg-current block"
-                    variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 2 } }}
+                    variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 6 } }}
                   />
                   <motion.span
                     className="w-6 h-0.5 bg-current block mt-1.5"
@@ -277,14 +386,33 @@ const Navbar = (props: Record<string, unknown>) => {
                   />
                   <motion.span
                     className="w-6 h-0.5 bg-current block mt-1.5"
-                    variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -2 } }}
+                    variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -6 } }}
                   />
                 </motion.div>
               </button>
             </div>
           </div>
         </div>
+
+        {/* Microcopy bar - visible on scroll */}
+        <AnimatePresence>
+          {isScrolled && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="hidden lg:block bg-gradient-to-r from-chai-navy via-chai-blue/30 to-chai-navy border-t border-white/5"
+            >
+              <div className="max-w-7xl mx-auto px-4 py-1.5 text-center">
+                <span className="text-white/50 text-xs">
+                  ☕ A learning & mentorship community powered by AI and people
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
+
       {/* Mobile menu */}
       <AnimatePresence>
         {isMenuOpen && (
@@ -293,242 +421,213 @@ const Navbar = (props: Record<string, unknown>) => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="md:hidden absolute top-16 inset-x-0 bg-neutral-50 shadow-lg"
+            className="lg:hidden fixed inset-0 top-20 bg-chai-dark/98 backdrop-blur-xl z-40 overflow-y-auto"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item, i) => {
-                if (item.dropdown) {
-                  return (
-                    <div key="mentorship-dropdown-mobile" className="relative">
-                      <button
-                        className="w-full text-left text-gray-700 font-medium px-3 py-2 rounded-md transition-colors duration-200 hover:text-indigo-600 hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
-                        tabIndex={0}
-                        onClick={e => {
-                          e.preventDefault();
-                          const el = e.currentTarget.nextElementSibling;
-                          if (el) el.classList.toggle('hidden');
-                        }}
-                      >
-                        Mentorship
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                      </button>
-                      <div className="hidden mt-1 min-w-[180px]">
-                        <div className="bg-white shadow-md rounded-md px-4 py-2 space-y-2 z-50">
-                          {mentorshipLinks.map((link) => (
-                            <Link
-                              key={link.name}
-                              href={link.href}
-                              className="block text-gray-700 font-medium hover:text-indigo-600 transition duration-200 px-1 py-1 rounded"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {link.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                } else if (item.href) {
-                  return (
-                    <motion.div key={item.name} custom={i} variants={menuItemVariants}>
-                      <Link
-                        href={item.href}
-                        className="text-gray-700 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
+            <div className="px-4 py-6 space-y-2">
+              {/* Mobile nav items */}
+              {navItems.map((item) => (
+                <div key={item.name}>
+                  {item.dropdown ? (
+                    <div className="border-b border-white/10 pb-2 mb-2">
+                      <div className="text-white/50 text-xs uppercase tracking-wider px-4 py-2">
                         {item.name}
-                      </Link>
-                    </motion.div>
-                  );
-                } else {
-                  return null;
-                }
-              })}
-              <div className="flex flex-col gap-2 mt-2">
-                <Link
-                  href="/donate"
-                  className="rounded-full px-4 py-1 text-sm bg-indigo-600 text-white font-semibold shadow-sm hover:bg-indigo-700 transition duration-200 text-center"
-                >
-                  Support Us
-                </Link>
-                <Link
-                  href="/login"
-                  className="rounded-full px-4 py-1 text-sm bg-white border border-indigo-300 text-indigo-600 font-semibold shadow-sm hover:bg-indigo-50 transition-colors duration-200 text-center"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="#signup"
-                  className="rounded-full px-4 py-1 text-sm bg-indigo-500 text-white font-bold shadow-md hover:bg-indigo-600 transition duration-200 text-center"
-                >
-                  Sign Up
-                </Link>
+                      </div>
+                      {item.dropdown.map((link) => (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          className="block px-4 py-3 text-white/80 hover:text-chai-amber hover:bg-white/5 rounded-lg transition-colors"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href || '/'}
+                      className={`block px-4 py-3 text-white font-medium hover:text-chai-amber hover:bg-white/5 rounded-lg transition-colors ${pathname === item.href ? 'text-chai-sky bg-white/5' : ''
+                        }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+
+              {/* Start Here */}
+              <Link
+                href="/start"
+                className="flex items-center gap-2 px-4 py-3 text-chai-amber font-semibold hover:bg-chai-amber/10 rounded-lg transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span>Start Here</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+
+              {/* Mobile CTAs - sticky at bottom */}
+              <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-chai-dark via-chai-dark to-transparent">
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => { setShowSignupModal(true); setIsMenuOpen(false); }}
+                    className="w-full py-3 text-center font-bold rounded-full bg-gradient-to-r from-chai-sky to-chai-blue text-white shadow-lg"
+                  >
+                    Join Free
+                  </button>
+                  <div className="flex gap-3">
+                    <Link
+                      href="/login"
+                      className="flex-1 py-2.5 text-center font-semibold text-white/80 border border-white/20 rounded-full"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/donate"
+                      className="flex-1 py-2.5 text-center font-semibold text-chai-amber border border-chai-amber/30 rounded-full"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      ❤️ Support
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
       {/* Signup Modal */}
       {showSignupModal && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 backdrop-blur-sm">
-          <div className="relative max-w-md w-full mx-auto bg-white rounded-2xl shadow-2xl p-6 md:p-8 animate-fadeInUp">
-            <button
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
-              onClick={() => { setShowSignupModal(false); setSignupSuccess(false); }}
-              aria-label="Close signup modal"
-            >
-              &times;
-            </button>
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">Sign Up</h2>
-            <p className="text-center text-gray-500 mb-4">Create your account to start your mentorship journey</p>
-            {/* Social Sign Up Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="relative max-w-md w-full mx-4 bg-chai-navy/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-chai-sky/20 overflow-hidden"
+          >
+            {/* Gradient bar */}
+            <div className="h-1 bg-gradient-to-r from-chai-sky via-chai-amber to-chai-sky" />
+
+            <div className="p-6 md:p-8">
               <button
-                type="button"
-                onClick={handleGoogleSignUp}
-                className="flex-1 bg-white border border-gray-300 text-gray-700 rounded-full px-6 py-3 flex items-center justify-center gap-2 hover:shadow-md transition"
+                className="absolute top-4 right-4 text-white/40 hover:text-white text-2xl font-bold focus:outline-none"
+                onClick={() => { setShowSignupModal(false); setSignupSuccess(false); }}
+                aria-label="Close"
               >
-                {/* Google Icon */}
-                <svg className="w-6 h-6" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.9 33.1 30.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z" /><path fill="#34A853" d="M6.3 14.7l7 5.1C15.5 16.2 19.4 13 24 13c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 15.6 3 8.3 8.6 6.3 14.7z" /><path fill="#FBBC05" d="M24 45c6.1 0 11.2-2 14.9-5.4l-6.9-5.7C29.7 35.6 27 36.5 24 36.5c-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45z" /><path fill="#EA4335" d="M44.5 20H24v8.5h11.7c-1.2 3.2-4.7 7.5-11.7 7.5-6.1 0-11.3-4.1-13.2-9.6l-7 5.4C8.3 39.4 15.6 45 24 45c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z" /></g></svg>
-                <span className="font-medium">Sign up with Google</span>
+                ×
               </button>
-              <button
-                type="button"
-                onClick={handleMicrosoftSignUp}
-                className="flex-1 bg-white border border-gray-300 text-gray-700 rounded-full px-6 py-3 flex items-center justify-center gap-2 hover:shadow-md transition"
-              >
-                {/* Microsoft Icon */}
-                <svg className="w-6 h-6" viewBox="0 0 24 24"><g><rect fill="#F25022" x="1" y="1" width="10" height="10" /><rect fill="#7FBA00" x="13" y="1" width="10" height="10" /><rect fill="#00A4EF" x="1" y="13" width="10" height="10" /><rect fill="#FFB900" x="13" y="13" width="10" height="10" /></g></svg>
-                <span className="font-medium">Sign up with Outlook</span>
-              </button>
-            </div>
-            {/* Divider */}
-            <div className="relative text-center text-gray-400 my-4">
-              <span className="relative z-10 bg-white px-3">or</span>
-              <div className="absolute left-0 top-1/2 w-full h-px bg-gray-200 -z-1"></div>
-            </div>
-            {/* Manual Sign Up Form */}
-            {!signupSuccess ? (
-              <form className="bg-white p-6 rounded-xl shadow-lg space-y-4" onSubmit={handleSignupSubmit}>
-                <div>
-                  <label htmlFor="signup-name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="signup-name"
-                    required
-                    value={signupForm.name}
-                    onChange={handleSignupChange}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="signup-email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="signup-email"
-                    required
-                    value={signupForm.email}
-                    onChange={handleSignupChange}
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-                    placeholder="you@email.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="signup-password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+
+              <h2 className="text-2xl font-bold text-center text-white mb-2">Join ChaiChat</h2>
+              <p className="text-center text-white/60 mb-6">Start your journey of learning and connection</p>
+
+              {/* Social Sign Up */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                <button
+                  onClick={handleGoogleSignUp}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-white/20 rounded-xl text-white/80 hover:bg-white/10 transition"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.9 33.1 30.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.6 0 5 .8 7 2.3l6.4-6.4C33.5 5.1 28.9 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 20-7.6 20-21 0-1.3-.1-2.7-.3-4z" /></svg>
+                  <span className="text-sm font-medium">Google</span>
+                </button>
+                <button
+                  onClick={handleMicrosoftSignUp}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-white/20 rounded-xl text-white/80 hover:bg-white/10 transition"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24"><rect fill="#F25022" x="1" y="1" width="10" height="10" /><rect fill="#7FBA00" x="13" y="1" width="10" height="10" /><rect fill="#00A4EF" x="1" y="13" width="10" height="10" /><rect fill="#FFB900" x="13" y="13" width="10" height="10" /></svg>
+                  <span className="text-sm font-medium">Microsoft</span>
+                </button>
+              </div>
+
+              <div className="relative text-center text-white/40 mb-6">
+                <span className="relative z-10 bg-chai-navy px-3 text-sm">or continue with email</span>
+                <div className="absolute left-0 top-1/2 w-full h-px bg-white/10" />
+              </div>
+
+              {!signupSuccess ? (
+                <form className="space-y-4" onSubmit={handleSignupSubmit}>
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={signupForm.name}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-chai-sky focus:border-transparent transition"
+                      placeholder="Full name"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={signupForm.email}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-chai-sky focus:border-transparent transition"
+                      placeholder="Email address"
+                    />
+                  </div>
                   <div className="relative">
                     <input
                       type={showPassword ? 'text' : 'password'}
                       name="password"
-                      id="signup-password"
                       required
                       value={signupForm.password}
                       onChange={handleSignupChange}
-                      className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-indigo-500 focus:outline-none pr-10"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-chai-sky focus:border-transparent transition pr-12"
                       placeholder="Password"
                     />
                     <button
                       type="button"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 text-lg focus:outline-none"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
                       onClick={() => setShowPassword((v) => !v)}
                       tabIndex={-1}
-                      aria-label="Toggle password visibility"
                     >
-                      {showPassword ? (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                      ) : (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.956 9.956 0 012.293-3.95m3.249-2.568A9.956 9.956 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.965 9.965 0 01-4.293 5.568M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 6L6 6" /></svg>
-                      )}
+                      {showPassword ? '👁' : '👁‍🗨'}
                     </button>
                   </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3 font-bold rounded-xl bg-gradient-to-r from-chai-sky to-chai-blue text-white shadow-lg hover:shadow-xl transition disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Creating account...' : 'Create Free Account'}
+                  </button>
+                </form>
+              ) : (
+                <div className="text-center py-6">
+                  <div className="text-chai-amber text-lg font-semibold mb-2">🎉 Welcome to ChaiChat!</div>
+                  <p className="text-white/60 mb-4">Your account has been created. Check your email to get started.</p>
+                  <button
+                    className="w-full py-3 font-bold rounded-xl bg-white/10 text-white hover:bg-white/20 transition"
+                    onClick={() => { setShowSignupModal(false); setSignupSuccess(false); }}
+                  >
+                    Continue
+                  </button>
                 </div>
-                <div>
-                  <label htmlFor="signup-confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                  <div className="relative">
-                    <input
-                      type={showConfirm ? 'text' : 'password'}
-                      name="confirmPassword"
-                      id="signup-confirm-password"
-                      required
-                      value={signupForm.confirmPassword}
-                      onChange={handleSignupChange}
-                      className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-indigo-500 focus:outline-none pr-10"
-                      placeholder="Confirm password"
-                    />
-                    <button
-                      type="button"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 text-lg focus:outline-none"
-                      onClick={() => setShowConfirm((v) => !v)}
-                      tabIndex={-1}
-                      aria-label="Toggle confirm password visibility"
-                    >
-                      {showConfirm ? (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                      ) : (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.956 9.956 0 012.293-3.95m3.249-2.568A9.956 9.956 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.965 9.965 0 01-4.293 5.568M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 6L6 6" /></svg>
-                      )}
-                    </button>
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-indigo-600 text-white py-2 rounded-full w-full font-semibold hover:bg-indigo-700 shadow-md hover:shadow-lg transition ease-in-out duration-200"
-                >
-                  {isSubmitting ? 'Creating Account...' : 'Create Account'}
-                </button>
-              </form>
-            ) : (
-              <div className="text-center py-8">
-                <div className="text-green-600 text-lg font-semibold mb-2">Account created successfully!</div>
-                <div className="text-gray-600 text-sm mb-4">You can now log in to your account.</div>
-                <button
-                  className="bg-indigo-600 text-white py-2 rounded-full w-full font-semibold hover:bg-indigo-700 shadow-md hover:shadow-lg transition ease-in-out duration-200"
-                  onClick={() => setShowSignupModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            )}
-            <div className="text-sm text-gray-500 text-center mt-4">
-              Already have an account?{' '}
-              <a href="#login" className="underline text-indigo-600">Login</a>
+              )}
+
+              <p className="text-sm text-white/40 text-center mt-6">
+                Already have an account?{' '}
+                <a href="/login" className="text-chai-amber hover:underline">Log in</a>
+              </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </>
   );
 };
 
-const WrappedNavbar = (props: Record<string, unknown>) => {
+const WrappedNavbar = () => {
   return (
     <SessionProvider>
-      <Navbar {...props} />
+      <Navbar />
     </SessionProvider>
   );
 };
 
-export default WrappedNavbar; 
+export default WrappedNavbar;

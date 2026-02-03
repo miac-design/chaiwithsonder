@@ -1,109 +1,96 @@
-import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
-        heading: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Cosmic Palette
-        cosmic: {
-          teal: '#2DD4BF',
-          purple: '#A78BFA',
-          cerulean: '#0891B2',
-          indigo: '#1E3A8A',
-          navy: '#0F172A',
-          deep: '#020617',
+        // Clean Navy + Orange Palette
+        chai: {
+          navy: '#1A1A3E',      // Deep navy (darkest)
+          blue: '#1E4976',       // Medium navy blue
+          sky: '#5BC0EB',        // Light sky blue
+          amber: '#F5A623',      // Orange (accent only)
+          dark: '#0F0F2D',       // Even darker for backgrounds
         },
-        // Primary - now Teal
+        // Primary - Sky Blue
         primary: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2DD4BF',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          DEFAULT: '#2DD4BF',
+          50: '#E8F7FC',
+          100: '#D1EFFA',
+          200: '#A3DFF5',
+          300: '#75CFF0',
+          400: '#5BC0EB',
+          500: '#47B0DE',
+          600: '#3590B8',
+          700: '#286F8F',
+          800: '#1B4F66',
+          900: '#0E2F3D',
+          DEFAULT: '#5BC0EB',
         },
-        // Accent - Purple
+        // Accent - Orange (used sparingly)
         accent: {
-          300: '#c4b5fd',
-          400: '#A78BFA',
-          500: '#8B5CF6',
-          600: '#7C3AED',
-          DEFAULT: '#A78BFA',
+          50: '#FEF5E7',
+          100: '#FDEBD0',
+          200: '#FBD7A1',
+          300: '#F9C372',
+          400: '#F7AF43',
+          500: '#F5A623',
+          600: '#D48A0F',
+          700: '#A36B0C',
+          800: '#724C09',
+          900: '#412C05',
+          DEFAULT: '#F5A623',
         },
-        // Secondary - Cerulean
-        secondary: {
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891B2',
-          700: '#0e7490',
-          DEFAULT: '#0891B2',
+        // Navy for backgrounds
+        navy: {
+          50: '#E6E6ED',
+          100: '#CDCDDB',
+          200: '#9B9BB7',
+          300: '#696993',
+          400: '#3D3D6B',
+          500: '#1A1A3E',
+          600: '#151532',
+          700: '#101026',
+          800: '#0B0B1A',
+          900: '#0F0F2D',
+          DEFAULT: '#1A1A3E',
         },
       },
       animation: {
-        'gradient': 'gradient 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',
-        'float-slow': 'float 8s ease-in-out infinite',
-        'float-delay': 'float 6s ease-in-out 2s infinite',
-        'shine': 'shine 1.5s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
         'shimmer': 'shimmer 3s ease-in-out infinite',
-        'twinkle': 'twinkle 2s ease-in-out infinite',
       },
       keyframes: {
-        gradient: {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-16px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
-        shine: {
-          '0%': { backgroundPosition: '200% center' },
-          '100%': { backgroundPosition: '-200% center' },
-        },
-        'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(45, 212, 191, 0.4)' },
-          '50%': { boxShadow: '0 0 40px rgba(45, 212, 191, 0.6), 0 0 60px rgba(167, 139, 250, 0.3)' },
+        glow: {
+          '0%': { boxShadow: '0 0 5px rgba(245, 166, 35, 0.3)' },
+          '100%': { boxShadow: '0 0 20px rgba(245, 166, 35, 0.6)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
-        twinkle: {
-          '0%, 100%': { opacity: '0.3' },
-          '50%': { opacity: '1' },
-        },
       },
       backdropBlur: {
         xs: '2px',
         '2xl': '40px',
-        '3xl': '64px',
       },
       boxShadow: {
-        'glow-teal': '0 0 20px rgba(45, 212, 191, 0.4)',
-        'glow-purple': '0 0 20px rgba(167, 139, 250, 0.4)',
-        'glow-cosmic': '0 0 30px rgba(45, 212, 191, 0.3), 0 0 60px rgba(167, 139, 250, 0.2)',
+        'glow-amber': '0 0 20px rgba(245, 166, 35, 0.4)',
+        'glow-amber-sm': '0 0 10px rgba(245, 166, 35, 0.3)',
+        'glass': '0 8px 32px rgba(0, 0, 0, 0.3)',
       },
     },
   },
