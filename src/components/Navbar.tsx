@@ -121,8 +121,8 @@ const Navbar = (props: Record<string, unknown>) => {
         animate="visible"
         variants={navbarVariants}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-            ? 'bg-neutral-50 shadow-md'
-            : 'bg-transparent'
+          ? 'bg-cosmic-navy/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
+          : 'bg-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -138,8 +138,8 @@ const Navbar = (props: Record<string, unknown>) => {
                   className="h-12 w-12 object-contain bg-transparent"
                   priority
                 />
-                <span className={`font-[--font-space-grotesk] text-3xl font-bold align-middle tracking-tight ${isScrolled || !isHomePage ? 'text-blue-600' : 'text-white'
-                  }`}>
+                <span className={`font-[--font-space-grotesk] text-3xl font-bold align-middle tracking-tight text-white
+                  `}>
                   Chai Chat
                 </span>
               </Link>
@@ -152,19 +152,19 @@ const Navbar = (props: Record<string, unknown>) => {
                     return (
                       <div key="mentorship-dropdown" className="relative group">
                         <button
-                          className="text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
+                          className="text-white/80 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-cosmic-teal hover:underline underline-offset-4 flex items-center gap-1 focus:outline-none"
                           tabIndex={0}
                         >
                           Mentorship
                           <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                         </button>
                         <div className="absolute top-full left-0 mt-2 hidden group-hover:block group-focus-within:block z-50 min-w-[180px]">
-                          <div className="bg-white shadow-md rounded-md px-4 py-2 space-y-2 z-50">
+                          <div className="bg-cosmic-navy/90 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/30 rounded-xl px-4 py-2 space-y-2 z-50">
                             {mentorshipLinks.map((link) => (
                               <Link
                                 key={link.name}
                                 href={link.href}
-                                className="block text-gray-700 font-medium hover:text-blue-600 transition duration-200 px-1 py-1 rounded"
+                                className="block text-white/80 font-medium hover:text-cosmic-teal transition duration-200 px-1 py-1 rounded"
                               >
                                 {link.name}
                               </Link>
@@ -179,7 +179,7 @@ const Navbar = (props: Record<string, unknown>) => {
                       <Link
                         key={item.name}
                         href={item.href}
-                        className={`text-gray-700 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-blue-600 hover:underline underline-offset-4 ${isActive ? 'font-semibold text-indigo-600' : ''
+                        className={`text-white/80 font-medium px-2 py-1 rounded-md transition-colors duration-200 hover:text-cosmic-teal hover:underline underline-offset-4 ${isActive ? 'font-semibold text-cosmic-teal' : ''
                           }`}
                       >
                         {item.name}
@@ -193,20 +193,20 @@ const Navbar = (props: Record<string, unknown>) => {
               <div className="flex items-center space-x-2 ml-6">
                 <Link
                   href="/donate"
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-200"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-gradient-to-r from-cosmic-teal to-cosmic-cerulean text-cosmic-deep font-semibold shadow-lg shadow-cosmic-teal/30 hover:-translate-y-0.5 hover:shadow-cosmic-teal/50 transition-all duration-200"
                 >
                   Support Us
                 </Link>
                 <Link
                   href="/login"
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-white border border-blue-300 text-blue-600 font-semibold shadow-sm hover:bg-blue-50 transition-colors duration-200 align-middle"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 hover:border-cosmic-teal/50 transition-all duration-200 align-middle"
                 >
                   Login
                 </Link>
                 <button
                   type="button"
                   onClick={() => setShowSignupModal(true)}
-                  className="font-[--font-space-grotesk] rounded-full px-4 py-1 text-sm bg-blue-500 text-white font-bold shadow-md hover:bg-blue-600 transition duration-200 ml-2"
+                  className="font-[--font-space-grotesk] rounded-full px-4 py-1.5 text-sm bg-gradient-to-r from-cosmic-purple to-accent-500 text-white font-bold shadow-lg shadow-cosmic-purple/30 hover:-translate-y-0.5 hover:shadow-cosmic-purple/50 transition-all duration-200 ml-2"
                 >
                   Sign Up
                 </button>
@@ -258,8 +258,8 @@ const Navbar = (props: Record<string, unknown>) => {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={`inline-flex items-center justify-center p-2 rounded-md ${isScrolled || !isHomePage
-                    ? 'text-gray-700 hover:text-indigo-600'
-                    : 'text-white hover:text-indigo-200'
+                  ? 'text-gray-700 hover:text-indigo-600'
+                  : 'text-white hover:text-indigo-200'
                   } focus:outline-none`}
               >
                 <span className="sr-only">Open main menu</span>

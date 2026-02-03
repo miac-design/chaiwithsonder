@@ -33,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} font-sans bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen`}>
-      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} font-sans`}>
+      <body className="min-h-screen bg-cosmic-deep text-white">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
