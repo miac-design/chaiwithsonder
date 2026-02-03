@@ -9,6 +9,32 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        heading: ['var(--font-space-grotesk)', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        // Austin AI Hub Blue Palette
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          DEFAULT: '#3b82f6',
+        },
+        // Orange Accent
+        accent: {
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          DEFAULT: '#f97316',
+        },
+      },
       animation: {
         'gradient': 'gradient 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',

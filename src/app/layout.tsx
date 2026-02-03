@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from '@/components/ClientLayout';
 
-const poppins = Poppins({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export const dynamic = "force-dynamic";
@@ -22,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="font-sans bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
-      <body className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} font-sans bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen`}>
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
