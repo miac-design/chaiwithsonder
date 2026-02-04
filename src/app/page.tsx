@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import LiveNowFeed from "@/components/LiveNowFeed";
 
 export const dynamic = "force-dynamic";
 
@@ -212,6 +213,37 @@ export default function Home() {
       <div className="divider-wave" style={{ marginTop: '-60px', position: 'relative', zIndex: 10 }} />
 
       <HowItWorksSection />
+
+      {/* ============================
+          LIVE NOW SECTION
+          ============================ */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-start gap-12">
+            <div className="flex-1">
+              <h2 className="heading-serif text-2xl md:text-3xl mb-4">
+                Connect <span className="heading-italic-accent">Right Now</span>
+              </h2>
+              <p className="text-gray-600 mb-6">
+                These mentors are available for a conversation right now.
+                Jump in and start chatting instantly.
+              </p>
+              <Link
+                href="/mentor?filter=live"
+                className="text-teal-600 font-medium hover:text-teal-700 inline-flex items-center gap-2"
+              >
+                See all live mentors
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="w-full lg:w-96">
+              <LiveNowFeed maxItems={3} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ====================================
           WHY CHAI CHAT MATTERS (LIGHT)
