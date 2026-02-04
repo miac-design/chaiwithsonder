@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import ClientLayout from '@/components/ClientLayout';
 
@@ -13,6 +13,12 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+});
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-merriweather",
 });
 
 export const dynamic = "force-dynamic";
@@ -33,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} font-sans`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${merriweather.variable} font-sans`}>
       <body className="min-h-screen bg-cosmic-deep text-white">
         <ClientLayout>{children}</ClientLayout>
       </body>

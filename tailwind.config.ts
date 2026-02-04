@@ -11,6 +11,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
+        serif: ['Merriweather', 'Georgia', 'serif'],
       },
       colors: {
         // Clean Navy + Orange Palette
@@ -62,6 +63,20 @@ const config: Config = {
           800: '#0B0B1A',
           900: '#0F0F2D',
           DEFAULT: '#1A1A3E',
+        },
+        // EDRON AI Teal accent
+        teal: {
+          50: '#ECFDF5',
+          100: '#D1FAE5',
+          200: '#A7F3D0',
+          300: '#6EE7B7',
+          400: '#34D399',
+          500: '#10B981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065F46',
+          900: '#064E3B',
+          DEFAULT: '#10B981',
         },
       },
       animation: {

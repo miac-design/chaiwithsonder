@@ -15,9 +15,9 @@
   --chai-dark: #0F172A;
   --chai-navy: #1E293B;
 
-  /* Brand accents */
-  --chai-amber: #F59E0B;
-  --chai-amber-light: #FBBF24;
+  /* Brand accents - EDRON-inspired */
+  --chai-teal: #10B981;
+  --chai-teal-dark: #059669;
   --chai-sky: #0EA5E9;
   --chai-sky-light: #38BDF8;
 
@@ -28,6 +28,13 @@
   --text-on-dark: #F8FAFC;
 
   --foreground-rgb: 15, 23, 42;
+
+  /* EDRON AI-Inspired Design Tokens */
+  --edron-teal: #10B981;
+  --edron-teal-dark: #059669;
+  --edron-blue: #3B82F6;
+  --edron-dark: #0A1128;
+  --edron-light: #F8FAFC;
 }
 
 /* Base body - light background */
@@ -65,20 +72,20 @@ body {
   .glass-card-premium {
     @apply relative overflow-hidden;
     background: white;
-    border: 1px solid rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.15);
     border-radius: 24px;
     box-shadow:
       0 4px 6px -1px rgba(0, 0, 0, 0.05),
       0 2px 4px -1px rgba(0, 0, 0, 0.03),
-      0 0 0 1px rgba(245, 158, 11, 0.05);
+      0 0 0 1px rgba(16, 185, 129, 0.05);
     transition: all 0.3s ease;
   }
 
   .glass-card-premium:hover {
-    border-color: rgba(245, 158, 11, 0.3);
+    border-color: rgba(16, 185, 129, 0.3);
     box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(245, 158, 11, 0.1);
+      0 0 0 1px rgba(16, 185, 129, 0.1);
     transform: translateY(-6px);
   }
 
@@ -93,7 +100,7 @@ body {
   }
 
   .glass-card-dark:hover {
-    border-color: rgba(245, 158, 11, 0.3);
+    border-color: rgba(16, 185, 129, 0.3);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
   }
 
@@ -123,22 +130,22 @@ body {
   }
 
   .btn-secondary:hover {
-    border-color: #F59E0B;
-    color: #F59E0B;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+    border-color: #10B981;
+    color: #10B981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
   }
 
-  /* Accent Button - Amber/Gold */
+  /* Accent Button - Teal */
   .btn-accent {
     @apply px-6 py-3 rounded-full font-semibold transition-all duration-300;
-    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
     color: white;
-    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
   }
 
   .btn-accent:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
   }
 
   /* ================================
@@ -181,27 +188,27 @@ body {
     background-clip: text;
   }
 
-  /* Amber accent underline */
-  .amber-underline {
+  /* Teal accent underline */
+  .teal-underline {
     position: relative;
     display: inline-block;
   }
 
-  .amber-underline::after {
+  .teal-underline::after {
     content: '';
     position: absolute;
     bottom: -4px;
     left: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%);
+    background: linear-gradient(90deg, #10B981 0%, #34D399 100%);
     border-radius: 2px;
   }
 
   /* Quote block styling */
   .quote-block {
     background: white;
-    border-left: 4px solid #F59E0B;
+    border-left: 4px solid #10B981;
     border-radius: 0 16px 16px 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     padding: 1.5rem 2rem;
@@ -219,18 +226,18 @@ body {
   }
 
   .link-hover:hover {
-    color: #F59E0B;
+    color: #10B981;
   }
 
   /* ================================
      DIVIDERS
      ================================ */
 
-  .divider-amber {
+  .divider-teal {
     height: 2px;
     background: linear-gradient(90deg,
         transparent 0%,
-        rgba(245, 158, 11, 0.3) 50%,
+        rgba(16, 185, 129, 0.3) 50%,
         transparent 100%);
   }
 
@@ -252,6 +259,83 @@ body {
   .focus-sky:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.4);
+  }
+
+  /* ================================
+     EDRON AI-INSPIRED COMPONENTS
+     ================================ */
+
+  /* Serif headings with italic accent */
+  .heading-serif {
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    color: var(--edron-dark);
+  }
+
+  .heading-italic-accent {
+    font-style: italic;
+    color: var(--edron-teal);
+  }
+
+  /* Grid background pattern */
+  .bg-grid-pattern {
+    background-color: var(--edron-light);
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Teal primary button */
+  .btn-teal {
+    @apply px-8 py-4 rounded-full font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, var(--edron-teal) 0%, var(--edron-teal-dark) 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  }
+
+  .btn-teal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  }
+
+  /* Pulsing button animation */
+  .btn-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* EDRON-style card with left border hover */
+  .edron-card {
+    @apply relative overflow-hidden;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .edron-card:hover {
+    border-left: 4px solid var(--edron-teal);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+
+  /* EDRON step number pill */
+  .edron-step-pill {
+    @apply w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm;
+    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    color: white;
+  }
+
+  /* Glassmorphism pill/badge */
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
   }
 }
 
@@ -311,6 +395,18 @@ body {
 
   100% {
     background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 4px 25px rgba(16, 185, 129, 0.6);
   }
 }
 

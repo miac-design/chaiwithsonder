@@ -30,12 +30,12 @@ function HowItWorksSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-grid-pattern"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            How It Works
+          <h2 className="heading-serif text-3xl md:text-4xl mb-4">
+            Your Journey <span className="heading-italic-accent">Starts Here</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Three simple steps to meaningful connection
@@ -45,55 +45,49 @@ function HowItWorksSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Step 1 */}
           <motion.div
-            className="glass-card p-8 text-center"
+            className="edron-card p-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
           >
-            <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center">
-              <span className="text-2xl font-bold text-sky-600">1</span>
-            </div>
+            <div className="edron-step-pill mx-auto mb-6">1</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Create your profile
+              Tell Your Story
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Share your story, your vibe, and what you're looking to learn or offer.
+              Share what makes you unique — your experiences, passions, and what you're looking to learn or offer.
             </p>
           </motion.div>
 
           {/* Step 2 */}
           <motion.div
-            className="glass-card p-8 text-center"
+            className="edron-card p-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3 }}
           >
-            <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center">
-              <span className="text-2xl font-bold text-amber-600">2</span>
-            </div>
+            <div className="edron-step-pill mx-auto mb-6">2</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Connect with someone
+              Find Your Match
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Over a relaxed 1-on-1 conversation that feels like a coffee chat.
+              Our smart matching connects you with someone who truly understands your journey.
             </p>
           </motion.div>
 
           {/* Step 3 */}
           <motion.div
-            className="glass-card p-8 text-center"
+            className="edron-card p-8 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
           >
-            <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center">
-              <span className="text-2xl font-bold text-sky-600">3</span>
-            </div>
+            <div className="edron-step-pill mx-auto mb-6">3</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Grow together
+              Grow Together
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Sometimes you listen. Sometimes you share. That's the magic of it.
+              Sometimes you listen. Sometimes you share. That's the magic of meaningful connection.
             </p>
           </motion.div>
         </div>
@@ -138,7 +132,7 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 text-center text-white max-w-3xl mx-auto w-full px-4">
           <motion.p
-            className="text-amber-400 font-medium tracking-wide uppercase text-sm mb-4"
+            className="text-teal-400 font-medium tracking-wide uppercase text-sm mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -171,23 +165,24 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link
-              href="/signup?type=share"
-              className="group relative overflow-hidden flex items-center justify-center gap-2 text-lg px-8 py-4 rounded-full font-semibold bg-sky-500 text-white shadow-lg shadow-sky-500/30 hover:bg-sky-600 hover:-translate-y-1 transition-all duration-300"
+              href="/mentor#application"
+              className="btn-teal btn-pulse flex items-center justify-center gap-2 text-lg"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" strokeWidth="2" strokeLinejoin="round" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Share a Chat</span>
+              <span>Become a Mentor</span>
             </Link>
             <Link
-              href="/signup?type=sip"
-              className="flex items-center justify-center gap-2 text-lg px-8 py-4 rounded-full font-semibold border-2 border-amber-400/80 text-amber-400 hover:bg-amber-400 hover:text-slate-900 hover:-translate-y-1 transition-all duration-300"
+              href="/mentor"
+              className="flex items-center justify-center gap-2 text-lg px-8 py-4 rounded-full font-semibold border-2 border-teal-400/80 text-teal-400 hover:bg-teal-400 hover:text-slate-900 hover:-translate-y-1 transition-all duration-300"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 19V5m0 0C9 5 5 7 5 11c0 2.5 2 4 4 4m3-10c3 0 7 2 7 6 0 2.5-2 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="12" cy="19" r="2" fill="currentColor" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>Sip a Chat</span>
+              <span>Find a Mentor</span>
             </Link>
           </motion.div>
 
@@ -219,11 +214,11 @@ export default function Home() {
       <HowItWorksSection />
 
       {/* ====================================
-          WHY CHAI CHAT MATTERS (LIGHT BLUE)
+          WHY CHAI CHAT MATTERS (LIGHT)
           ==================================== */}
       <motion.section
         ref={aboutRef}
-        className="py-20 px-4 sm:px-6 lg:px-8 section-blue-soft"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
       >
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -234,16 +229,16 @@ export default function Home() {
               animate={aboutInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8">
-                Why Chai Chat Matters
+              <h2 className="heading-serif text-3xl md:text-4xl mb-8">
+                Why Chai Chat <span className="heading-italic-accent">Matters</span>
               </h2>
 
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                The word <span className="font-bold text-amber-600">sonder</span> was created by writer John Koenig in <em className="text-gray-800">The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
+                The word <span className="font-bold text-teal-600">sonder</span> was created by writer John Koenig in <em className="text-gray-800">The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
               </p>
 
-              <blockquote className="quote-block mb-6">
-                &ldquo;<span className="font-bold text-amber-600">Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&rdquo;
+              <blockquote className="border-l-4 border-teal-500 pl-6 py-4 bg-teal-50/50 rounded-r-xl mb-6">
+                &ldquo;<span className="font-bold text-teal-600">Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&rdquo;
               </blockquote>
 
               <p className="text-lg text-gray-700 leading-relaxed">
@@ -259,7 +254,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-sky-200 via-amber-100 to-sky-200 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-teal-200 via-blue-100 to-teal-200 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                 <div className="relative h-80 sm:h-96 w-full max-w-lg rounded-3xl overflow-hidden shadow-xl">
                   <Image
                     src="/new-connection-image.jpg"
@@ -276,19 +271,19 @@ export default function Home() {
       </motion.section>
 
       {/* =============================
-          DONATION SECTION (WARM)
+          DONATION SECTION (TEAL GRADIENT)
           ============================= */}
       <motion.section
         ref={donateRef}
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-amber-50 to-white"
+        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-white"
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+            className="heading-serif text-3xl md:text-4xl mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={donateInView ? { opacity: 1, y: 0 } : {}}
           >
-            Support Accessible Mentoring
+            Support <span className="heading-italic-accent">Accessible</span> Mentoring
           </motion.h2>
           <motion.p
             className="text-lg text-gray-600 max-w-xl mx-auto mb-10"
@@ -300,7 +295,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="glass-card-premium max-w-md mx-auto p-8"
+            className="edron-card max-w-md mx-auto p-8"
             initial={{ opacity: 0, y: 20 }}
             animate={donateInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3 }}
@@ -312,13 +307,13 @@ export default function Home() {
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <span className="text-amber-600 text-lg font-semibold">$</span>
+                    <span className="text-teal-600 text-lg font-semibold">$</span>
                   </div>
                   <input
                     type="number"
                     name="amount"
                     id="amount"
-                    className="block w-full pl-8 pr-16 py-4 text-lg bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition"
+                    className="block w-full pl-8 pr-16 py-4 text-lg bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition"
                     placeholder="25.00"
                     min="1"
                     step="1"
@@ -328,8 +323,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Link href="/donate" className="btn-accent w-full flex justify-center text-lg py-4">
-                ☕ Donate Now
+              <Link href="/donate" className="btn-teal btn-pulse w-full flex justify-center text-lg py-4">
+                Donate Now
               </Link>
             </form>
           </motion.div>
@@ -340,59 +335,65 @@ export default function Home() {
           GET INVOLVED (LIGHT)
           ============================= */}
       <motion.section
-        className="py-24 px-4 bg-white"
+        className="py-24 px-4 bg-grid-pattern"
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            Get Involved
+          <h2 className="heading-serif text-3xl md:text-4xl text-center mb-4">
+            Ready to <span className="heading-italic-accent">Get Involved?</span>
           </h2>
+          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-16">
+            Whether you want to share your experience or find guidance, there's a place for you here.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Share a Chat */}
+            {/* Become a Mentor */}
             <motion.div
-              className="glass-card-premium p-8"
+              className="edron-card p-8"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" strokeLinejoin="round" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="12" cy="7" r="4" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Share a Chat</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Become a Mentor</h3>
               </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Give a little time. Be a listener. Offer what you've learned and make a difference.
+                Give a little time. Be a listener. Share your experience and make a meaningful difference in someone's journey.
               </p>
-              <Link href="/mentor#application" className="btn-primary inline-flex items-center gap-2">
-                Start Sharing
+              <Link href="/mentor#application" className="btn-teal inline-flex items-center gap-2">
+                Start Mentoring
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </motion.div>
 
-            {/* Sip a Chat */}
+            {/* Find a Mentor */}
             <motion.div
-              className="glass-card-premium p-8"
+              className="edron-card p-8"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-100 to-amber-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" strokeWidth="2">
-                    <path d="M12 19V5m0 0C9 5 5 7 5 11c0 2.5 2 4 4 4m3-10c3 0 7 2 7 6 0 2.5-2 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="12" cy="19" r="2" fill="#F59E0B" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M11 8v6M8 11h6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Sip a Chat</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Find a Mentor</h3>
               </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Book a conversation. Get perspective, clarity, or just someone who truly listens.
+                Book a conversation. Get perspective, clarity, or just someone who truly listens and understands.
               </p>
               <Link href="/mentor" className="btn-secondary inline-flex items-center gap-2">
-                Start Sipping
+                Browse Mentors
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>

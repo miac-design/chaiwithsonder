@@ -61,7 +61,7 @@ const NavDropdown = ({ name, items, isOpen, onToggle }: {
     <div className="relative group">
       <button
         onClick={onToggle}
-        className="flex items-center gap-1 text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-chai-amber hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-chai-amber/50"
+        className="flex items-center gap-1 text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-teal-400 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-teal-400/50"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -90,7 +90,7 @@ const NavDropdown = ({ name, items, isOpen, onToggle }: {
           >
             <div className="bg-chai-navy/95 backdrop-blur-2xl border border-chai-sky/20 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden">
               {/* Gradient accent at top */}
-              <div className="h-1 bg-gradient-to-r from-chai-sky via-chai-amber to-chai-sky" />
+              <div className="h-1 bg-gradient-to-r from-chai-sky via-teal-400 to-chai-sky" />
               <div className="p-2">
                 {items.map((item, idx) => (
                   <Link
@@ -98,7 +98,7 @@ const NavDropdown = ({ name, items, isOpen, onToggle }: {
                     href={item.href}
                     className="flex flex-col px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group/item"
                   >
-                    <span className="text-white font-medium group-hover/item:text-chai-amber transition-colors">
+                    <span className="text-white font-medium group-hover/item:text-teal-400 transition-colors">
                       {item.name}
                     </span>
                     {item.description && (
@@ -259,7 +259,7 @@ const Navbar = () => {
                   <Link
                     key={item.name}
                     href={item.href || '/'}
-                    className={`text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-chai-amber hover:bg-white/5 ${isActive ? 'text-chai-sky bg-white/5' : ''
+                    className={`text-white/80 font-medium px-3 py-2 rounded-lg transition-all duration-200 hover:text-teal-400 hover:bg-white/5 ${isActive ? 'text-chai-sky bg-white/5' : ''
                       }`}
                   >
                     {item.name}
@@ -270,7 +270,7 @@ const Navbar = () => {
               {/* Start Here - First-time user guide */}
               <Link
                 href="/start-here"
-                className="flex items-center gap-1 text-chai-amber font-medium px-3 py-2 rounded-lg hover:bg-chai-amber/10 transition-all duration-200 ml-2"
+                className="flex items-center gap-1 text-teal-400 font-medium px-3 py-2 rounded-lg hover:bg-teal-400/10 transition-all duration-200 ml-2"
               >
                 <span>Start Here</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@ const Navbar = () => {
               {/* Support - Tertiary */}
               <Link
                 href="/donate"
-                className="flex items-center gap-1.5 text-white/60 hover:text-chai-amber text-sm font-medium transition-all duration-200"
+                className="flex items-center gap-1.5 text-white/60 hover:text-teal-400 text-sm font-medium transition-all duration-200"
               >
                 <span className="text-lg">❤️</span>
                 <span>Support</span>
@@ -324,23 +324,23 @@ const Navbar = () => {
                         className="w-9 h-9 rounded-full object-cover border-2 border-chai-sky/30 shadow"
                       />
                     )}
-                    <svg className="w-4 h-4 text-white/50 group-hover:text-chai-amber transition" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-white/50 group-hover:text-teal-400 transition" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   {userMenuOpen && (
                     <div className="absolute right-0 top-full mt-2 w-48 bg-chai-navy/95 backdrop-blur-xl rounded-xl shadow-lg border border-chai-sky/20 z-50 overflow-hidden">
-                      <div className="h-1 bg-gradient-to-r from-chai-sky to-chai-amber" />
+                      <div className="h-1 bg-gradient-to-r from-chai-sky to-teal-400" />
                       <a
                         href="/dashboard"
-                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-chai-amber transition-colors text-sm font-medium"
+                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-teal-400 transition-colors text-sm font-medium"
                         onClick={() => setUserMenuOpen(false)}
                       >
                         My Dashboard
                       </a>
                       <a
                         href="/profile"
-                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-chai-amber transition-colors text-sm font-medium"
+                        className="block px-4 py-3 text-white/80 hover:bg-white/10 hover:text-teal-400 transition-colors text-sm font-medium"
                         onClick={() => setUserMenuOpen(false)}
                       >
                         Profile
@@ -361,7 +361,7 @@ const Navbar = () => {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-chai-amber/50"
+                className="inline-flex items-center justify-center p-2 rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-teal-400/50"
                 aria-label="Toggle menu"
               >
                 <motion.div
@@ -428,7 +428,7 @@ const Navbar = () => {
                         <Link
                           key={link.name}
                           href={link.href}
-                          className="block px-4 py-3 text-white/80 hover:text-chai-amber hover:bg-white/5 rounded-lg transition-colors"
+                          className="block px-4 py-3 text-white/80 hover:text-teal-400 hover:bg-white/5 rounded-lg transition-colors"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {link.name}
@@ -438,7 +438,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.href || '/'}
-                      className={`block px-4 py-3 text-white font-medium hover:text-chai-amber hover:bg-white/5 rounded-lg transition-colors ${pathname === item.href ? 'text-chai-sky bg-white/5' : ''
+                      className={`block px-4 py-3 text-white font-medium hover:text-teal-400 hover:bg-white/5 rounded-lg transition-colors ${pathname === item.href ? 'text-chai-sky bg-white/5' : ''
                         }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -451,7 +451,7 @@ const Navbar = () => {
               {/* Start Here */}
               <Link
                 href="/start-here"
-                className="flex items-center gap-2 px-4 py-3 text-chai-amber font-semibold hover:bg-chai-amber/10 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-3 text-teal-400 font-semibold hover:bg-teal-400/10 rounded-lg transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span>Start Here</span>
@@ -479,7 +479,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                       href="/donate"
-                      className="flex-1 py-2.5 text-center font-semibold text-chai-amber border border-chai-amber/30 rounded-full"
+                      className="flex-1 py-2.5 text-center font-semibold text-teal-400 border border-teal-400/30 rounded-full"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       ❤️ Support
@@ -501,7 +501,7 @@ const Navbar = () => {
             className="relative max-w-md w-full mx-4 bg-chai-navy/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-chai-sky/20 overflow-hidden"
           >
             {/* Gradient bar */}
-            <div className="h-1 bg-gradient-to-r from-chai-sky via-chai-amber to-chai-sky" />
+            <div className="h-1 bg-gradient-to-r from-chai-sky via-teal-400 to-chai-sky" />
 
             <div className="p-6 md:p-8">
               <button
@@ -591,7 +591,7 @@ const Navbar = () => {
                 </form>
               ) : (
                 <div className="text-center py-6">
-                  <div className="text-chai-amber text-lg font-semibold mb-2">🎉 Welcome to ChaiChat!</div>
+                  <div className="text-teal-400 text-lg font-semibold mb-2">🎉 Welcome to ChaiChat!</div>
                   <p className="text-white/60 mb-4">Your account has been created. Check your email to get started.</p>
                   <button
                     className="w-full py-3 font-bold rounded-xl bg-white/10 text-white hover:bg-white/20 transition"
@@ -604,7 +604,7 @@ const Navbar = () => {
 
               <p className="text-sm text-white/40 text-center mt-6">
                 Already have an account?{' '}
-                <a href="/login" className="text-chai-amber hover:underline">Log in</a>
+                <a href="/login" className="text-teal-400 hover:underline">Log in</a>
               </p>
             </div>
           </motion.div>
