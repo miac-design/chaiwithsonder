@@ -32,8 +32,9 @@ export async function goLive(
     const durationMinutes = options?.durationMinutes || 60;
     const availableUntil = new Date(Date.now() + durationMinutes * 60 * 1000).toISOString();
 
+    // Note: live_availability table needs to be created via migration
     const { error } = await supabase
-        .from('live_availability')
+        .from('live_availability' as any)
         .upsert({
             user_id: userId,
             is_available: true,
@@ -41,7 +42,7 @@ export async function goLive(
             available_until: availableUntil,
             status_message: options?.statusMessage || null,
             updated_at: new Date().toISOString(),
-        }, { onConflict: 'user_id' });
+        } as any, { onConflict: 'user_id' });
 
     if (error) {
         console.error('Failed to go live:', error);
@@ -52,7 +53,8 @@ export async function goLive(
 
 // Set mentor as unavailable
 export async function goOffline(userId: string): Promise<boolean> {
-    const { error } = await supabase
+    // Using raw query to avoid type chain issues with new table
+    const { error } = await (supabase as any)
         .from('live_availability')
         .update({
             is_available: false,
@@ -71,7 +73,7 @@ export async function goOffline(userId: string): Promise<boolean> {
 // Get current availability status for a user
 export async function getMyAvailability(userId: string): Promise<AvailabilityStatus | null> {
     const { data, error } = await supabase
-        .from('live_availability')
+        .from('live_availability' as any)
         .select('*')
         .eq('user_id', userId)
         .single();
@@ -79,7 +81,7 @@ export async function getMyAvailability(userId: string): Promise<AvailabilitySta
     if (error && error.code !== 'PGRST116') {
         console.error('Failed to get availability:', error);
     }
-    return data;
+    return data as AvailabilityStatus | null;
 }
 
 // Get all currently available mentors
@@ -87,7 +89,7 @@ export async function getAvailableMentors(): Promise<AvailableMentor[]> {
     const now = new Date().toISOString();
 
     const { data, error } = await supabase
-        .from('live_availability')
+        .from('live_availability' as any)
         .select(`
       *,
       profile:profiles!user_id(
@@ -107,7 +109,7 @@ export async function getAvailableMentors(): Promise<AvailableMentor[]> {
         return [];
     }
 
-    return (data || []).map((item) => ({
+    return ((data as any[]) || []).map((item: any) => ({
         id: item.id,
         user_id: item.user_id,
         full_name: item.profile?.full_name || 'Anonymous',

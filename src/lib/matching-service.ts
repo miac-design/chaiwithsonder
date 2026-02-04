@@ -20,16 +20,18 @@ export interface MentorMatch {
     availability: Record<string, string[]>;
 }
 
+// Note: These tables need to be created via migrations. Using 'as any' for type safety.
+
 // Get or create matching preferences for a user
 export async function getMatchingPreferences(userId: string): Promise<MatchingPreferences | null> {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('matching_preferences')
         .select('*')
         .eq('user_id', userId)
         .single();
 
     if (error && error.code !== 'PGRST116') throw error;
-    return data;
+    return data as MatchingPreferences | null;
 }
 
 // Update matching preferences
@@ -37,7 +39,7 @@ export async function updateMatchingPreferences(
     userId: string,
     preferences: Partial<MatchingPreferences>
 ): Promise<MatchingPreferences> {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('matching_preferences')
         .upsert({
             user_id: userId,
@@ -48,7 +50,7 @@ export async function updateMatchingPreferences(
         .single();
 
     if (error) throw error;
-    return data;
+    return data as MatchingPreferences;
 }
 
 // Find matching mentors based on mentee's learning goals
@@ -58,7 +60,7 @@ export async function findMatchingMentors(
     limit: number = 10
 ): Promise<MentorMatch[]> {
     // Get all mentors with their preferences
-    const { data: mentors, error } = await supabase
+    const { data: mentors, error } = await (supabase as any)
         .from('profiles')
         .select(`
       id,
@@ -79,8 +81,8 @@ export async function findMatchingMentors(
     if (!mentors) return [];
 
     // Calculate match scores
-    const matches: MentorMatch[] = mentors.map((mentor) => {
-        const prefs = mentor.matching_preferences as any;
+    const matches: MentorMatch[] = (mentors as any[]).map((mentor: any) => {
+        const prefs = mentor.matching_preferences;
         const expertiseAreas: string[] = prefs?.expertise_areas || [];
         const availability = prefs?.availability || {};
 

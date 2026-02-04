@@ -31,9 +31,12 @@ export interface Conversation {
     };
 }
 
+// Note: These tables need to be created via migrations. Using 'as any' for type safety
+// until database types are regenerated after running migrations.
+
 // Fetch all conversations for a user
 export async function getConversations(userId: string): Promise<Conversation[]> {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('conversations')
         .select(`
       *,
@@ -44,12 +47,12 @@ export async function getConversations(userId: string): Promise<Conversation[]> 
         .order('last_message_at', { ascending: false, nullsFirst: false });
 
     if (error) throw error;
-    return data || [];
+    return (data as Conversation[]) || [];
 }
 
 // Fetch messages for a conversation
 export async function getMessages(conversationId: string): Promise<Message[]> {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('messages')
         .select(`
       *,
@@ -59,12 +62,12 @@ export async function getMessages(conversationId: string): Promise<Message[]> {
         .order('created_at', { ascending: true });
 
     if (error) throw error;
-    return data || [];
+    return (data as Message[]) || [];
 }
 
 // Send a message
 export async function sendMessage(conversationId: string, senderId: string, content: string): Promise<Message> {
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('messages')
         .insert({
             conversation_id: conversationId,
@@ -75,13 +78,13 @@ export async function sendMessage(conversationId: string, senderId: string, cont
         .single();
 
     if (error) throw error;
-    return data;
+    return data as Message;
 }
 
 // Start a new conversation
 export async function startConversation(mentorId: string, menteeId: string): Promise<Conversation> {
     // Check if conversation already exists
-    const { data: existing } = await supabase
+    const { data: existing } = await (supabase as any)
         .from('conversations')
         .select('*')
         .eq('mentor_id', mentorId)
@@ -89,10 +92,10 @@ export async function startConversation(mentorId: string, menteeId: string): Pro
         .single();
 
     if (existing) {
-        return existing;
+        return existing as Conversation;
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
         .from('conversations')
         .insert({
             mentor_id: mentorId,
@@ -103,12 +106,12 @@ export async function startConversation(mentorId: string, menteeId: string): Pro
         .single();
 
     if (error) throw error;
-    return data;
+    return data as Conversation;
 }
 
 // Accept a conversation (mentor action)
 export async function acceptConversation(conversationId: string): Promise<void> {
-    const { error } = await supabase
+    const { error } = await (supabase as any)
         .from('conversations')
         .update({ status: 'active' })
         .eq('id', conversationId);
@@ -118,7 +121,7 @@ export async function acceptConversation(conversationId: string): Promise<void> 
 
 // Mark messages as read
 export async function markMessagesAsRead(conversationId: string, userId: string): Promise<void> {
-    const { error } = await supabase
+    const { error } = await (supabase as any)
         .from('messages')
         .update({ is_read: true })
         .eq('conversation_id', conversationId)
@@ -144,17 +147,17 @@ export function subscribeToMessages(
             },
             async (payload) => {
                 // Fetch the full message with sender info
-                const { data } = await supabase
+                const { data } = await (supabase as any)
                     .from('messages')
                     .select(`
             *,
             sender:profiles!sender_id(full_name, avatar_url)
           `)
-                    .eq('id', payload.new.id)
+                    .eq('id', (payload.new as any).id)
                     .single();
 
                 if (data) {
-                    onMessage(data);
+                    onMessage(data as Message);
                 }
             }
         )
@@ -168,18 +171,22 @@ export function unsubscribeFromMessages(channel: RealtimeChannel): void {
 
 // Get unread message count
 export async function getUnreadCount(userId: string): Promise<number> {
-    const { count, error } = await supabase
+    // Simplified query to avoid complex subquery type issues
+    const { data: conversations } = await (supabase as any)
+        .from('conversations')
+        .select('id')
+        .or(`mentor_id.eq.${userId},mentee_id.eq.${userId}`);
+
+    if (!conversations || conversations.length === 0) return 0;
+
+    const conversationIds = (conversations as any[]).map((c: any) => c.id);
+
+    const { count, error } = await (supabase as any)
         .from('messages')
         .select('*', { count: 'exact', head: true })
         .eq('is_read', false)
         .neq('sender_id', userId)
-        .in(
-            'conversation_id',
-            supabase
-                .from('conversations')
-                .select('id')
-                .or(`mentor_id.eq.${userId},mentee_id.eq.${userId}`)
-        );
+        .in('conversation_id', conversationIds);
 
     if (error) return 0;
     return count || 0;
