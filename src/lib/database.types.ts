@@ -1,10 +1,9 @@
 /**
- * ChaiChat Database Types
- * Generated for Supabase integration
- * Based on the Sonder Engine mentorship matching strategy
+ * Database Types for Supabase
+ * 
+ * To generate updated types from your Supabase project, run:
+ * npx supabase gen types typescript --project-id YOUR_PROJECT_ID > src/lib/database.types.ts
  */
-
-export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export interface Database {
     public: {
@@ -12,313 +11,314 @@ export interface Database {
             profiles: {
                 Row: {
                     id: string;
-                    user_id: string;
-                    display_name: string;
-                    avatar_url: string | null;
-                    story: string | null;
-                    bio: string | null;
-                    interests: string[];
-                    skills: string[];
-                    goals: string[];
-                    role: 'mentee' | 'mentor' | 'both';
-                    growth_stage: 'explorer' | 'builder' | 'transformer' | 'guide';
-                    communication_style: 'analytical' | 'emotional' | 'practical' | 'visionary' | null;
-                    availability_hours: number;
-                    timezone: string;
-                    linkedin_url: string | null;
-                    is_verified: boolean;
-                    is_active: boolean;
                     created_at: string;
+                    name: string | null;
+                    email: string | null;
+                    avatar_url: string | null;
+                    bio: string | null;
+                    is_mentor: boolean;
+                    expertise: string[] | null;
+                    availability: string | null;
+                };
+                Insert: {
+                    id: string;
+                    created_at?: string;
+                    name?: string | null;
+                    email?: string | null;
+                    avatar_url?: string | null;
+                    bio?: string | null;
+                    is_mentor?: boolean;
+                    expertise?: string[] | null;
+                    availability?: string | null;
+                };
+                Update: {
+                    id?: string;
+                    created_at?: string;
+                    name?: string | null;
+                    email?: string | null;
+                    avatar_url?: string | null;
+                    bio?: string | null;
+                    is_mentor?: boolean;
+                    expertise?: string[] | null;
+                    availability?: string | null;
+                };
+            };
+            conversations: {
+                Row: {
+                    id: string;
+                    created_at: string;
+                    mentor_id: string;
+                    mentee_id: string;
+                    status: string;
+                    updated_at: string;
+                };
+                Insert: {
+                    id?: string;
+                    created_at?: string;
+                    mentor_id: string;
+                    mentee_id: string;
+                    status?: string;
+                    updated_at?: string;
+                };
+                Update: {
+                    id?: string;
+                    created_at?: string;
+                    mentor_id?: string;
+                    mentee_id?: string;
+                    status?: string;
+                    updated_at?: string;
+                };
+            };
+            messages: {
+                Row: {
+                    id: string;
+                    created_at: string;
+                    conversation_id: string;
+                    sender_id: string;
+                    content: string;
+                    read_at: string | null;
+                };
+                Insert: {
+                    id?: string;
+                    created_at?: string;
+                    conversation_id: string;
+                    sender_id: string;
+                    content: string;
+                    read_at?: string | null;
+                };
+                Update: {
+                    id?: string;
+                    created_at?: string;
+                    conversation_id?: string;
+                    sender_id?: string;
+                    content?: string;
+                    read_at?: string | null;
+                };
+            };
+            mentoring_sessions: {
+                Row: {
+                    id: string;
+                    created_at: string;
+                    mentor_id: string;
+                    mentee_id: string;
+                    scheduled_for: string;
+                    duration_minutes: number;
+                    status: string;
+                    topic: string | null;
+                    meeting_url: string | null;
+                    cal_booking_id: string | null;
+                };
+                Insert: {
+                    id?: string;
+                    created_at?: string;
+                    mentor_id: string;
+                    mentee_id: string;
+                    scheduled_for: string;
+                    duration_minutes?: number;
+                    status?: string;
+                    topic?: string | null;
+                    meeting_url?: string | null;
+                    cal_booking_id?: string | null;
+                };
+                Update: {
+                    id?: string;
+                    created_at?: string;
+                    mentor_id?: string;
+                    mentee_id?: string;
+                    scheduled_for?: string;
+                    duration_minutes?: number;
+                    status?: string;
+                    topic?: string | null;
+                    meeting_url?: string | null;
+                    cal_booking_id?: string | null;
+                };
+            };
+            live_availability: {
+                Row: {
+                    id: string;
+                    user_id: string;
+                    is_available: boolean;
+                    available_since: string | null;
+                    available_until: string | null;
                     updated_at: string;
                 };
                 Insert: {
                     id?: string;
                     user_id: string;
-                    display_name: string;
-                    avatar_url?: string | null;
-                    story?: string | null;
-                    bio?: string | null;
-                    interests?: string[];
-                    skills?: string[];
-                    goals?: string[];
-                    role?: 'mentee' | 'mentor' | 'both';
-                    growth_stage?: 'explorer' | 'builder' | 'transformer' | 'guide';
-                    communication_style?: 'analytical' | 'emotional' | 'practical' | 'visionary' | null;
-                    availability_hours?: number;
-                    timezone?: string;
-                    linkedin_url?: string | null;
-                    is_verified?: boolean;
-                    is_active?: boolean;
-                    created_at?: string;
+                    is_available?: boolean;
+                    available_since?: string | null;
+                    available_until?: string | null;
                     updated_at?: string;
                 };
                 Update: {
                     id?: string;
                     user_id?: string;
-                    display_name?: string;
-                    avatar_url?: string | null;
-                    story?: string | null;
-                    bio?: string | null;
-                    interests?: string[];
-                    skills?: string[];
-                    goals?: string[];
-                    role?: 'mentee' | 'mentor' | 'both';
-                    growth_stage?: 'explorer' | 'builder' | 'transformer' | 'guide';
-                    communication_style?: 'analytical' | 'emotional' | 'practical' | 'visionary' | null;
-                    availability_hours?: number;
-                    timezone?: string;
-                    linkedin_url?: string | null;
-                    is_verified?: boolean;
-                    is_active?: boolean;
+                    is_available?: boolean;
+                    available_since?: string | null;
+                    available_until?: string | null;
                     updated_at?: string;
                 };
             };
-
-            story_analysis: {
-                Row: {
-                    id: string;
-                    profile_id: string;
-                    life_themes: string[];
-                    growth_stage_detected: string;
-                    communication_style_detected: string;
-                    unspoken_needs: string[];
-                    potential_blind_spots: string[];
-                    ideal_mentor_archetype: string | null;
-                    embedding_vector: number[] | null;
-                    analyzed_at: string;
-                };
-                Insert: {
-                    id?: string;
-                    profile_id: string;
-                    life_themes?: string[];
-                    growth_stage_detected?: string;
-                    communication_style_detected?: string;
-                    unspoken_needs?: string[];
-                    potential_blind_spots?: string[];
-                    ideal_mentor_archetype?: string | null;
-                    embedding_vector?: number[] | null;
-                    analyzed_at?: string;
-                };
-                Update: {
-                    life_themes?: string[];
-                    growth_stage_detected?: string;
-                    communication_style_detected?: string;
-                    unspoken_needs?: string[];
-                    potential_blind_spots?: string[];
-                    ideal_mentor_archetype?: string | null;
-                    embedding_vector?: number[] | null;
-                    analyzed_at?: string;
-                };
-            };
-
-            connections: {
-                Row: {
-                    id: string;
-                    requester_id: string;
-                    recipient_id: string;
-                    status: 'pending' | 'accepted' | 'declined' | 'cancelled';
-                    message: string | null;
-                    compatibility_score: number | null;
-                    created_at: string;
-                    responded_at: string | null;
-                };
-                Insert: {
-                    id?: string;
-                    requester_id: string;
-                    recipient_id: string;
-                    status?: 'pending' | 'accepted' | 'declined' | 'cancelled';
-                    message?: string | null;
-                    compatibility_score?: number | null;
-                    created_at?: string;
-                    responded_at?: string | null;
-                };
-                Update: {
-                    status?: 'pending' | 'accepted' | 'declined' | 'cancelled';
-                    responded_at?: string | null;
-                };
-            };
-
-            sessions: {
-                Row: {
-                    id: string;
-                    connection_id: string;
-                    mentor_id: string;
-                    mentee_id: string;
-                    scheduled_at: string;
-                    duration_minutes: number;
-                    status: 'scheduled' | 'in_progress' | 'completed' | 'cancelled' | 'no_show';
-                    meeting_link: string | null;
-                    session_type: 'video' | 'audio' | 'chat';
-                    prep_notes_mentor: string | null;
-                    prep_notes_mentee: string | null;
-                    created_at: string;
-                };
-                Insert: {
-                    id?: string;
-                    connection_id: string;
-                    mentor_id: string;
-                    mentee_id: string;
-                    scheduled_at: string;
-                    duration_minutes?: number;
-                    status?: 'scheduled' | 'in_progress' | 'completed' | 'cancelled' | 'no_show';
-                    meeting_link?: string | null;
-                    session_type?: 'video' | 'audio' | 'chat';
-                    prep_notes_mentor?: string | null;
-                    prep_notes_mentee?: string | null;
-                    created_at?: string;
-                };
-                Update: {
-                    scheduled_at?: string;
-                    duration_minutes?: number;
-                    status?: 'scheduled' | 'in_progress' | 'completed' | 'cancelled' | 'no_show';
-                    meeting_link?: string | null;
-                    prep_notes_mentor?: string | null;
-                    prep_notes_mentee?: string | null;
-                };
-            };
-
-            session_summaries: {
+            session_notes: {
                 Row: {
                     id: string;
                     session_id: string;
-                    summary_text: string;
-                    key_insights: string[];
-                    action_items: string[];
-                    follow_up_suggested: boolean;
-                    sentiment_score: number | null;
-                    topics_discussed: string[];
-                    generated_at: string;
-                };
-                Insert: {
-                    id?: string;
-                    session_id: string;
-                    summary_text: string;
-                    key_insights?: string[];
-                    action_items?: string[];
-                    follow_up_suggested?: boolean;
-                    sentiment_score?: number | null;
-                    topics_discussed?: string[];
-                    generated_at?: string;
-                };
-                Update: {
-                    summary_text?: string;
-                    key_insights?: string[];
-                    action_items?: string[];
-                    follow_up_suggested?: boolean;
-                    sentiment_score?: number | null;
-                    topics_discussed?: string[];
-                };
-            };
-
-            growth_journal: {
-                Row: {
-                    id: string;
-                    profile_id: string;
-                    entry_type: 'reflection' | 'milestone' | 'goal_update' | 'insight';
+                    author_id: string;
                     content: string;
-                    related_session_id: string | null;
-                    tags: string[];
                     is_private: boolean;
                     created_at: string;
+                    updated_at: string;
                 };
                 Insert: {
                     id?: string;
-                    profile_id: string;
-                    entry_type?: 'reflection' | 'milestone' | 'goal_update' | 'insight';
-                    content: string;
-                    related_session_id?: string | null;
-                    tags?: string[];
+                    session_id: string;
+                    author_id: string;
+                    content?: string;
                     is_private?: boolean;
                     created_at?: string;
+                    updated_at?: string;
                 };
                 Update: {
-                    entry_type?: 'reflection' | 'milestone' | 'goal_update' | 'insight';
+                    id?: string;
+                    session_id?: string;
+                    author_id?: string;
                     content?: string;
-                    tags?: string[];
                     is_private?: boolean;
+                    created_at?: string;
+                    updated_at?: string;
                 };
             };
-
-            reviews: {
+            action_items: {
                 Row: {
                     id: string;
                     session_id: string;
-                    reviewer_id: string;
-                    reviewee_id: string;
+                    created_by: string;
+                    assigned_to: string | null;
+                    content: string;
+                    is_completed: boolean;
+                    due_date: string | null;
+                    created_at: string;
+                    completed_at: string | null;
+                };
+                Insert: {
+                    id?: string;
+                    session_id: string;
+                    created_by: string;
+                    assigned_to?: string | null;
+                    content: string;
+                    is_completed?: boolean;
+                    due_date?: string | null;
+                    created_at?: string;
+                    completed_at?: string | null;
+                };
+                Update: {
+                    id?: string;
+                    session_id?: string;
+                    created_by?: string;
+                    assigned_to?: string | null;
+                    content?: string;
+                    is_completed?: boolean;
+                    due_date?: string | null;
+                    created_at?: string;
+                    completed_at?: string | null;
+                };
+            };
+            session_feedback: {
+                Row: {
+                    id: string;
+                    session_id: string;
+                    author_id: string;
                     rating: number;
-                    feedback: string | null;
-                    would_recommend: boolean;
+                    feedback_text: string | null;
+                    would_recommend: boolean | null;
                     created_at: string;
                 };
                 Insert: {
                     id?: string;
                     session_id: string;
-                    reviewer_id: string;
-                    reviewee_id: string;
+                    author_id: string;
                     rating: number;
-                    feedback?: string | null;
-                    would_recommend?: boolean;
+                    feedback_text?: string | null;
+                    would_recommend?: boolean | null;
                     created_at?: string;
                 };
                 Update: {
+                    id?: string;
+                    session_id?: string;
+                    author_id?: string;
                     rating?: number;
-                    feedback?: string | null;
-                    would_recommend?: boolean;
+                    feedback_text?: string | null;
+                    would_recommend?: boolean | null;
+                    created_at?: string;
                 };
             };
-
-            reciprocity_tracker: {
+            session_reminders: {
                 Row: {
                     id: string;
-                    profile_id: string;
-                    sessions_as_mentor: number;
-                    sessions_as_mentee: number;
-                    last_mentored_at: string | null;
-                    last_mentee_at: string | null;
-                    reciprocity_score: number;
-                    nudge_sent_at: string | null;
+                    session_id: string;
+                    user_id: string;
+                    reminder_type: string;
+                    scheduled_for: string;
+                    sent_at: string | null;
+                    created_at: string;
                 };
                 Insert: {
                     id?: string;
-                    profile_id: string;
-                    sessions_as_mentor?: number;
-                    sessions_as_mentee?: number;
-                    last_mentored_at?: string | null;
-                    last_mentee_at?: string | null;
-                    reciprocity_score?: number;
-                    nudge_sent_at?: string | null;
+                    session_id: string;
+                    user_id: string;
+                    reminder_type: string;
+                    scheduled_for: string;
+                    sent_at?: string | null;
+                    created_at?: string;
                 };
                 Update: {
-                    sessions_as_mentor?: number;
-                    sessions_as_mentee?: number;
-                    last_mentored_at?: string | null;
-                    last_mentee_at?: string | null;
-                    reciprocity_score?: number;
-                    nudge_sent_at?: string | null;
+                    id?: string;
+                    session_id?: string;
+                    user_id?: string;
+                    reminder_type?: string;
+                    scheduled_for?: string;
+                    sent_at?: string | null;
+                    created_at?: string;
+                };
+            };
+            mentor_analytics: {
+                Row: {
+                    id: string;
+                    mentor_id: string;
+                    total_sessions: number;
+                    total_hours: number;
+                    total_mentees: number;
+                    avg_rating: number | null;
+                    completion_rate: number | null;
+                    last_session_at: string | null;
+                    updated_at: string;
+                };
+                Insert: {
+                    id?: string;
+                    mentor_id: string;
+                    total_sessions?: number;
+                    total_hours?: number;
+                    total_mentees?: number;
+                    avg_rating?: number | null;
+                    completion_rate?: number | null;
+                    last_session_at?: string | null;
+                    updated_at?: string;
+                };
+                Update: {
+                    id?: string;
+                    mentor_id?: string;
+                    total_sessions?: number;
+                    total_hours?: number;
+                    total_mentees?: number;
+                    avg_rating?: number | null;
+                    completion_rate?: number | null;
+                    last_session_at?: string | null;
+                    updated_at?: string;
                 };
             };
         };
-        Views: {};
-        Functions: {};
-        Enums: {
-            user_role: 'mentee' | 'mentor' | 'both';
-            growth_stage: 'explorer' | 'builder' | 'transformer' | 'guide';
-            communication_style: 'analytical' | 'emotional' | 'practical' | 'visionary';
-            connection_status: 'pending' | 'accepted' | 'declined' | 'cancelled';
-            session_status: 'scheduled' | 'in_progress' | 'completed' | 'cancelled' | 'no_show';
-        };
+        Views: Record<string, never>;
+        Functions: Record<string, never>;
+        Enums: Record<string, never>;
     };
 }
-
-// Convenience types
-export type Profile = Database['public']['Tables']['profiles']['Row'];
-export type ProfileInsert = Database['public']['Tables']['profiles']['Insert'];
-export type ProfileUpdate = Database['public']['Tables']['profiles']['Update'];
-
-export type StoryAnalysis = Database['public']['Tables']['story_analysis']['Row'];
-export type Connection = Database['public']['Tables']['connections']['Row'];
-export type Session = Database['public']['Tables']['sessions']['Row'];
-export type SessionSummary = Database['public']['Tables']['session_summaries']['Row'];
-export type GrowthJournalEntry = Database['public']['Tables']['growth_journal']['Row'];
-export type Review = Database['public']['Tables']['reviews']['Row'];
-export type ReciprocityTracker = Database['public']['Tables']['reciprocity_tracker']['Row'];

@@ -12,8 +12,9 @@ const Footer = () => {
 
           <div className="flex flex-wrap justify-center gap-6 text-white/70">
             <Link href="/about" className="hover:text-teal-400 transition-colors">About</Link>
-            <Link href="/mentor" className="hover:text-teal-400 transition-colors">Mentorship</Link>
-            <Link href="/community" className="hover:text-teal-400 transition-colors">Community</Link>
+            <Link href="/mentor" className="hover:text-teal-400 transition-colors">Find a Mentor</Link>
+            <Link href="/mentor/become" className="hover:text-teal-400 transition-colors">Become a Mentor</Link>
+            <Link href="/donate" className="hover:text-teal-400 transition-colors">Support Us</Link>
             <Link href="/contact" className="hover:text-teal-400 transition-colors">Contact</Link>
             <Link href="/about#ethics" className="hover:text-teal-400 transition-colors">Ethics & Privacy</Link>
           </div>

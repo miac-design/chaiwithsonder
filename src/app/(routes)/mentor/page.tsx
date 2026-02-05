@@ -159,11 +159,11 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
     ? mentor.photo
     : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
   return (
-    <div className="bg-white/85 backdrop-blur-xl border border-white/30 rounded-2xl shadow-xl p-6 text-center hover:shadow-2xl hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
+    <div className="bg-white/85 backdrop-blur-xl border border-white/30 rounded-2xl shadow-xl p-6 text-center hover:shadow-2xl hover:shadow-teal-100/50 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
       <img
         src={avatarUrl}
         alt={`Photo of ${mentor.name}`}
-        className="rounded-full w-32 h-32 mx-auto object-cover ring-2 ring-blue-200"
+        className="rounded-full w-32 h-32 mx-auto object-cover ring-2 ring-teal-200"
         onError={(e) => {
           e.currentTarget.onerror = null;
           e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
@@ -178,7 +178,7 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
           target={mentor.calendly ? '_blank' : undefined}
           rel={mentor.calendly ? 'noopener noreferrer' : undefined}
           aria-label={mentor.calendly ? `Book a session with ${mentor.name}` : 'Calendly not available'}
-          className="text-blue-500 hover:text-blue-700 transition"
+          className="text-teal-500 hover:text-teal-600 transition"
           title={mentor.calendly ? 'Book a session' : 'Not available'}
           tabIndex={0}
           onClick={e => { if (!mentor.calendly) e.preventDefault(); }}
@@ -193,7 +193,7 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
           target={mentor.linkedin ? '_blank' : undefined}
           rel={mentor.linkedin ? 'noopener noreferrer' : undefined}
           aria-label={mentor.linkedin ? `View ${mentor.name}'s LinkedIn` : 'LinkedIn not available'}
-          className="text-gray-600 hover:text-blue-700 transition"
+          className="text-teal-600 hover:text-teal-700 transition"
           title={mentor.linkedin ? 'View LinkedIn' : 'Not available'}
           tabIndex={0}
           onClick={e => { if (!mentor.linkedin) e.preventDefault(); }}
@@ -263,7 +263,7 @@ export default function Mentor() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+    <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -283,7 +283,7 @@ export default function Mentor() {
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-white/85 backdrop-blur-xl border border-white/30 rounded-full px-5 py-3 pl-12 shadow-lg focus:ring-blue-500 focus:border-blue-500 text-gray-700 placeholder-gray-400"
+            className="w-full bg-white/85 backdrop-blur-xl border border-white/30 rounded-full px-5 py-3 pl-12 shadow-lg focus:ring-teal-500 focus:border-teal-500 text-gray-700 placeholder-gray-400"
             placeholder="Search by name, expertise, or role…"
             aria-label="Search mentors by name, expertise, or role"
           />
@@ -330,7 +330,7 @@ export default function Mentor() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 border-teal-300 focus:outline-none transition"
                   placeholder="e.g., Jane Doe"
                 />
               </div>
@@ -343,7 +343,7 @@ export default function Mentor() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
                   placeholder="e.g., jane@email.com"
                 />
               </div>
@@ -356,7 +356,7 @@ export default function Mentor() {
                   required
                   value={formData.expertise}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
                   placeholder="e.g., Software Development, Career Growth, Leadership"
                 />
               </div>
@@ -369,7 +369,7 @@ export default function Mentor() {
                   required
                   value={formData.experience}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
                   placeholder="e.g., 5+ years"
                 />
               </div>
@@ -382,7 +382,7 @@ export default function Mentor() {
                   required
                   value={formData.availability}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
                   placeholder="e.g., Weekday evenings, Weekend mornings"
                 />
               </div>
@@ -394,7 +394,7 @@ export default function Mentor() {
                   required
                   value={formData.goals}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 min-h-[120px] rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 border-indigo-300 focus:outline-none transition resize-y"
+                  className="w-full px-4 py-3 min-h-[120px] rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition resize-y"
                   placeholder="Share your goals, e.g., Help others grow, Give back to the community, etc."
                 />
               </div>
@@ -402,7 +402,7 @@ export default function Mentor() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`bg-blue-600 text-white font-semibold rounded-full py-3 w-full shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
+                  className={`bg-teal-500 text-white font-semibold rounded-full py-3 w-full shadow-lg shadow-teal-500/30 hover:bg-teal-600 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
