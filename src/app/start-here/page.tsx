@@ -131,13 +131,23 @@ export default function StartHerePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-sky-50">
-            {/* Progress bar */}
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-teal-50">
+            {/* Progress bar with Home button */}
             <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
                 <div className="max-w-lg mx-auto px-4 py-3">
                     <div className="flex items-center gap-4">
+                        {/* Always show back/home button */}
+                        <Link
+                            href="/"
+                            className="text-gray-400 hover:text-teal-600 transition-colors flex items-center gap-1"
+                            title="Back to Home"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </Link>
                         {currentStep !== 'name' && currentStep !== 'complete' && (
-                            <button onClick={prevStep} className="text-gray-400 hover:text-gray-600">
+                            <button onClick={prevStep} className="text-gray-400 hover:text-teal-600">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -145,7 +155,7 @@ export default function StartHerePage() {
                         )}
                         <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                             <motion.div
-                                className="h-full bg-gradient-to-r from-amber-400 to-amber-500 rounded-full"
+                                className="h-full bg-gradient-to-r from-teal-400 to-teal-500 rounded-full"
                                 animate={{ width: `${progress}%` }}
                                 transition={{ duration: 0.3 }}
                             />
@@ -173,7 +183,12 @@ export default function StartHerePage() {
                                 exit="exit"
                                 className="text-center pt-12"
                             >
-                                <span className="text-6xl mb-6 block">☕</span>
+                                {/* Minimal teal cup icon instead of emoji */}
+                                <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
+                                    <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.82a7 7 0 0 0 5.84-2.56ZM12 3v2m0 14v2m9-9h-2M5 12H3m15.36-5.64l-1.41 1.41M7.05 16.95l-1.41 1.41m12.72 0l-1.41-1.41M7.05 7.05L5.64 5.64" />
+                                    </svg>
+                                </div>
                                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
                                     Let's get you matched
                                 </h1>
@@ -184,7 +199,7 @@ export default function StartHerePage() {
                                     value={formData.displayName}
                                     onChange={(e) => setFormData(prev => ({ ...prev, displayName: e.target.value }))}
                                     placeholder="What's your first name?"
-                                    className="w-full px-6 py-4 text-xl text-center bg-white border-2 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-300 focus:outline-none focus:border-amber-400 transition"
+                                    className="w-full px-6 py-4 text-xl text-center bg-white border-2 border-gray-100 rounded-2xl text-gray-900 placeholder-gray-300 focus:outline-none focus:border-teal-400 transition"
                                     autoFocus
                                 />
                             </motion.div>
@@ -211,8 +226,8 @@ export default function StartHerePage() {
                                     <button
                                         onClick={() => setFormData(prev => ({ ...prev, role: 'sip' }))}
                                         className={`w-full p-5 rounded-2xl text-left transition-all flex items-center gap-4 ${formData.role === 'sip'
-                                                ? 'bg-amber-50 border-2 border-amber-400 shadow-md'
-                                                : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                            ? 'bg-teal-50 border-2 border-teal-400 shadow-md'
+                                            : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                             }`}
                                     >
                                         <span className="text-4xl">☕</span>
@@ -225,8 +240,8 @@ export default function StartHerePage() {
                                     <button
                                         onClick={() => setFormData(prev => ({ ...prev, role: 'share' }))}
                                         className={`w-full p-5 rounded-2xl text-left transition-all flex items-center gap-4 ${formData.role === 'share'
-                                                ? 'bg-sky-50 border-2 border-sky-400 shadow-md'
-                                                : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                            ? 'bg-sky-50 border-2 border-sky-400 shadow-md'
+                                            : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                             }`}
                                     >
                                         <span className="text-4xl">💬</span>
@@ -239,8 +254,8 @@ export default function StartHerePage() {
                                     <button
                                         onClick={() => setFormData(prev => ({ ...prev, role: 'both' }))}
                                         className={`w-full p-5 rounded-2xl text-left transition-all flex items-center gap-4 ${formData.role === 'both'
-                                                ? 'bg-gradient-to-r from-amber-50 to-sky-50 border-2 border-amber-400 shadow-md'
-                                                : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                            ? 'bg-gradient-to-r from-teal-50 to-sky-50 border-2 border-teal-400 shadow-md'
+                                            : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                             }`}
                                     >
                                         <span className="text-4xl">✨</span>
@@ -276,8 +291,8 @@ export default function StartHerePage() {
                                             key={vibe.id}
                                             onClick={() => toggleVibe(vibe.id)}
                                             className={`p-4 rounded-2xl text-left transition-all ${formData.vibe.includes(vibe.id)
-                                                    ? 'bg-amber-50 border-2 border-amber-400 shadow-md'
-                                                    : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                                ? 'bg-teal-50 border-2 border-teal-400 shadow-md'
+                                                : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-2">{vibe.emoji}</span>
@@ -316,8 +331,8 @@ export default function StartHerePage() {
                                             key={topic.id}
                                             onClick={() => toggleTopic(topic.id)}
                                             className={`p-4 rounded-2xl text-center transition-all ${formData.topics.includes(topic.id)
-                                                    ? 'bg-sky-50 border-2 border-sky-400 shadow-md scale-105'
-                                                    : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                                ? 'bg-sky-50 border-2 border-sky-400 shadow-md scale-105'
+                                                : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                                 }`}
                                         >
                                             <span className="text-3xl block mb-1">{topic.emoji}</span>
@@ -355,8 +370,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, communicationStyle: 'listener' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.communicationStyle === 'listener'
-                                                    ? 'bg-amber-50 border-2 border-amber-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-teal-50 border-2 border-teal-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">👂</span>
@@ -365,8 +380,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, communicationStyle: 'balanced' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.communicationStyle === 'balanced'
-                                                    ? 'bg-amber-50 border-2 border-amber-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-teal-50 border-2 border-teal-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">⚖️</span>
@@ -375,8 +390,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, communicationStyle: 'talker' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.communicationStyle === 'talker'
-                                                    ? 'bg-amber-50 border-2 border-amber-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-teal-50 border-2 border-teal-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">🗣️</span>
@@ -392,8 +407,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, meetingPreference: 'video' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.meetingPreference === 'video'
-                                                    ? 'bg-sky-50 border-2 border-sky-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-sky-50 border-2 border-sky-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">📹</span>
@@ -402,8 +417,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, meetingPreference: 'audio' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.meetingPreference === 'audio'
-                                                    ? 'bg-sky-50 border-2 border-sky-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-sky-50 border-2 border-sky-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">📞</span>
@@ -412,8 +427,8 @@ export default function StartHerePage() {
                                         <button
                                             onClick={() => setFormData(prev => ({ ...prev, meetingPreference: 'chat' }))}
                                             className={`flex-1 p-4 rounded-2xl text-center transition-all ${formData.meetingPreference === 'chat'
-                                                    ? 'bg-sky-50 border-2 border-sky-400'
-                                                    : 'bg-white border-2 border-gray-100'
+                                                ? 'bg-sky-50 border-2 border-sky-400'
+                                                : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
                                             <span className="text-2xl block mb-1">💬</span>
@@ -447,8 +462,8 @@ export default function StartHerePage() {
                                             <button
                                                 onClick={() => togglePrompt(prompt)}
                                                 className={`w-full p-4 rounded-2xl text-left transition-all ${selectedPrompts.includes(prompt)
-                                                        ? 'bg-amber-50 border-2 border-amber-400'
-                                                        : 'bg-white border-2 border-gray-100 hover:border-gray-200'
+                                                    ? 'bg-teal-50 border-2 border-teal-400'
+                                                    : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                                     }`}
                                             >
                                                 <span className="font-medium text-gray-900">{prompt}</span>
@@ -467,7 +482,7 @@ export default function StartHerePage() {
                                                         onChange={(e) => setPromptAnswers(prev => ({ ...prev, [prompt]: e.target.value }))}
                                                         placeholder="Your answer (keep it short!)"
                                                         maxLength={100}
-                                                        className="w-full px-4 py-3 bg-white border-2 border-gray-100 rounded-xl text-gray-900 placeholder-gray-300 focus:outline-none focus:border-amber-400 transition"
+                                                        className="w-full px-4 py-3 bg-white border-2 border-gray-100 rounded-xl text-gray-900 placeholder-gray-300 focus:outline-none focus:border-teal-400 transition"
                                                     />
                                                     <p className="text-xs text-gray-400 text-right mt-1">
                                                         {(promptAnswers[prompt] || '').length}/100
@@ -515,8 +530,8 @@ export default function StartHerePage() {
 
                                 <div className="bg-white rounded-2xl p-6 border-2 border-gray-100 mb-8">
                                     <div className="flex items-center gap-3 text-left">
-                                        <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
-                                            <span className="text-xl">🔍</span>
+                                        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center">
+                                            <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" strokeWidth="2" /><path d="M21 21l-4.35-4.35" strokeWidth="2" strokeLinecap="round" /></svg>
                                         </div>
                                         <div>
                                             <h3 className="font-semibold text-gray-900">Finding matches...</h3>
@@ -526,8 +541,8 @@ export default function StartHerePage() {
                                 </div>
 
                                 <Link
-                                    href="/explore"
-                                    className="block w-full py-4 bg-amber-500 text-white font-semibold rounded-full text-lg hover:bg-amber-600 transition-all shadow-lg"
+                                    href="/mentor"
+                                    className="block w-full py-4 bg-teal-500 text-white font-semibold rounded-full text-lg hover:bg-teal-600 transition-all shadow-lg shadow-teal-500/30"
                                 >
                                     See My Matches
                                 </Link>
@@ -550,7 +565,7 @@ export default function StartHerePage() {
                                 (currentStep === 'topics' && formData.topics.length === 0) ||
                                 (currentStep === 'style' && (!formData.communicationStyle || !formData.meetingPreference))
                             }
-                            className="w-full py-4 bg-amber-500 text-white font-semibold rounded-full text-lg hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-amber-500/30"
+                            className="w-full py-4 bg-teal-500 text-white font-semibold rounded-full text-lg hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-teal-500/30"
                         >
                             {currentStep === 'prompts' ? 'Finish' : 'Continue'}
                         </button>
@@ -559,8 +574,8 @@ export default function StartHerePage() {
             )}
 
             {/* Background decorations */}
-            <div className="fixed bottom-0 left-0 w-64 h-64 bg-amber-200/30 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none" />
-            <div className="fixed top-1/4 right-0 w-80 h-80 bg-sky-200/30 rounded-full blur-3xl translate-x-1/2 pointer-events-none" />
+            <div className="fixed bottom-0 left-0 w-64 h-64 bg-teal-200/30 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 pointer-events-none" />
+            <div className="fixed top-1/4 right-0 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl translate-x-1/2 pointer-events-none" />
         </div>
     );
 }
