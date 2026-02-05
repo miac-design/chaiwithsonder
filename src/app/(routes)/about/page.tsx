@@ -64,13 +64,13 @@ function FAQSection() {
       <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
       <div className="flex justify-center mb-8 gap-4">
         <button
-          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentees' ? 'bg-indigo-600 text-white shadow' : 'bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50'}`}
+          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentees' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
           onClick={() => setActiveTab('mentees')}
         >
           Mentees
         </button>
         <button
-          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentors' ? 'bg-indigo-600 text-white shadow' : 'bg-white text-indigo-600 border border-indigo-200 hover:bg-indigo-50'}`}
+          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentors' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
           onClick={() => setActiveTab('mentors')}
         >
           Mentors
@@ -134,19 +134,19 @@ function TestimonialsSection() {
       <h2 className="text-2xl font-bold text-center mb-10">What Members Say</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
         {testimonials.map((t, i) => (
-          <div key={t.name} className="bg-white p-6 rounded-2xl shadow-md transition hover:shadow-lg flex flex-col items-center text-center animate-fadeInUp" style={{animationDelay: `${i * 80}ms`}}>
+          <div key={t.name} className="bg-white p-6 rounded-2xl shadow-md transition hover:shadow-lg flex flex-col items-center text-center animate-fadeInUp" style={{ animationDelay: `${i * 80}ms` }}>
             <div className="flex justify-center mb-4">
               <Image
                 src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(t.name)}`}
                 alt={`Avatar of ${t.name}`}
                 width={64}
                 height={64}
-                className="w-16 h-16 rounded-full object-cover mx-auto ring-1 ring-indigo-100 bg-indigo-50"
+                className="w-16 h-16 rounded-full object-cover mx-auto ring-1 ring-teal-100 bg-teal-50"
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.style.display = 'none';
                   const fallback = document.createElement('div');
-                  fallback.className = 'w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-2xl font-bold text-indigo-600 shadow';
+                  fallback.className = 'w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center text-2xl font-bold text-teal-600 shadow';
                   fallback.innerText = t.initials;
                   if (e.currentTarget.parentNode) {
                     e.currentTarget.parentNode.appendChild(fallback);
@@ -166,35 +166,101 @@ function TestimonialsSection() {
 
 export default function About() {
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
-      {/* Website Makeover Team Section REMOVED */}
-
+    <div className="bg-gradient-to-br from-teal-50 via-white to-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <div className="text-center">
+
+        {/* Hero Section */}
+        <div className="text-center mb-16">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            About Us
+            About Chai Chat
           </h1>
+          <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
+            Where Sonder Becomes Connection
+          </p>
         </div>
 
-        <div className="mt-20">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            <div className="bg-neutral-50 rounded-xl shadow-sm p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
-              <p className="text-base leading-relaxed text-gray-600">
-                At Chai Chat, we believe that everyone deserves access to quality mentorship and support in their personal and professional journey. Our platform connects mentors and mentees, creating meaningful relationships that foster growth and development.
+        {/* Founder's Story Section */}
+        <section className="mb-20">
+          <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-3xl shadow-xl p-8 md:p-12 text-white max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold">Why I Built This</h2>
+            </div>
+
+            <div className="space-y-4 text-white/90 text-lg leading-relaxed">
+              <p>
+                In 2018, I came to the United States searching for opportunity. I didn't know anyone.
+                I didn't have connections. But when I started looking for jobs, something incredible happened.
+              </p>
+              <p>
+                <strong className="text-white">Strangers helped me.</strong> People I had never met before took time
+                out of their busy lives to review my resume, make introductions, and offer guidance.
+                They didn't know me. They didn't owe me anything. They just wanted to help.
+              </p>
+              <p>
+                That experience changed me. I realized there are so many people out there who genuinely
+                <em> want</em> to help others — they just don't always have a way to find those who need it.
+              </p>
+              <p className="text-white font-medium">
+                That's why I built Chai Chat. <strong>To connect helpers with those who need help.</strong>
+                To create a space where a stranger's kindness can change someone's life, just like it changed mine.
               </p>
             </div>
 
-            <div className="bg-neutral-50 rounded-xl shadow-sm p-6">
+            <div className="mt-8 pt-6 border-t border-white/20">
+              <p className="text-white/80 text-sm">— Mia, Founder of Chai Chat</p>
+            </div>
+          </div>
+        </section>
+
+        {/* What is Sonder Section */}
+        <section className="mb-20 max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Why "Sonder"?</h2>
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <p className="text-2xl font-serif italic text-gray-700 mb-4">
+              "Sonder"
+            </p>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              <em>n.</em> The profound realization that each random passerby is living a life as vivid
+              and complex as your own — with their own ambitions, worries, routines, and stories.
+            </p>
+            <p className="text-gray-700">
+              It's my favorite word because it reminds us of an essential truth:
+              <strong> we are all the same.</strong> We all struggle, dream, and hope.
+              We are all connected — like pieces of one whole.
+            </p>
+            <p className="text-teal-600 font-medium mt-4">
+              When you mentor someone, you're not just sharing knowledge —
+              you're acknowledging their humanity. That's Sonder in action.
+            </p>
+          </div>
+        </section>
+
+        {/* Mission & Vision */}
+        <div className="mb-20">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-teal-500">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
+              <p className="text-base leading-relaxed text-gray-600">
+                To connect people who want to help with those who need guidance — creating meaningful
+                mentorship relationships that foster growth, belonging, and mutual support.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-teal-500">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Vision</h2>
               <p className="text-base leading-relaxed text-gray-600">
-                We envision a world where knowledge sharing and personal growth are accessible to all. Through our community-driven platform, we're creating a space where people can find the guidance and support they need to achieve their goals.
+                A world where no one has to navigate their journey alone. Where strangers become
+                mentors, and a simple conversation over chai can open doors you never knew existed.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Warm, inclusive text block below team REMOVED */}
 
         <div className="mt-20">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Values</h2>
