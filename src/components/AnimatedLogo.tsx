@@ -27,7 +27,7 @@ const AnimatedLogo = ({ size = 48, className = '' }: AnimatedLogoProps) => {
     ];
 
     return (
-        <div className={`relative ${className}`} style={{ width: size, height: size + 35 }}>
+        <div className={`relative ${className}`} style={{ width: size, height: size + 10 }}>
             {/* Main SVG with extended viewBox for visible bubble rise */}
             <svg
                 viewBox="0 0 56 90"

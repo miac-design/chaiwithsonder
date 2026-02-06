@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export const dynamic = "force-dynamic";
 
@@ -11,48 +13,18 @@ function FAQSection() {
   const [openMentor, setOpenMentor] = useState<number | null>(null);
 
   const menteeFaqs = [
-    {
-      q: 'How do I find the right mentor?',
-      a: 'Use the mentor directory to explore profiles, topics, and availability that align with your goals.',
-    },
-    {
-      q: 'Is Chai Chat free for mentees?',
-      a: 'Yes! Our platform is completely free for mentees seeking guidance and support.',
-    },
-    {
-      q: 'Can I meet with more than one mentor?',
-      a: 'Yes, you can schedule sessions with different mentors based on your needs.',
-    },
-    {
-      q: 'What should I bring to my first session?',
-      a: 'Bring curiosity and clarity. You can also jot down a few goals or challenges ahead of time.',
-    },
-    {
-      q: 'Can I change mentors later?',
-      a: 'Absolutely. You\'re encouraged to find the best match for your journey.',
-    },
+    { q: 'How do I find the right mentor?', a: 'Use the mentor directory to explore profiles, topics, and availability that align with your goals.' },
+    { q: 'Is Chai Chat free for mentees?', a: 'Yes! Our platform is completely free for mentees seeking guidance and support.' },
+    { q: 'Can I meet with more than one mentor?', a: 'Yes, you can schedule sessions with different mentors based on your needs.' },
+    { q: 'What should I bring to my first session?', a: 'Bring curiosity and clarity. You can also jot down a few goals or challenges ahead of time.' },
+    { q: 'Can I change mentors later?', a: 'Absolutely. You\'re encouraged to find the best match for your journey.' },
   ];
   const mentorFaqs = [
-    {
-      q: 'How do I become a mentor?',
-      a: 'Click "Become a Mentor," fill out your profile, and we\'ll review it within 48 hours.',
-    },
-    {
-      q: 'Is there a time commitment?',
-      a: 'No fixed time commitment — you set your availability and pace.',
-    },
-    {
-      q: 'Can I choose who I mentor?',
-      a: 'Yes. You have full control over which requests you accept.',
-    },
-    {
-      q: 'How do badges work?',
-      a: 'Mentors earn badges based on hours, sessions, and community engagement milestones.',
-    },
-    {
-      q: 'Can I pause or stop mentoring?',
-      a: 'Yes — update your availability anytime from your dashboard.',
-    },
+    { q: 'How do I become a mentor?', a: 'Click "Become a Mentor," fill out your profile, and we\'ll review it within 48 hours.' },
+    { q: 'Is there a time commitment?', a: 'No fixed time commitment — you set your availability and pace.' },
+    { q: 'Can I choose who I mentor?', a: 'Yes. You have full control over which requests you accept.' },
+    { q: 'How do badges work?', a: 'Mentors earn badges based on hours, sessions, and community engagement milestones.' },
+    { q: 'Can I pause or stop mentoring?', a: 'Yes — update your availability anytime from your dashboard.' },
   ];
 
   const faqs = activeTab === 'mentees' ? menteeFaqs : mentorFaqs;
@@ -60,41 +32,46 @@ function FAQSection() {
   const setOpen = activeTab === 'mentees' ? setOpenMentee : setOpenMentor;
 
   return (
-    <section id="faq" className="max-w-4xl mx-auto mt-24 mb-16 px-4">
-      <div className="bg-gradient-to-br from-teal-50 to-slate-100 rounded-3xl p-8 md:p-12">
-        <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Frequently Asked Questions</h2>
-        <div className="flex justify-center mb-8 gap-4">
+    <section className="py-16">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="heading-serif text-3xl text-center mb-8">
+          Frequently Asked <span className="heading-italic-accent">Questions</span>
+        </h2>
+        <div className="flex justify-center mb-8 gap-3">
           <button
-            className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentees' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
+            className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all ${activeTab === 'mentees'
+              ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/25'
+              : 'bg-white text-gray-600 border border-gray-200 hover:border-teal-300 hover:text-teal-600'}`}
             onClick={() => setActiveTab('mentees')}
           >
-            Mentees
+            For Mentees
           </button>
           <button
-            className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentors' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
+            className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all ${activeTab === 'mentors'
+              ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/25'
+              : 'bg-white text-gray-600 border border-gray-200 hover:border-teal-300 hover:text-teal-600'}`}
             onClick={() => setActiveTab('mentors')}
           >
-            Mentors
+            For Mentors
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, idx) => (
-            <div key={faq.q} className="bg-white shadow-lg rounded-xl p-6 border border-gray-100">
+            <div key={faq.q} className="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-100 overflow-hidden">
               <button
-                className="w-full flex justify-between items-center text-lg font-semibold text-left text-gray-900 focus:outline-none"
+                className="w-full flex justify-between items-center p-5 text-left focus:outline-none hover:bg-gray-50/50 transition-colors"
                 onClick={() => setOpen(openIdx === idx ? null : idx)}
-                aria-expanded={openIdx === idx}
-                aria-controls={`faq-panel-${activeTab}-${idx}`}
               >
-                <span>{faq.q}</span>
-                <span className={`ml-2 text-teal-500 transition-transform duration-200 ${openIdx === idx ? 'rotate-180' : ''}`}>▼</span>
+                <span className="font-medium text-gray-900">{faq.q}</span>
+                <svg
+                  className={`w-5 h-5 text-teal-500 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
-              <div
-                id={`faq-panel-${activeTab}-${idx}`}
-                className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-40 mt-4' : 'max-h-0'}`}
-                style={{}}
-              >
-                <p className="text-base text-gray-600 leading-relaxed">{faq.a}</p>
+              <div className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-40' : 'max-h-0'}`}>
+                <p className="px-5 pb-5 text-gray-600 leading-relaxed">{faq.a}</p>
               </div>
             </div>
           ))}
@@ -106,60 +83,35 @@ function FAQSection() {
 
 function TestimonialsSection() {
   const testimonials = [
-    {
-      name: 'Sara',
-      title: 'PhD Student',
-      initials: 'S',
-      quote: 'Having a mentor who understands my academic journey has been transformative. I now feel more confident about my research and career path.'
-    },
-    {
-      name: 'Saleh',
-      title: 'Power Systems Engineer',
-      initials: 'Sa',
-      quote: 'Chai Chat helped me give back and stay grounded. The connections I\'ve made are more than professional — they\'re personal.'
-    },
-    {
-      name: 'Raheleh',
-      title: 'Research Scientist',
-      initials: 'R',
-      quote: 'This platform makes you feel seen. It\'s not just about knowledge sharing — it\'s about humanity and belonging.'
-    },
-    {
-      name: 'Jason',
-      title: 'UX Designer',
-      initials: 'J',
-      quote: 'The one-on-one conversations gave me clarity I couldn\'t find elsewhere. This community truly lives up to its mission.'
-    },
+    { name: 'Sara', title: 'PhD Student', quote: 'Having a mentor who understands my academic journey has been transformative.' },
+    { name: 'Saleh', title: 'Power Systems Engineer', quote: 'Chai Chat helped me give back. The connections are more than professional — they\'re personal.' },
+    { name: 'Raheleh', title: 'Research Scientist', quote: 'This platform makes you feel seen. It\'s about humanity and belonging.' },
+    { name: 'Jason', title: 'UX Designer', quote: 'The one-on-one conversations gave me clarity I couldn\'t find elsewhere.' },
   ];
+
   return (
-    <section id="testimonials" className="bg-gradient-to-b from-white to-gray-50 py-20 px-4 md:px-0 fade-in-up">
-      <h2 className="text-2xl font-bold text-center mb-10">What Members Say</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {testimonials.map((t, i) => (
-          <div key={t.name} className="bg-white p-6 rounded-2xl shadow-md transition hover:shadow-lg flex flex-col items-center text-center animate-fadeInUp" style={{ animationDelay: `${i * 80}ms` }}>
-            <div className="flex justify-center mb-4">
-              <Image
-                src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(t.name)}`}
-                alt={`Avatar of ${t.name}`}
-                width={64}
-                height={64}
-                className="w-16 h-16 rounded-full object-cover mx-auto ring-1 ring-teal-100 bg-teal-50"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.style.display = 'none';
-                  const fallback = document.createElement('div');
-                  fallback.className = 'w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center text-2xl font-bold text-teal-600 shadow';
-                  fallback.innerText = t.initials;
-                  if (e.currentTarget.parentNode) {
-                    e.currentTarget.parentNode.appendChild(fallback);
-                  }
-                }}
-              />
+    <section className="py-16">
+      <h2 className="heading-serif text-3xl text-center mb-10">
+        What Members <span className="heading-italic-accent">Say</span>
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {testimonials.map((t) => (
+          <motion.div
+            key={t.name}
+            className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            whileHover={{ y: -4 }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-semibold">
+                {t.name[0]}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900 text-sm">{t.name}</div>
+                <div className="text-xs text-gray-500">{t.title}</div>
+              </div>
             </div>
-            <div className="font-semibold text-gray-800 mt-4">{t.name}</div>
-            <div className="text-sm italic text-gray-500">{t.title}</div>
-            <div className="text-base text-gray-700 leading-relaxed mt-3">&quot;{t.quote}&quot;</div>
-          </div>
+            <p className="text-gray-600 text-sm leading-relaxed italic">&quot;{t.quote}&quot;</p>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -168,139 +120,191 @@ function TestimonialsSection() {
 
 export default function About() {
   return (
-    <div className="bg-gradient-to-br from-teal-50 via-white to-slate-50 min-h-screen">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-b from-white to-gray-50 min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-50/80 via-white to-blue-50/50" />
+        <div className="absolute top-20 right-0 w-96 h-96 bg-teal-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl" />
 
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            About Chai Chat
-          </h1>
-          <p className="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">
-            Where Sonder Becomes Connection
-          </p>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-medium rounded-full mb-6">
+              Our Story
+            </span>
+            <h1 className="heading-serif text-4xl md:text-5xl lg:text-6xl mb-6">
+              Where Sonder Becomes <span className="heading-italic-accent">Connection</span>
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A community-driven mentoring platform built on the belief that everyone has a story worth sharing and wisdom worth receiving.
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-        {/* Founder's Story Section */}
-        <section className="mb-20">
-          <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-3xl shadow-xl p-8 md:p-12 text-white max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Founder's Story - Elegant Card */}
+        <section className="py-12">
+          <motion.div
+            className="relative bg-white rounded-3xl shadow-xl overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600" />
+            <div className="p-8 md:p-12">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Why I Built This</h2>
               </div>
-              <h2 className="text-2xl font-bold">Why I Built This</h2>
-            </div>
 
-            <div className="space-y-4 text-white/90 text-lg leading-relaxed">
-              <p>
-                In 2018, I came to the United States searching for opportunity. I didn't know anyone.
-                I didn't have connections. But when I started looking for jobs, something incredible happened.
-              </p>
-              <p>
-                <strong className="text-white">Strangers helped me.</strong> People I had never met before took time
-                out of their busy lives to review my resume, make introductions, and offer guidance.
-                They didn't know me. They didn't owe me anything. They just wanted to help.
-              </p>
-              <p>
-                That experience changed me. I realized there are so many people out there who genuinely
-                <em> want</em> to help others — they just don't always have a way to find those who need it.
-              </p>
-              <p className="text-white font-medium">
-                That's why I built Chai Chat. <strong>To connect helpers with those who need help.</strong>
-                To create a space where a stranger's kindness can change someone's life, just like it changed mine.
-              </p>
-            </div>
+              <div className="space-y-4 text-gray-600 text-lg leading-relaxed max-w-3xl">
+                <p>
+                  In 2018, I came to the United States searching for opportunity. I didn't know anyone. I didn't have connections.
+                </p>
+                <p>
+                  But when I started looking for jobs, something incredible happened. <strong className="text-gray-900">Strangers helped me.</strong> People I had never met took time to review my resume, make introductions, and offer guidance.
+                </p>
+                <p>
+                  That experience changed me. I realized there are so many people who genuinely <em>want</em> to help others — they just don't always have a way to find those who need it.
+                </p>
+                <p className="text-gray-900 font-medium">
+                  That's why I built Chai Chat. To connect helpers with those who need help.
+                </p>
+              </div>
 
-            <div className="mt-8 pt-6 border-t border-white/20">
-              <p className="text-white/80 text-sm">— Mia, Founder of Chai Chat</p>
+              <div className="mt-8 pt-6 border-t border-gray-100 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-semibold">M</div>
+                <div>
+                  <p className="font-semibold text-gray-900">Mia</p>
+                  <p className="text-sm text-gray-500">Founder of Chai Chat</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* What is Sonder Section */}
-        <section className="mb-20 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Chai Chat <em className="text-teal-600">Matters</em></h2>
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-            <p className="text-gray-700 text-lg leading-relaxed mb-6">
-              The word <strong className="text-teal-600">sonder</strong> was created by writer John Koenig in <em>The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
+        {/* What is Sonder - Elegant Quote */}
+        <section className="py-12">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="heading-serif text-3xl mb-8">
+              Why Chai Chat <span className="heading-italic-accent">Matters</span>
+            </h2>
+            <p className="text-gray-600 text-lg mb-6">
+              The word <strong className="text-teal-600">sonder</strong> was created by writer John Koenig in <em>The Dictionary of Obscure Sorrows</em>.
             </p>
-            <div className="bg-gradient-to-br from-teal-600 to-teal-700 text-white px-6 py-5 rounded-xl shadow-lg mb-6">
-              <p className="text-xl font-semibold mb-2">Sonder</p>
-              <p className="text-white/90 leading-relaxed">
-                <em>n.</em> The realization that each passerby has a life as vivid and complex as your own — every passerby — living a life full of thoughts, memories, and connections just like you.
-              </p>
+
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-teal-100 via-teal-50 to-blue-50 rounded-3xl blur-xl opacity-60" />
+              <blockquote className="relative bg-white border-l-4 border-teal-500 px-8 py-6 rounded-r-2xl shadow-lg text-left">
+                <p className="text-xl font-semibold text-teal-700 mb-2">Sonder</p>
+                <p className="text-gray-700 leading-relaxed italic">
+                  n. The realization that each passerby has a life as vivid and complex as your own — filled with thoughts, memories, and experiences, just like you.
+                </p>
+              </blockquote>
             </div>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              That's why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
-            </p>
-            <p className="text-gray-600 font-medium">
+
+            <p className="text-gray-600 mt-8 leading-relaxed">
               When you mentor someone, you're not just sharing knowledge — you're acknowledging their humanity. That's Sonder in action.
             </p>
           </div>
         </section>
 
-        {/* Mission & Vision */}
-        <div className="mb-20">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-teal-500">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
-              <p className="text-base leading-relaxed text-gray-600">
-                To connect people who want to help with those who need guidance — creating meaningful
-                mentorship relationships that foster growth, belonging, and mutual support.
+        {/* Mission & Vision - Side by Side */}
+        <section className="py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100"
+              whileHover={{ y: -4 }}
+            >
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
+              <p className="text-gray-600 leading-relaxed">
+                To connect people who want to help with those who need guidance — creating meaningful mentorship relationships that foster growth, belonging, and mutual support.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-teal-500">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Vision</h2>
-              <p className="text-base leading-relaxed text-gray-600">
-                A world where no one has to navigate their journey alone. Where strangers become
-                mentors, and a simple conversation over chai can open doors you never knew existed.
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100"
+              whileHover={{ y: -4 }}
+            >
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Our Vision</h3>
+              <p className="text-gray-600 leading-relaxed">
+                A world where no one has to navigate their journey alone. Where strangers become mentors, and a simple conversation over chai can open doors you never knew existed.
               </p>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </section>
 
-
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Values</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <div className="bg-white p-6 rounded-2xl shadow">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Community</h3>
-              <p className="text-gray-600">
-                We believe in the power of community and the strength that comes from supporting one another.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Growth</h3>
-              <p className="text-gray-600">
-                We're committed to fostering an environment where continuous learning and personal development thrive.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Accessibility</h3>
-              <p className="text-gray-600">
-                We strive to make mentorship and support accessible to everyone, regardless of their background or circumstances.
-              </p>
-            </div>
+        {/* Values - 3 Column */}
+        <section className="py-12">
+          <h2 className="heading-serif text-3xl text-center mb-10">
+            Our <span className="heading-italic-accent">Values</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: '👥', title: 'Community', desc: 'We believe in the power of community and the strength that comes from supporting one another.' },
+              { icon: '🌱', title: 'Growth', desc: 'We foster an environment where continuous learning and personal development thrive.' },
+              { icon: '🌍', title: 'Accessibility', desc: 'We make mentorship accessible to everyone, regardless of background or circumstances.' },
+            ].map((v) => (
+              <motion.div
+                key={v.title}
+                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center"
+                whileHover={{ y: -4 }}
+              >
+                <span className="text-4xl mb-4 block">{v.icon}</span>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
+              </motion.div>
+            ))}
           </div>
-        </div>
+        </section>
 
-        <div className="mt-20 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Community</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Whether you're looking to mentor others, find a mentor, or connect with accountability partners, Chai Chat is here to support your journey.
-          </p>
-        </div>
-
-        {/* What Members Say Section */}
+        {/* Testimonials */}
         <TestimonialsSection />
-        {/* FAQ Section */}
+
+        {/* FAQ */}
         <FAQSection />
+
+        {/* CTA */}
+        <section className="py-16 text-center">
+          <h2 className="heading-serif text-3xl mb-4">
+            Ready to <span className="heading-italic-accent">Get Started?</span>
+          </h2>
+          <p className="text-gray-600 mb-8 max-w-xl mx-auto">
+            Whether you want to share your experience or find guidance, there's a place for you here.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/mentor" className="btn-teal inline-flex items-center justify-center gap-2">
+              Find a Mentor
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link href="/mentor/become" className="btn-secondary inline-flex items-center justify-center gap-2">
+              Become a Mentor
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );
-} 
+}

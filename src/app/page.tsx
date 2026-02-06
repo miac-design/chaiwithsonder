@@ -31,10 +31,10 @@ function HowItWorksSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="py-20 px-4 sm:px-6 lg:px-8"
+      className="py-12 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
-        <motion.div className="text-center mb-16">
+        <motion.div className="text-center mb-10">
           <h2 className="heading-serif text-3xl md:text-4xl mb-4">
             Your Journey <span className="heading-italic-accent">Starts Here</span>
           </h2>
@@ -250,7 +250,7 @@ export default function Home() {
           ==================================== */}
       <motion.section
         ref={aboutRef}
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
+        className="py-12 px-4 sm:px-6 lg:px-8 bg-white"
       >
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -269,9 +269,9 @@ export default function Home() {
                 The word <span className="font-bold text-teal-600">sonder</span> was created by writer John Koenig in <em className="text-gray-800">The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
               </p>
 
-              <blockquote className="bg-gradient-to-br from-teal-600 to-teal-700 text-white px-6 py-5 rounded-xl shadow-lg mb-6">
-                <p className="text-xl font-semibold mb-2">Sonder</p>
-                <p className="text-white/90 leading-relaxed">
+              <blockquote className="border-l-4 border-teal-500 bg-teal-50/50 px-6 py-4 rounded-r-xl mb-6">
+                <p className="text-lg font-semibold text-teal-700 mb-1">Sonder</p>
+                <p className="text-gray-600 leading-relaxed italic">
                   The feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.
                 </p>
               </blockquote>
@@ -310,7 +310,7 @@ export default function Home() {
           ============================= */}
       <motion.section
         ref={donateRef}
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-white"
+        className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-white"
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
@@ -370,26 +370,26 @@ export default function Home() {
           GET INVOLVED (LIGHT)
           ============================= */}
       <motion.section
-        className="py-24 px-4"
+        className="py-16 px-4"
       >
         <div className="max-w-5xl mx-auto">
           <h2 className="heading-serif text-3xl md:text-4xl text-center mb-4">
             Ready to <span className="heading-italic-accent">Get Involved?</span>
           </h2>
-          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-16">
+          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-10">
             Whether you want to share your experience or find guidance, there's a place for you here.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Become a Mentor */}
             <motion.div
-              className="edron-card p-8"
+              className="edron-card p-8 h-full flex flex-col"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
                     <circle cx="12" cy="7" r="4" />
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" strokeLinejoin="round" />
@@ -400,7 +400,7 @@ export default function Home() {
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Give a little time. Be a listener. Share your experience and make a meaningful difference.
               </p>
-              <Link href="/mentor/become" className="btn-teal inline-flex items-center gap-2">
+              <Link href="/mentor/become" className="btn-teal inline-flex items-center gap-2 mt-auto">
                 Start Mentoring
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -410,7 +410,7 @@ export default function Home() {
 
             {/* Find a Mentor */}
             <motion.div
-              className="edron-card p-8"
+              className="edron-card p-8 h-full flex flex-col"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -427,7 +427,7 @@ export default function Home() {
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Book a conversation. Get perspective, clarity, or just someone who truly listens.
               </p>
-              <Link href="/mentor" className="btn-teal inline-flex items-center gap-2">
+              <Link href="/mentor" className="btn-teal inline-flex items-center gap-2 mt-auto">
                 Browse Mentors
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -437,7 +437,7 @@ export default function Home() {
 
             {/* Support Our Mission */}
             <motion.div
-              className="edron-card p-8"
+              className="edron-card p-8 h-full flex flex-col"
               whileHover={{ y: -8 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
