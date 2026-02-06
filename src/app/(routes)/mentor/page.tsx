@@ -205,15 +205,6 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
 export const dynamic = "force-dynamic";
 
 export default function Mentor() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    expertise: '',
-    experience: '',
-    availability: '',
-    goals: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [search, setSearch] = useState('');
   const [filteredMentors, setFilteredMentors] = useState(mentors);
   const [selectedMentor, setSelectedMentor] = useState<typeof mentors[0] | null>(null);
@@ -236,27 +227,6 @@ export default function Mentor() {
     return () => clearTimeout(handler);
   }, [search]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Thank you for your interest in becoming a mentor! This is a demo, so no actual submission was processed.');
-      setFormData({
-        name: '',
-        email: '',
-        expertise: '',
-        experience: '',
-        availability: '',
-        goals: '',
-      });
-    }, 1500);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 min-h-screen">
@@ -298,114 +268,7 @@ export default function Mentor() {
             )}
           </div>
         </section>
-        {/* Become a Mentor Section */}
-        <section id="application" className="mt-24 max-w-xl mx-auto fade-in-up">
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition p-8 md:p-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Why Share a Chat?</h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mt-8 mb-8">
-              <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Share Your Story</h3>
-                <p className="text-gray-600">
-                  Give a little time, be a listener, or offer what you've learned. Make a meaningful impact in someone's life.
-                </p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Grow Together</h3>
-                <p className="text-gray-600">
-                  Connect with others and grow together through story-sharing and support.
-                </p>
-              </div>
-            </div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 border-teal-300 focus:outline-none transition"
-                  placeholder="e.g., Jane Doe"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
-                  placeholder="e.g., jane@email.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="expertise" className="block text-sm font-medium text-gray-700 mb-1">Areas of Experience</label>
-                <input
-                  type="text"
-                  name="expertise"
-                  id="expertise"
-                  required
-                  value={formData.expertise}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
-                  placeholder="e.g., Software Development, Career Growth, Leadership"
-                />
-              </div>
-              <div>
-                <label htmlFor="experience" className="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
-                <input
-                  type="text"
-                  name="experience"
-                  id="experience"
-                  required
-                  value={formData.experience}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
-                  placeholder="e.g., 5+ years"
-                />
-              </div>
-              <div>
-                <label htmlFor="availability" className="block text-sm font-medium text-gray-700 mb-1">Availability</label>
-                <input
-                  type="text"
-                  name="availability"
-                  id="availability"
-                  required
-                  value={formData.availability}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition"
-                  placeholder="e.g., Weekday evenings, Weekend mornings"
-                />
-              </div>
-              <div>
-                <label htmlFor="goals" className="block text-sm font-medium text-gray-700 mb-1">What do you hope to achieve by sharing a chat?</label>
-                <textarea
-                  name="goals"
-                  id="goals"
-                  required
-                  value={formData.goals}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 min-h-[120px] rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-300 focus:outline-none transition resize-y"
-                  placeholder="Share your goals, e.g., Help others grow, Give back to the community, etc."
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`bg-teal-500 text-white font-semibold rounded-full py-3 w-full shadow-lg shadow-teal-500/30 hover:bg-teal-600 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
+
       </div>
 
       {/* Booking Modal */}
