@@ -377,7 +377,7 @@ export default function Home() {
             Whether you want to share your experience or find guidance, there's a place for you here.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Become a Mentor */}
             <motion.div
               className="edron-card p-8"
@@ -395,9 +395,9 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900">Become a Mentor</h3>
               </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Give a little time. Be a listener. Share your experience and make a meaningful difference in someone's journey.
+                Give a little time. Be a listener. Share your experience and make a meaningful difference.
               </p>
-              <Link href="/mentor#application" className="btn-teal inline-flex items-center gap-2">
+              <Link href="/mentor/become" className="btn-teal inline-flex items-center gap-2">
                 Start Mentoring
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -422,12 +422,37 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-gray-900">Find a Mentor</h3>
               </div>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Book a conversation. Get perspective, clarity, or just someone who truly listens and understands.
+                Book a conversation. Get perspective, clarity, or just someone who truly listens.
               </p>
               <Link href="/mentor" className="btn-secondary inline-flex items-center gap-2">
                 Browse Mentors
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </motion.div>
+
+            {/* Support Our Mission */}
+            <motion.div
+              className="edron-card p-8"
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-50 flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" strokeWidth="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Support Our Mission</h3>
+              </div>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                Help keep mentorship free. Your donation covers infrastructure and ensures accessibility for all.
+              </p>
+              <Link href="/donate" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold bg-rose-500 text-white hover:bg-rose-600 transition shadow-lg shadow-rose-500/20">
+                Donate Now
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </motion.div>
