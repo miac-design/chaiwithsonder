@@ -70,8 +70,8 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-          ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200/50 shadow-sm'
-          : 'bg-gradient-to-b from-black/40 to-transparent'
+          ? 'bg-white backdrop-blur-xl border-b border-gray-200 shadow-sm'
+          : 'bg-gradient-to-b from-black/50 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,6 +81,7 @@ const Navbar = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="self-center"
               >
                 <AnimatedLogo size={48} />
               </motion.div>
@@ -101,8 +102,8 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${pathname === link.href
-                    ? 'text-teal-400 bg-teal-500/10'
-                    : 'text-white/80 hover:text-teal-400 hover:bg-white/5'
+                    ? (isScrolled || !isHomePage ? 'text-teal-600 bg-teal-500/10' : 'text-teal-400 bg-teal-500/10')
+                    : (isScrolled || !isHomePage ? 'text-gray-700 hover:text-teal-600 hover:bg-gray-100' : 'text-white/90 hover:text-teal-400 hover:bg-white/10')
                     }`}
                 >
                   {link.name}
@@ -112,7 +113,7 @@ const Navbar = () => {
               {/* Start Here - Highlighted */}
               <Link
                 href="/start-here"
-                className="flex items-center gap-1 px-4 py-2 ml-2 rounded-lg font-medium text-teal-400 hover:bg-teal-500/10 transition-all"
+                className={`flex items-center gap-1 px-4 py-2 ml-2 rounded-lg font-medium transition-all ${isScrolled || !isHomePage ? 'text-teal-600 hover:bg-teal-500/10' : 'text-teal-400 hover:bg-teal-500/10'}`}
               >
                 <span>Start Here</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -126,7 +127,7 @@ const Navbar = () => {
               {/* Support */}
               <Link
                 href="/donate"
-                className="flex items-center gap-1.5 text-white/60 hover:text-teal-400 text-sm font-medium transition-all"
+                className={`flex items-center gap-1.5 text-sm font-medium transition-all ${isScrolled || !isHomePage ? 'text-gray-600 hover:text-teal-600' : 'text-white/70 hover:text-teal-400'}`}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -139,7 +140,7 @@ const Navbar = () => {
                   {/* Login */}
                   <Link
                     href="/login"
-                    className="px-5 py-2 text-sm font-semibold text-white/80 hover:text-white border border-white/20 hover:border-teal-500/50 rounded-full transition-all"
+                    className={`px-5 py-2 text-sm font-semibold rounded-full transition-all ${isScrolled || !isHomePage ? 'text-gray-700 hover:text-teal-600 border border-gray-300 hover:border-teal-500' : 'text-white/80 hover:text-white border border-white/20 hover:border-teal-500/50'}`}
                   >
                     Login
                   </Link>
