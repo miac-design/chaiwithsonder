@@ -226,12 +226,12 @@ export default function About() {
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
               The word <strong className="text-teal-600">sonder</strong> was created by writer John Koenig in <em>The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
             </p>
-            <blockquote className="border-l-4 border-teal-500 pl-6 py-4 bg-gray-50 rounded-r-lg mb-6">
-              <p className="text-lg font-semibold text-teal-600 mb-2">Sonder</p>
-              <p className="text-gray-800 leading-relaxed">
+            <div className="bg-gradient-to-br from-teal-600 to-teal-700 text-white px-6 py-5 rounded-xl shadow-lg mb-6">
+              <p className="text-xl font-semibold mb-2">Sonder</p>
+              <p className="text-white/90 leading-relaxed">
                 <em>n.</em> The realization that each passerby has a life as vivid and complex as your own — every passerby — living a life full of thoughts, memories, and connections just like you.
               </p>
-            </blockquote>
+            </div>
             <p className="text-gray-700 leading-relaxed mb-4">
               That's why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
             </p>

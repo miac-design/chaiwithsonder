@@ -12,15 +12,15 @@ const AnimatedLogo = ({ size = 48, className = '' }: AnimatedLogoProps) => {
     const bubbles = [
         // Left side bubbles
         { delay: 0, duration: 2.2, size: 18, startX: 18, drift: -12, color: '#F5A623', opacity: 0.9 },
-        { delay: 0.3, duration: 2.5, size: 14, startX: 22, drift: -8, color: '#5BC0EB', opacity: 0.85 },
+        { delay: 0.3, duration: 2.5, size: 14, startX: 22, drift: -8, color: '#14b8a6', opacity: 0.85 },
         { delay: 0.6, duration: 2.0, size: 20, startX: 26, drift: 5, color: '#FFFFFF', opacity: 0.8 },
         // Center bubbles
         { delay: 0.9, duration: 2.8, size: 22, startX: 30, drift: 8, color: '#F5A623', opacity: 0.9 },
-        { delay: 1.2, duration: 2.3, size: 16, startX: 34, drift: -5, color: '#5BC0EB', opacity: 0.85 },
+        { delay: 1.2, duration: 2.3, size: 16, startX: 34, drift: -5, color: '#14b8a6', opacity: 0.85 },
         // Right side bubbles  
         { delay: 1.5, duration: 2.6, size: 19, startX: 38, drift: 12, color: '#FFFFFF', opacity: 0.75 },
         { delay: 1.8, duration: 2.1, size: 15, startX: 24, drift: -10, color: '#F5A623', opacity: 0.85 },
-        { delay: 2.1, duration: 2.4, size: 21, startX: 32, drift: 6, color: '#5BC0EB', opacity: 0.9 },
+        { delay: 2.1, duration: 2.4, size: 21, startX: 32, drift: 6, color: '#14b8a6', opacity: 0.9 },
         // Extra bubbles for density
         { delay: 2.4, duration: 2.7, size: 12, startX: 20, drift: -6, color: '#FFFFFF', opacity: 0.7 },
         { delay: 2.7, duration: 2.0, size: 17, startX: 36, drift: 10, color: '#F5A623', opacity: 0.8 },
@@ -46,18 +46,18 @@ const AnimatedLogo = ({ size = 48, className = '' }: AnimatedLogoProps) => {
                         </feMerge>
                     </filter>
                     <linearGradient id="cupGradient" x1="10" y1="45" x2="46" y2="80" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#5BC0EB" />
-                        <stop offset="50%" stopColor="#3590B8" />
-                        <stop offset="100%" stopColor="#1E4976" />
+                        <stop offset="0%" stopColor="#2dd4bf" />
+                        <stop offset="50%" stopColor="#14b8a6" />
+                        <stop offset="100%" stopColor="#0d9488" />
                     </linearGradient>
                     <linearGradient id="handleGradient" x1="46" y1="52" x2="54" y2="68" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#5BC0EB" />
-                        <stop offset="100%" stopColor="#3590B8" />
+                        <stop offset="0%" stopColor="#2dd4bf" />
+                        <stop offset="100%" stopColor="#14b8a6" />
                     </linearGradient>
                     <linearGradient id="rimGradient" x1="14" y1="47" x2="42" y2="47" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#4AB5E0" stopOpacity="0.8" />
-                        <stop offset="50%" stopColor="#7DD3F8" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#4AB5E0" stopOpacity="0.8" />
+                        <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.8" />
+                        <stop offset="50%" stopColor="#5eead4" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#14b8a6" stopOpacity="0.8" />
                     </linearGradient>
                 </defs>
 
@@ -126,7 +126,7 @@ const AnimatedLogo = ({ size = 48, className = '' }: AnimatedLogoProps) => {
                 />
                 <motion.path
                     d="M28 42 Q30 30 28 18 Q26 6 30 -6"
-                    stroke="rgba(91, 192, 235, 0.25)"
+                    stroke="rgba(20, 184, 166, 0.25)"
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     fill="none"

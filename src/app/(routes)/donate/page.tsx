@@ -20,13 +20,9 @@ export default function Donate() {
   };
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-        {/* Decorative gradient orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-teal-100 rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-30" />
-
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Glass pill badge */}
           <div className="glass-pill inline-flex items-center gap-2 mb-6">

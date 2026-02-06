@@ -269,8 +269,11 @@ export default function Home() {
                 The word <span className="font-bold text-teal-600">sonder</span> was created by writer John Koenig in <em className="text-gray-800">The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
               </p>
 
-              <blockquote className="border-l-4 border-teal-500 pl-6 py-4 bg-teal-50/50 rounded-r-xl mb-6">
-                &ldquo;<span className="font-bold text-teal-600">Sonder</span> is the feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.&rdquo;
+              <blockquote className="bg-gradient-to-br from-teal-600 to-teal-700 text-white px-6 py-5 rounded-xl shadow-lg mb-6">
+                <p className="text-xl font-semibold mb-2">Sonder</p>
+                <p className="text-white/90 leading-relaxed">
+                  The feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.
+                </p>
               </blockquote>
 
               <p className="text-lg text-gray-700 leading-relaxed">
