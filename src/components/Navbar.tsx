@@ -81,11 +81,11 @@ const Navbar = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="self-center"
+                className="flex-shrink-0"
               >
                 <AnimatedLogo size={48} />
               </motion.div>
-              <div className="flex flex-col">
+              <div className="flex flex-col justify-center">
                 <span className={`text-xl font-bold transition-colors ${isScrolled || !isHomePage ? 'text-gray-900 group-hover:text-teal-600' : 'text-white group-hover:text-teal-400'}`}>
                   Chai Chat
                 </span>
