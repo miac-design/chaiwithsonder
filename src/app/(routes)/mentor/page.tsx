@@ -64,6 +64,7 @@ const mentors = [
     photo: '/team/hamed.jpg',
     calendly: 'https://calendly.com/hamed-alikhani',
     linkedin: 'https://www.linkedin.com/in/hamedalikhani/',
+    story: "I came to the US in 2014 with $200 and a dream. Happy to share what I've learned.",
   },
   {
     name: 'Moein Razavi, PhD',
@@ -71,6 +72,7 @@ const mentors = [
     photo: '/team/moein.jpg',
     calendly: 'https://calendly.com/moein-razavi',
     linkedin: 'https://www.linkedin.com/in/moeinrazavi/',
+    story: "Navigated the PhD journey and tech transition — love helping others do the same.",
   },
   {
     name: 'Reza Haghighi, MS',
@@ -173,13 +175,26 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
       <div className="text-lg font-semibold mt-4">{mentor.name}</div>
       <div className="text-sm text-gray-500">{mentor.title}</div>
 
-      {/* Book Session Button */}
-      <button
-        onClick={() => onBook(mentor)}
-        className="mt-4 px-6 py-2 bg-teal-500 text-white font-medium rounded-full hover:bg-teal-600 transition shadow-md hover:shadow-lg"
-      >
-        Book Session
-      </button>
+      {/* Grab a Chai Button */}
+      <div className="mt-4 flex flex-col gap-2 w-full">
+        <button
+          onClick={() => onBook(mentor)}
+          className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-full hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+        >
+          <span>☕</span> Grab a Chai
+        </button>
+
+        {/* Chai Now - Coming Soon */}
+        <div className="relative">
+          <button
+            disabled
+            className="w-full px-6 py-2 bg-gray-100 text-gray-400 font-medium rounded-full cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            <span>⚡</span> Chai Now
+          </button>
+          <span className="absolute -top-1 -right-1 px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold rounded-full shadow">Coming Soon</span>
+        </div>
+      </div>
 
       <div className="inline-flex gap-4 justify-center mt-4 text-xl">
         {/* LinkedIn Icon - only show if URL exists */}
@@ -233,10 +248,13 @@ export default function Mentor() {
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Start a Chat With…
+            ☕ Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            Share what you've learned in a relaxed 1-on-1 — no pressure, just people helping people.
+            15-minute chats with people who've been there. No formal agenda—just connect.
+          </p>
+          <p className="mt-3 text-sm text-teal-600 font-medium">
+            Career advice • Visa guidance • Resume tips • Or just chat
           </p>
         </div>
         {/* Search Bar */}
