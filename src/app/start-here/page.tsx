@@ -25,30 +25,30 @@ export default function StartHerePage() {
         prompts: [] as QuickPrompt[],
     });
 
-    // Fun "vibe check" options
+    // Vibe check options - clean, no emojis
     const vibeOptions = [
-        { id: 'deep', emoji: '🌊', label: 'Deep conversations', desc: 'Philosophy over small talk' },
-        { id: 'practical', emoji: '🎯', label: 'Practical advice', desc: 'Actionable next steps' },
-        { id: 'motivating', emoji: '🔥', label: 'Motivation boost', desc: 'Energy and encouragement' },
-        { id: 'safe', emoji: '🤗', label: 'Safe space', desc: 'Just need to be heard' },
-        { id: 'challenge', emoji: '💪', label: 'Tough love', desc: 'Push me to grow' },
-        { id: 'creative', emoji: '✨', label: 'Creative sparks', desc: 'Brainstorm and explore' },
+        { id: 'deep', label: 'Deep conversations', desc: 'Philosophy over small talk' },
+        { id: 'practical', label: 'Practical advice', desc: 'Actionable next steps' },
+        { id: 'motivating', label: 'Motivation boost', desc: 'Energy and encouragement' },
+        { id: 'safe', label: 'Safe space', desc: 'Just need to be heard' },
+        { id: 'challenge', label: 'Tough love', desc: 'Push me to grow' },
+        { id: 'creative', label: 'Creative sparks', desc: 'Brainstorm and explore' },
     ];
 
-    // Topic cards
+    // Topic cards - clean labels only
     const topicOptions = [
-        { id: 'career', emoji: '💼', label: 'Career' },
-        { id: 'tech', emoji: '💻', label: 'Tech & AI' },
-        { id: 'startup', emoji: '🚀', label: 'Startups' },
-        { id: 'leadership', emoji: '👑', label: 'Leadership' },
-        { id: 'balance', emoji: '⚖️', label: 'Work-Life Balance' },
-        { id: 'creative', emoji: '🎨', label: 'Creative Work' },
-        { id: 'money', emoji: '💰', label: 'Finance' },
-        { id: 'health', emoji: '🧠', label: 'Mental Health' },
-        { id: 'parent', emoji: '👶', label: 'Parenting' },
-        { id: 'education', emoji: '📚', label: 'Education' },
-        { id: 'social', emoji: '🌍', label: 'Social Impact' },
-        { id: 'spiritual', emoji: '🙏', label: 'Spirituality' },
+        { id: 'career', label: 'Career' },
+        { id: 'tech', label: 'Tech & AI' },
+        { id: 'startup', label: 'Startups' },
+        { id: 'leadership', label: 'Leadership' },
+        { id: 'balance', label: 'Work-Life Balance' },
+        { id: 'creative', label: 'Creative Work' },
+        { id: 'money', label: 'Finance' },
+        { id: 'health', label: 'Mental Health' },
+        { id: 'parent', label: 'Parenting' },
+        { id: 'education', label: 'Education' },
+        { id: 'social', label: 'Social Impact' },
+        { id: 'spiritual', label: 'Spirituality' },
     ];
 
     // Hinge-style prompts
@@ -295,8 +295,7 @@ export default function StartHerePage() {
                                                 : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                                 }`}
                                         >
-                                            <span className="text-2xl block mb-2">{vibe.emoji}</span>
-                                            <h3 className="font-semibold text-gray-900 text-sm">{vibe.label}</h3>
+                                            <h3 className="font-semibold text-gray-900 text-sm mb-1">{vibe.label}</h3>
                                             <p className="text-xs text-gray-500">{vibe.desc}</p>
                                         </button>
                                     ))}
@@ -331,12 +330,11 @@ export default function StartHerePage() {
                                             key={topic.id}
                                             onClick={() => toggleTopic(topic.id)}
                                             className={`p-4 rounded-2xl text-center transition-all ${formData.topics.includes(topic.id)
-                                                ? 'bg-sky-50 border-2 border-sky-400 shadow-md scale-105'
+                                                ? 'bg-teal-50 border-2 border-teal-400 shadow-md scale-105'
                                                 : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                                 }`}
                                         >
-                                            <span className="text-3xl block mb-1">{topic.emoji}</span>
-                                            <span className="text-xs font-medium text-gray-700">{topic.label}</span>
+                                            <span className="text-sm font-medium text-gray-700">{topic.label}</span>
                                         </button>
                                     ))}
                                 </div>
@@ -555,7 +553,7 @@ export default function StartHerePage() {
             {/* Sticky bottom button */}
             {currentStep !== 'complete' && (
                 <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-gray-100 p-4">
-                    <div className="max-w-lg mx-auto">
+                    <div className="max-w-lg mx-auto space-y-3">
                         <button
                             onClick={currentStep === 'prompts' ? handleSubmit : nextStep}
                             disabled={
@@ -569,6 +567,12 @@ export default function StartHerePage() {
                         >
                             {currentStep === 'prompts' ? 'Finish' : 'Continue'}
                         </button>
+                        <Link
+                            href="/dashboard"
+                            className="block w-full text-center py-2 text-gray-400 hover:text-gray-600 text-sm font-medium transition-colors"
+                        >
+                            Skip for now →
+                        </Link>
                     </div>
                 </div>
             )}

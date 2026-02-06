@@ -10,6 +10,6 @@ export async function GET(request: NextRequest) {
         await supabase.auth.exchangeCodeForSession(code);
     }
 
-    // URL to redirect to after sign in process completes
-    return NextResponse.redirect(new URL('/start-here', request.url));
+    // Redirect to dashboard - the dashboard will check onboarding status
+    return NextResponse.redirect(new URL('/dashboard', request.url));
 }
