@@ -1,46 +1,12 @@
 'use client';
 
-import { useState } from "react";
-
 export const dynamic = "force-dynamic";
 
 export default function BecomeMentor() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    expertise: '',
-    experience: '',
-    availability: '',
-    goals: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Thank you for your interest in becoming a mentor! We will review your application and get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        expertise: '',
-        experience: '',
-        availability: '',
-        goals: '',
-      });
-    }, 1500);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
   return (
     <div className="bg-gradient-to-br from-teal-50 via-white to-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
             Become a Mentor
           </h1>
@@ -48,116 +14,69 @@ export default function BecomeMentor() {
             Ready to inspire and support others? Join our community of mentors and help shape futures through meaningful conversations.
           </p>
         </div>
-        <div className="max-w-xl mx-auto fade-in-up">
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg hover:shadow-xl transition p-8 md:p-10 border border-gray-100">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition"
-                  placeholder="e.g., Jane Doe"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition"
-                  placeholder="e.g., jane@email.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="expertise" className="block text-sm font-medium text-gray-700 mb-1">Areas of Expertise</label>
-                <input
-                  type="text"
-                  name="expertise"
-                  id="expertise"
-                  required
-                  value={formData.expertise}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition"
-                  placeholder="e.g., Software Development, Career Growth, Leadership"
-                />
-              </div>
-              <div>
-                <label htmlFor="experience" className="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
-                <input
-                  type="text"
-                  name="experience"
-                  id="experience"
-                  required
-                  value={formData.experience}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition"
-                  placeholder="e.g., 5+ years"
-                />
-              </div>
-              <div>
-                <label htmlFor="availability" className="block text-sm font-medium text-gray-700 mb-1">Availability</label>
-                <input
-                  type="text"
-                  name="availability"
-                  id="availability"
-                  required
-                  value={formData.availability}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition"
-                  placeholder="e.g., Weekday evenings, Weekend mornings"
-                />
-              </div>
-              <div>
-                <label htmlFor="goals" className="block text-sm font-medium text-gray-700 mb-1">What do you hope to achieve as a mentor?</label>
-                <textarea
-                  name="goals"
-                  id="goals"
-                  required
-                  value={formData.goals}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 min-h-[120px] rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-400 focus:border-teal-500 focus:outline-none transition resize-y"
-                  placeholder="Share your goals, e.g., Help others grow, Give back to the community, etc."
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`bg-teal-500 text-white font-semibold rounded-full py-3 w-full shadow-md hover:bg-teal-600 hover:shadow-lg transition ease-in-out duration-200 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
-                </button>
-              </div>
-            </form>
+
+        {/* Brevo Embedded Form */}
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div className="p-6 bg-gradient-to-r from-teal-500 to-teal-600">
+              <h2 className="text-xl font-bold text-white text-center">Mentor Application</h2>
+              <p className="text-teal-100 text-center text-sm mt-1">Fill out the form below to join our mentor network</p>
+            </div>
+            <div className="p-4">
+              <iframe
+                width="100%"
+                height="600"
+                src="https://1d2588dd.sibforms.com/serve/MUIFAARxOpc08rFZV0XXyIi-tYLecKt87tUrVNuTPPYzDVqEvHhvZKRirq5q2stx06ADJTJq7XWSqYBxUz-e9WZLQvpF5x2OkufKnx3R346tPWm7UdU9mb7b-7UmKq5-CMygF1UEy4UvonHmOVTVUUaaRjkoXpKh6IjMFVEahSgZr_Y1nrShQIs3KVKWKXKEzybTijNOi7gstLm_4Q=="
+                frameBorder="0"
+                scrolling="auto"
+                allowFullScreen
+                style={{ display: 'block', margin: '0 auto', maxWidth: '100%' }}
+                title="Become a Mentor Application Form"
+              />
+            </div>
           </div>
-          <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Become a Mentor?</h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mt-8">
-              <div className="bg-teal-50 p-6 rounded-lg shadow border border-teal-100">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Share Your Story</h3>
-                <p className="text-gray-600">
-                  Give a little time, be a listener, or offer what you've learned. Make a meaningful impact in someone's life.
-                </p>
+        </div>
+
+        {/* Why Become a Mentor Section */}
+        <div className="max-w-3xl mx-auto mt-16 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">Why Become a Mentor?</h2>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-teal-100 flex items-center justify-center">
+                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                </svg>
               </div>
-              <div className="bg-teal-50 p-6 rounded-lg shadow border border-teal-100">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Grow Together</h3>
-                <p className="text-gray-600">
-                  Connect with others and grow together through mentorship and community support.
-                </p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Make an Impact</h3>
+              <p className="text-gray-600 text-sm">
+                Share your experience and help others navigate their journey. Your guidance can change lives.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-teal-100 flex items-center justify-center">
+                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Grow Together</h3>
+              <p className="text-gray-600 text-sm">
+                Mentoring is a two-way street. Learn from fresh perspectives while sharing your wisdom.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-teal-100 flex items-center justify-center">
+                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Earn Recognition</h3>
+              <p className="text-gray-600 text-sm">
+                Build your reputation as a community leader with badges and verified credentials.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-} 
+}
