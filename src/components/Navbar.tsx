@@ -70,8 +70,8 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-          ? 'bg-slate-900/95 backdrop-blur-xl border-b border-teal-500/10 shadow-xl'
-          : 'bg-gradient-to-b from-slate-900/80 to-transparent'
+          ? 'bg-teal-900/95 backdrop-blur-xl border-b border-teal-500/10 shadow-xl'
+          : 'bg-gradient-to-b from-teal-900/80 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -179,7 +179,7 @@ const Navbar = () => {
                   </button>
 
                   {userMenuOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-slate-800 rounded-xl shadow-lg border border-teal-500/20 z-50 overflow-hidden">
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-teal-800 rounded-xl shadow-lg border border-teal-500/20 z-50 overflow-hidden">
                       <Link
                         href="/dashboard"
                         className="block px-4 py-3 text-white/80 hover:bg-teal-500/10 hover:text-teal-400 transition-colors text-sm font-medium"
@@ -241,7 +241,7 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-0 top-20 bg-slate-900/98 backdrop-blur-xl z-40"
+            className="lg:hidden fixed inset-0 top-20 bg-teal-900/98 backdrop-blur-xl z-40"
           >
             <div className="px-4 py-6 space-y-2">
               {mainNavLinks.map((link) => (
