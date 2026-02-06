@@ -415,8 +415,8 @@ export default function Home() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M11 8v6M8 11h6" strokeLinecap="round" strokeLinejoin="round" />
@@ -427,7 +427,7 @@ export default function Home() {
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Book a conversation. Get perspective, clarity, or just someone who truly listens.
               </p>
-              <Link href="/mentor" className="btn-secondary inline-flex items-center gap-2">
+              <Link href="/mentor" className="btn-teal inline-flex items-center gap-2">
                 Browse Mentors
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
@@ -442,8 +442,8 @@ export default function Home() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" strokeWidth="2">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
@@ -452,7 +452,7 @@ export default function Home() {
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Help keep mentorship free. Your donation covers infrastructure and ensures accessibility for all.
               </p>
-              <Link href="/donate" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold bg-rose-500 text-white hover:bg-rose-600 transition shadow-lg shadow-rose-500/20">
+              <Link href="/donate" className="btn-teal inline-flex items-center gap-2">
                 Donate Now
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" strokeLinecap="round" strokeLinejoin="round" />
