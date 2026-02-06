@@ -221,23 +221,22 @@ export default function About() {
 
         {/* What is Sonder Section */}
         <section className="mb-20 max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Why "Sonder"?</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Chai Chat <em className="text-teal-600">Matters</em></h2>
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-            <p className="text-2xl font-serif italic text-gray-700 mb-4">
-              "Sonder"
+            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+              The word <strong className="text-teal-600">sonder</strong> was created by writer John Koenig in <em>The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
             </p>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              <em>n.</em> The profound realization that each random passerby is living a life as vivid
-              and complex as your own — with their own ambitions, worries, routines, and stories.
+            <blockquote className="border-l-4 border-teal-500 pl-6 py-4 bg-gray-50 rounded-r-lg mb-6">
+              <p className="text-lg font-semibold text-teal-600 mb-2">Sonder</p>
+              <p className="text-gray-800 leading-relaxed">
+                <em>n.</em> The realization that each passerby has a life as vivid and complex as your own — every passerby — living a life full of thoughts, memories, and connections just like you.
+              </p>
+            </blockquote>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              That's why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
             </p>
-            <p className="text-gray-700">
-              It's my favorite word because it reminds us of an essential truth:
-              <strong> we are all the same.</strong> We all struggle, dream, and hope.
-              We are all connected — like pieces of one whole.
-            </p>
-            <p className="text-teal-600 font-medium mt-4">
-              When you mentor someone, you're not just sharing knowledge —
-              you're acknowledging their humanity. That's Sonder in action.
+            <p className="text-gray-600 font-medium">
+              When you mentor someone, you're not just sharing knowledge — you're acknowledging their humanity. That's Sonder in action.
             </p>
           </div>
         </section>

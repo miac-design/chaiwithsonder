@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import BookingModal from '@/components/BookingModal';
 
 // Modern SVG icons for badges
 const BadgeIcons = {
@@ -154,7 +155,7 @@ function getMentorBadges(mentor: any) {
   return badgeDefinitions.filter((badge) => badge.check(mentor));
 }
 
-function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
+function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (mentor: typeof mentors[0]) => void }) {
   const avatarUrl = mentor.photo
     ? mentor.photo
     : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
@@ -171,6 +172,15 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
       />
       <div className="text-lg font-semibold mt-4">{mentor.name}</div>
       <div className="text-sm text-gray-500">{mentor.title}</div>
+
+      {/* Book Session Button */}
+      <button
+        onClick={() => onBook(mentor)}
+        className="mt-4 px-6 py-2 bg-teal-500 text-white font-medium rounded-full hover:bg-teal-600 transition shadow-md hover:shadow-lg"
+      >
+        Book Session
+      </button>
+
       <div className="inline-flex gap-4 justify-center mt-4 text-xl">
         {/* Calendly Icon - only show if URL exists */}
         {mentor.calendly && (
@@ -180,7 +190,7 @@ function MentorCard({ mentor }: { mentor: typeof mentors[0] }) {
             rel="noopener noreferrer"
             aria-label={`Book a session with ${mentor.name}`}
             className="text-teal-500 hover:text-teal-600 transition"
-            title="Book a session"
+            title="Book via Calendly"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a.75.75 0 00.75-.75V6.75A2.25 2.25 0 0018 4.5H6A2.25 2.25 0 003.75 6.75v13.5c0 .414.336.75.75.75z" />
@@ -221,6 +231,7 @@ export default function Mentor() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [search, setSearch] = useState('');
   const [filteredMentors, setFilteredMentors] = useState(mentors);
+  const [selectedMentor, setSelectedMentor] = useState<typeof mentors[0] | null>(null);
 
   // Debounce search input
   useEffect(() => {
@@ -296,7 +307,7 @@ export default function Mentor() {
             ) : (
               filteredMentors.map((mentor, idx) => (
                 <div key={mentor.name} className="animate-fadeInUp" style={{ animationDelay: `${idx * 60}ms` }}>
-                  <MentorCard mentor={mentor} />
+                  <MentorCard mentor={mentor} onBook={setSelectedMentor} />
                 </div>
               ))
             )}
@@ -411,6 +422,15 @@ export default function Mentor() {
           </div>
         </section>
       </div>
+
+      {/* Booking Modal */}
+      {selectedMentor && (
+        <BookingModal
+          mentor={selectedMentor}
+          isOpen={!!selectedMentor}
+          onClose={() => setSelectedMentor(null)}
+        />
+      )}
     </div>
   );
 } 
