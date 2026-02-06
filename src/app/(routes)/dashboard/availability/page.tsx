@@ -70,7 +70,7 @@ export default function AvailabilityPage() {
                             <div className="flex flex-wrap gap-2 mt-4">
                                 {QUICK_STATUS_MESSAGES.slice(0, 3).map((msg, idx) => (
                                     <span key={idx} className="px-3 py-1 bg-white/20 rounded-full text-sm">
-                                        {msg.emoji} {msg.text.split(',')[0]}
+                                        {msg.label}: {msg.text.split(',')[0]}
                                     </span>
                                 ))}
                             </div>
@@ -117,8 +117,8 @@ export default function AvailabilityPage() {
                                                     <button
                                                         onClick={() => toggleTimeSlot(day, time)}
                                                         className={`w-8 h-8 rounded-lg transition-all ${isSelected
-                                                                ? 'bg-teal-500 text-white shadow-sm'
-                                                                : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                                                            ? 'bg-teal-500 text-white shadow-sm'
+                                                            : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
                                                             }`}
                                                     >
                                                         {isSelected ? '✓' : ''}

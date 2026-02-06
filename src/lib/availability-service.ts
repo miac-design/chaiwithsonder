@@ -170,12 +170,12 @@ export function getTimeRemaining(availableUntil: string): {
 
 // Quick status messages for mentors
 export const QUICK_STATUS_MESSAGES = [
-    { emoji: '🚗', text: 'Driving home, happy to chat!' },
-    { emoji: '☕', text: 'Coffee break, got 15 mins' },
-    { emoji: '🎧', text: 'Working from home, available for calls' },
-    { emoji: '🌙', text: 'Evening wind-down, here to listen' },
-    { emoji: '🏃', text: 'Walking, voice chat only' },
-    { emoji: '💻', text: 'Between meetings, quick questions welcome' },
+    { label: 'Commuting', text: 'Driving home, happy to chat!' },
+    { label: 'Break', text: 'Coffee break, got 15 mins' },
+    { label: 'WFH', text: 'Working from home, available for calls' },
+    { label: 'Evening', text: 'Evening wind-down, here to listen' },
+    { label: 'Walking', text: 'Walking, voice chat only' },
+    { label: 'Between Meetings', text: 'Between meetings, quick questions welcome' },
 ];
 
 // Duration presets for going live

@@ -31,7 +31,7 @@ function get24HourReminderEmail(reminder: SessionReminder): { subject: string; h
   });
 
   return {
-    subject: `📅 Reminder: Session with ${reminder.partnerName} tomorrow`,
+    subject: `Reminder: Session with ${reminder.partnerName} tomorrow`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -48,7 +48,7 @@ function get24HourReminderEmail(reminder: SessionReminder): { subject: string; h
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0;">⏰ Session Reminder</h1>
+              <h1 style="margin: 0;">Session Reminder</h1>
               <p style="margin: 10px 0 0 0; opacity: 0.9;">Your mentoring session is coming up!</p>
             </div>
             <div class="content">
@@ -56,7 +56,7 @@ function get24HourReminderEmail(reminder: SessionReminder): { subject: string; h
               <p>This is a friendly reminder that you have a session scheduled for <strong>tomorrow</strong>.</p>
               
               <div class="session-card">
-                <h3 style="margin: 0 0 10px 0;">📌 ${reminder.sessionTopic}</h3>
+                <h3 style="margin: 0 0 10px 0;">${reminder.sessionTopic}</h3>
                 <p style="margin: 5px 0;"><strong>With:</strong> ${reminder.partnerName}</p>
                 <p style="margin: 5px 0;"><strong>When:</strong> ${sessionDate} at ${sessionTime}</p>
               </div>
@@ -71,7 +71,7 @@ function get24HourReminderEmail(reminder: SessionReminder): { subject: string; h
               ${reminder.meetingUrl ? `<a href="${reminder.meetingUrl}" class="button">Join Session →</a>` : ''}
               
               <p style="margin-top: 30px; color: #6b7280; font-size: 14px;">
-                — The ChaiChat Team 🍵
+                — The ChaiChat Team
               </p>
             </div>
           </div>
@@ -88,7 +88,7 @@ function get1HourReminderEmail(reminder: SessionReminder): { subject: string; ht
   });
 
   return {
-    subject: `🔔 Your session with ${reminder.partnerName} starts in 1 hour!`,
+    subject: `Your session with ${reminder.partnerName} starts in 1 hour!`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -104,7 +104,7 @@ function get1HourReminderEmail(reminder: SessionReminder): { subject: string; ht
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0;">⏱️ 1 Hour to Go!</h1>
+              <h1 style="margin: 0;">1 Hour to Go!</h1>
             </div>
             <div class="content">
               <p>Hi ${reminder.userName},</p>
@@ -114,7 +114,7 @@ function get1HourReminderEmail(reminder: SessionReminder): { subject: string; ht
               ${reminder.meetingUrl ? `<a href="${reminder.meetingUrl}" class="button">Join Video Call →</a>` : ''}
               
               <p style="margin-top: 30px; color: #6b7280; font-size: 14px;">
-                See you soon! 🍵
+                See you soon!
               </p>
             </div>
           </div>
@@ -126,7 +126,7 @@ function get1HourReminderEmail(reminder: SessionReminder): { subject: string; ht
 
 function get15MinReminderEmail(reminder: SessionReminder): { subject: string; html: string } {
   return {
-    subject: `🚀 Starting NOW: Session with ${reminder.partnerName}`,
+    subject: `Starting NOW: Session with ${reminder.partnerName}`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -139,7 +139,7 @@ function get15MinReminderEmail(reminder: SessionReminder): { subject: string; ht
         </head>
         <body>
           <div class="container">
-            <h1>🎬 Your session starts in 15 minutes!</h1>
+            <h1>Your session starts in 15 minutes!</h1>
             <p style="font-size: 18px;">${reminder.sessionTopic}</p>
             <p>With: <strong>${reminder.partnerName}</strong></p>
             
@@ -153,7 +153,7 @@ function get15MinReminderEmail(reminder: SessionReminder): { subject: string; ht
 
 function getFollowUpEmail(reminder: SessionReminder): { subject: string; html: string } {
   return {
-    subject: `💬 How was your session with ${reminder.partnerName}?`,
+    subject: `How was your session with ${reminder.partnerName}?`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -170,7 +170,7 @@ function getFollowUpEmail(reminder: SessionReminder): { subject: string; html: s
         <body>
           <div class="container">
             <div class="header">
-              <h1 style="margin: 0;">Session Complete! 🎉</h1>
+              <h1 style="margin: 0;">Session Complete!</h1>
             </div>
             <div class="content">
               <p>Hi ${reminder.userName},</p>
@@ -180,12 +180,12 @@ function getFollowUpEmail(reminder: SessionReminder): { subject: string; html: s
               
               <p style="margin-top: 20px;">We'd love to hear how it went. Your feedback helps us improve ChaiChat for everyone.</p>
               
-              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="stars">★★★★★</div>
               
               <a href="https://chaichathub.com/dashboard/sessions" class="button">Leave Feedback →</a>
               
               <p style="margin-top: 30px; color: #6b7280; font-size: 14px;">
-                Thank you for being part of our community! 🍵
+                Thank you for being part of our community!
               </p>
             </div>
           </div>

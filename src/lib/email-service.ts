@@ -13,58 +13,58 @@ const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'ChaiChat <noreply@chaichathub.com>';
 
 interface EmailOptions {
-    to: string | string[];
-    subject: string;
-    html: string;
-    replyTo?: string;
+  to: string | string[];
+  subject: string;
+  html: string;
+  replyTo?: string;
 }
 
 interface EmailResult {
-    success: boolean;
-    id?: string;
-    error?: string;
+  success: boolean;
+  id?: string;
+  error?: string;
 }
 
 // Send an email via Resend
 export async function sendEmail(options: EmailOptions): Promise<EmailResult> {
-    if (!RESEND_API_KEY) {
-        console.warn('Resend API key not configured');
-        return { success: false, error: 'Email service not configured' };
+  if (!RESEND_API_KEY) {
+    console.warn('Resend API key not configured');
+    return { success: false, error: 'Email service not configured' };
+  }
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: Array.isArray(options.to) ? options.to : [options.to],
+        subject: options.subject,
+        html: options.html,
+        reply_to: options.replyTo,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
     }
 
-    try {
-        const response = await fetch('https://api.resend.com/emails', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${RESEND_API_KEY}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                from: FROM_EMAIL,
-                to: Array.isArray(options.to) ? options.to : [options.to],
-                subject: options.subject,
-                html: options.html,
-                reply_to: options.replyTo,
-            }),
-        });
-
-        if (!response.ok) {
-            const error = await response.text();
-            throw new Error(error);
-        }
-
-        const data = await response.json();
-        return { success: true, id: data.id };
-    } catch (error) {
-        console.error('Email send error:', error);
-        return { success: false, error: String(error) };
-    }
+    const data = await response.json();
+    return { success: true, id: data.id };
+  } catch (error) {
+    console.error('Email send error:', error);
+    return { success: false, error: String(error) };
+  }
 }
 
 // Email Templates
 
 export function welcomeEmail(userName: string): EmailOptions['html'] {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -81,10 +81,10 @@ export function welcomeEmail(userName: string): EmailOptions['html'] {
     <body>
       <div class="container">
         <div class="header">
-          <h1>☕ Welcome to ChaiChat!</h1>
+          <h1>Welcome to ChaiChat!</h1>
         </div>
         <div class="content">
-          <h2>Hello ${userName}! 👋</h2>
+          <h2>Hello ${userName}!</h2>
           <p>Welcome to ChaiChat, where sonder becomes connection. We're thrilled to have you join our mentorship community.</p>
           <p>Here's what you can do:</p>
           <ul>
@@ -107,7 +107,7 @@ export function welcomeEmail(userName: string): EmailOptions['html'] {
 }
 
 export function conversationRequestEmail(mentorName: string, menteeName: string): EmailOptions['html'] {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -125,10 +125,10 @@ export function conversationRequestEmail(mentorName: string, menteeName: string)
     <body>
       <div class="container">
         <div class="header">
-          <h1>📬 New Conversation Request</h1>
+          <h1>New Conversation Request</h1>
         </div>
         <div class="content">
-          <h2>Hi ${mentorName}! 👋</h2>
+          <h2>Hi ${mentorName}!</h2>
           <div class="highlight">
             <strong>${menteeName}</strong> would like to connect with you for mentorship.
           </div>
@@ -148,7 +148,7 @@ export function conversationRequestEmail(mentorName: string, menteeName: string)
 }
 
 export function sessionReminderEmail(userName: string, mentorName: string, sessionTime: string, meetingUrl?: string): EmailOptions['html'] {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -167,10 +167,10 @@ export function sessionReminderEmail(userName: string, mentorName: string, sessi
     <body>
       <div class="container">
         <div class="header">
-          <h1>⏰ Session Reminder</h1>
+          <h1>Session Reminder</h1>
         </div>
         <div class="content">
-          <h2>Hi ${userName}! 👋</h2>
+          <h2>Hi ${userName}!</h2>
           <p>Just a friendly reminder about your upcoming mentoring session:</p>
           <div class="session-card">
             <p style="margin: 0; color: #666;">Session with</p>
@@ -200,7 +200,7 @@ export function sessionReminderEmail(userName: string, mentorName: string, sessi
 }
 
 export function sessionFeedbackEmail(userName: string, mentorName: string): EmailOptions['html'] {
-    return `
+  return `
     <!DOCTYPE html>
     <html>
     <head>
@@ -217,10 +217,10 @@ export function sessionFeedbackEmail(userName: string, mentorName: string): Emai
     <body>
       <div class="container">
         <div class="header">
-          <h1>💬 How was your session?</h1>
+          <h1>How was your session?</h1>
         </div>
         <div class="content">
-          <h2>Hi ${userName}! 👋</h2>
+          <h2>Hi ${userName}!</h2>
           <p>We hope you had a great conversation with <strong>${mentorName}</strong>!</p>
           <p>Your feedback helps us improve the ChaiChat experience and helps mentors grow. Would you take 30 seconds to share your thoughts?</p>
           <p style="text-align: center; margin-top: 30px;">
@@ -240,47 +240,47 @@ export function sessionFeedbackEmail(userName: string, mentorName: string): Emai
 // Convenience functions for sending templated emails
 
 export async function sendWelcomeEmail(email: string, userName: string): Promise<EmailResult> {
-    return sendEmail({
-        to: email,
-        subject: '☕ Welcome to ChaiChat!',
-        html: welcomeEmail(userName),
-    });
+  return sendEmail({
+    to: email,
+    subject: 'Welcome to ChaiChat!',
+    html: welcomeEmail(userName),
+  });
 }
 
 export async function sendConversationRequestEmail(
-    mentorEmail: string,
-    mentorName: string,
-    menteeName: string
+  mentorEmail: string,
+  mentorName: string,
+  menteeName: string
 ): Promise<EmailResult> {
-    return sendEmail({
-        to: mentorEmail,
-        subject: `📬 ${menteeName} wants to connect with you on ChaiChat`,
-        html: conversationRequestEmail(mentorName, menteeName),
-    });
+  return sendEmail({
+    to: mentorEmail,
+    subject: `${menteeName} wants to connect with you on ChaiChat`,
+    html: conversationRequestEmail(mentorName, menteeName),
+  });
 }
 
 export async function sendSessionReminderEmail(
-    email: string,
-    userName: string,
-    mentorName: string,
-    sessionTime: string,
-    meetingUrl?: string
+  email: string,
+  userName: string,
+  mentorName: string,
+  sessionTime: string,
+  meetingUrl?: string
 ): Promise<EmailResult> {
-    return sendEmail({
-        to: email,
-        subject: `⏰ Reminder: Session with ${mentorName} coming up`,
-        html: sessionReminderEmail(userName, mentorName, sessionTime, meetingUrl),
-    });
+  return sendEmail({
+    to: email,
+    subject: `Reminder: Session with ${mentorName} coming up`,
+    html: sessionReminderEmail(userName, mentorName, sessionTime, meetingUrl),
+  });
 }
 
 export async function sendFeedbackRequestEmail(
-    email: string,
-    userName: string,
-    mentorName: string
+  email: string,
+  userName: string,
+  mentorName: string
 ): Promise<EmailResult> {
-    return sendEmail({
-        to: email,
-        subject: `💬 How was your session with ${mentorName}?`,
-        html: sessionFeedbackEmail(userName, mentorName),
-    });
+  return sendEmail({
+    to: email,
+    subject: `How was your session with ${mentorName}?`,
+    html: sessionFeedbackEmail(userName, mentorName),
+  });
 }

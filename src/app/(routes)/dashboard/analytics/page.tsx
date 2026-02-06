@@ -104,23 +104,57 @@ export default function AnalyticsPage() {
 
                 {/* Milestones */}
                 <div className="bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl p-6 text-white">
-                    <h3 className="font-semibold text-lg mb-4">🏆 Milestones</h3>
+                    <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                        Milestones
+                    </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {[
-                            { label: 'First Session', achieved: true, icon: '🎉' },
-                            { label: '10 Sessions', achieved: true, icon: '📅' },
-                            { label: '25 Sessions', achieved: true, icon: '🌟' },
-                            { label: '50 Sessions', achieved: false, icon: '🚀', progress: 94 },
+                            {
+                                label: 'First Session', achieved: true, icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                label: '10 Sessions', achieved: true, icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                label: '25 Sessions', achieved: true, icon: (
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                )
+                            },
+                            {
+                                label: '50 Sessions', achieved: false, icon: (
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                ), progress: 94
+                            },
                         ].map((milestone) => (
                             <div
                                 key={milestone.label}
                                 className={`bg-white/10 rounded-xl p-4 text-center ${milestone.achieved ? '' : 'opacity-75'
                                     }`}
                             >
-                                <div className="text-2xl mb-2">{milestone.icon}</div>
+                                <div className="flex justify-center mb-2">{milestone.icon}</div>
                                 <p className="text-sm font-medium">{milestone.label}</p>
                                 {milestone.achieved ? (
-                                    <p className="text-xs text-teal-200 mt-1">✓ Achieved</p>
+                                    <p className="text-xs text-teal-200 mt-1 flex items-center justify-center gap-1">
+                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Achieved
+                                    </p>
                                 ) : (
                                     <p className="text-xs text-teal-200 mt-1">{milestone.progress}% there</p>
                                 )}

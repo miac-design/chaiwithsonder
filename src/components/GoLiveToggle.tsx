@@ -101,8 +101,8 @@ export default function GoLiveToggle({ userId, onStatusChange }: GoLiveTogglePro
             <motion.button
                 onClick={() => isLive ? handleGoOffline() : setShowOptions(!showOptions)}
                 className={`relative flex items-center gap-3 px-5 py-3 rounded-full font-semibold transition-all duration-300 ${isLive
-                        ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -151,8 +151,8 @@ export default function GoLiveToggle({ userId, onStatusChange }: GoLiveTogglePro
                                         key={preset.value}
                                         onClick={() => setSelectedDuration(preset.value)}
                                         className={`px-3 py-1.5 rounded-full text-sm font-medium transition ${selectedDuration === preset.value
-                                                ? 'bg-teal-500 text-white'
-                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                            ? 'bg-teal-500 text-white'
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                             }`}
                                     >
                                         {preset.label}
@@ -171,15 +171,15 @@ export default function GoLiveToggle({ userId, onStatusChange }: GoLiveTogglePro
                                     <button
                                         key={idx}
                                         onClick={() => {
-                                            setSelectedMessage(`${msg.emoji} ${msg.text}`);
+                                            setSelectedMessage(`${msg.label}: ${msg.text}`);
                                             setCustomMessage('');
                                         }}
-                                        className={`px-3 py-1.5 rounded-full text-sm transition ${selectedMessage === `${msg.emoji} ${msg.text}`
-                                                ? 'bg-teal-100 text-teal-700 border-2 border-teal-500'
-                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
+                                        className={`px-3 py-1.5 rounded-full text-sm transition ${selectedMessage === `${msg.label}: ${msg.text}`
+                                            ? 'bg-teal-100 text-teal-700 border-2 border-teal-500'
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200 border-2 border-transparent'
                                             }`}
                                     >
-                                        {msg.emoji} {msg.text.split(',')[0]}
+                                        {msg.label}: {msg.text.split(',')[0]}
                                     </button>
                                 ))}
                             </div>
@@ -202,7 +202,7 @@ export default function GoLiveToggle({ userId, onStatusChange }: GoLiveTogglePro
                                 disabled={isLoading}
                                 className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-xl shadow-lg shadow-green-500/30 hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                             >
-                                {isLoading ? 'Going Live...' : '🔴 Go Live Now'}
+                                {isLoading ? 'Going Live...' : 'Go Live Now'}
                             </button>
                             <button
                                 onClick={() => setShowOptions(false)}

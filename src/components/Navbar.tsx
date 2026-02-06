@@ -403,7 +403,12 @@ const Navbar = () => {
                 </form>
               ) : (
                 <div className="text-center py-6">
-                  <div className="text-teal-500 text-lg font-semibold mb-2">🎉 Welcome to ChaiChat!</div>
+                  <div className="text-teal-500 text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Welcome to ChaiChat!
+                  </div>
                   <p className="text-gray-500 mb-4">Your account is ready. Check your email to get started.</p>
                   <button
                     className="w-full py-3 font-bold rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition"

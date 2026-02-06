@@ -230,7 +230,11 @@ export default function StartHerePage() {
                                             : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                             }`}
                                     >
-                                        <span className="text-4xl">☕</span>
+                                        <span className="w-12 h-12 flex items-center justify-center bg-teal-100 rounded-xl">
+                                            <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </span>
                                         <div>
                                             <h3 className="font-bold text-gray-900">Sip a Chat</h3>
                                             <p className="text-sm text-gray-500">Find someone to learn from</p>
@@ -244,7 +248,11 @@ export default function StartHerePage() {
                                             : 'bg-white border-2 border-gray-100 hover:border-gray-200'
                                             }`}
                                     >
-                                        <span className="text-4xl">💬</span>
+                                        <span className="w-12 h-12 flex items-center justify-center bg-sky-100 rounded-xl">
+                                            <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                        </span>
                                         <div>
                                             <h3 className="font-bold text-gray-900">Share a Chat</h3>
                                             <p className="text-sm text-gray-500">Mentor others with your experience</p>
@@ -419,7 +427,11 @@ export default function StartHerePage() {
                                                 : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
-                                            <span className="text-2xl block mb-1">📞</span>
+                                            <span className="block mb-1">
+                                                <svg className="w-6 h-6 mx-auto text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                </svg>
+                                            </span>
                                             <span className="text-sm font-medium">Audio</span>
                                         </button>
                                         <button
@@ -429,7 +441,11 @@ export default function StartHerePage() {
                                                 : 'bg-white border-2 border-gray-100'
                                                 }`}
                                         >
-                                            <span className="text-2xl block mb-1">💬</span>
+                                            <span className="block mb-1">
+                                                <svg className="w-6 h-6 mx-auto text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                                </svg>
+                                            </span>
                                             <span className="text-sm font-medium">Chat</span>
                                         </button>
                                     </div>
@@ -518,7 +534,9 @@ export default function StartHerePage() {
                                     transition={{ type: 'spring', stiffness: 200 }}
                                     className="text-7xl mb-6"
                                 >
-                                    🎉
+                                    <svg className="w-16 h-16 mx-auto text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
                                 </motion.div>
 
                                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
