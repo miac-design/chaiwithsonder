@@ -61,42 +61,44 @@ function FAQSection() {
 
   return (
     <section id="faq" className="max-w-4xl mx-auto mt-24 mb-16 px-4">
-      <h2 className="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-      <div className="flex justify-center mb-8 gap-4">
-        <button
-          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentees' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
-          onClick={() => setActiveTab('mentees')}
-        >
-          Mentees
-        </button>
-        <button
-          className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentors' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
-          onClick={() => setActiveTab('mentors')}
-        >
-          Mentors
-        </button>
-      </div>
-      <div className="space-y-4">
-        {faqs.map((faq, idx) => (
-          <div key={faq.q} className="bg-white shadow-md rounded-xl p-6">
-            <button
-              className="w-full flex justify-between items-center text-lg font-semibold text-left focus:outline-none"
-              onClick={() => setOpen(openIdx === idx ? null : idx)}
-              aria-expanded={openIdx === idx}
-              aria-controls={`faq-panel-${activeTab}-${idx}`}
-            >
-              <span>{faq.q}</span>
-              <span className={`ml-2 transition-transform duration-200 ${openIdx === idx ? 'rotate-180' : ''}`}>▼</span>
-            </button>
-            <div
-              id={`faq-panel-${activeTab}-${idx}`}
-              className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-40 mt-4' : 'max-h-0'}`}
-              style={{}}
-            >
-              <p className="text-base text-gray-600 leading-relaxed">{faq.a}</p>
+      <div className="bg-gradient-to-br from-teal-50 to-slate-100 rounded-3xl p-8 md:p-12">
+        <h2 className="text-2xl font-bold text-center mb-8 text-gray-900">Frequently Asked Questions</h2>
+        <div className="flex justify-center mb-8 gap-4">
+          <button
+            className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentees' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
+            onClick={() => setActiveTab('mentees')}
+          >
+            Mentees
+          </button>
+          <button
+            className={`px-4 py-2 rounded-full font-semibold text-sm transition duration-200 focus:outline-none ${activeTab === 'mentors' ? 'bg-teal-600 text-white shadow' : 'bg-white text-teal-600 border border-teal-200 hover:bg-teal-50'}`}
+            onClick={() => setActiveTab('mentors')}
+          >
+            Mentors
+          </button>
+        </div>
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <div key={faq.q} className="bg-white shadow-lg rounded-xl p-6 border border-gray-100">
+              <button
+                className="w-full flex justify-between items-center text-lg font-semibold text-left text-gray-900 focus:outline-none"
+                onClick={() => setOpen(openIdx === idx ? null : idx)}
+                aria-expanded={openIdx === idx}
+                aria-controls={`faq-panel-${activeTab}-${idx}`}
+              >
+                <span>{faq.q}</span>
+                <span className={`ml-2 text-teal-500 transition-transform duration-200 ${openIdx === idx ? 'rotate-180' : ''}`}>▼</span>
+              </button>
+              <div
+                id={`faq-panel-${activeTab}-${idx}`}
+                className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-40 mt-4' : 'max-h-0'}`}
+                style={{}}
+              >
+                <p className="text-base text-gray-600 leading-relaxed">{faq.a}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
