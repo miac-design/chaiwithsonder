@@ -27,9 +27,14 @@ export const metadata: Metadata = {
   title: "Chai Chat - Community-Driven Mentoring Platform",
   description: "Empowering growth through story-sharing and mutual support — one cup at a time.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png", sizes: "96x96" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/favicon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
