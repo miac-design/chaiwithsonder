@@ -147,45 +147,39 @@ export default function About() {
       </section>
 
       <div className="max-w-6xl mx-auto px-4">
-        {/* Founder's Story - Elegant Card */}
-        <section className="py-12">
+        {/* Founder's Story - Compact Card */}
+        <section className="py-8">
           <motion.div
-            className="relative bg-white rounded-3xl shadow-xl overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
+            className="relative bg-white rounded-2xl shadow-lg overflow-hidden max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600" />
-            <div className="p-8 md:p-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Why I Built This</h2>
+                <h2 className="text-xl font-bold text-gray-900">Why I Built This</h2>
               </div>
 
-              <div className="space-y-4 text-gray-600 text-lg leading-relaxed max-w-3xl">
+              <div className="space-y-3 text-gray-600 text-base leading-relaxed">
                 <p>
-                  In 2018, I came to the United States searching for opportunity. I didn't know anyone. I didn't have connections.
+                  In 2018, I came to the US searching for opportunity — no connections, no network. But strangers helped me. <strong className="text-gray-900">People I never met reviewed my resume, made introductions, and offered guidance.</strong>
                 </p>
                 <p>
-                  But when I started looking for jobs, something incredible happened. <strong className="text-gray-900">Strangers helped me.</strong> People I had never met took time to review my resume, make introductions, and offer guidance.
-                </p>
-                <p>
-                  That experience changed me. I realized there are so many people who genuinely <em>want</em> to help others — they just don't always have a way to find those who need it.
-                </p>
-                <p className="text-gray-900 font-medium">
-                  That's why I built Chai Chat. To connect helpers with those who need help.
+                  That experience changed me. I realized many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That's why I built Chai Chat.</strong>
                 </p>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-100 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-semibold">M</div>
+              <div className="mt-5 pt-4 border-t border-gray-100 flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white text-sm font-semibold">M</div>
                 <div>
-                  <p className="font-semibold text-gray-900">Mia</p>
-                  <p className="text-sm text-gray-500">Founder of Chai Chat</p>
+                  <p className="font-medium text-gray-900 text-sm">Mia</p>
+                  <p className="text-xs text-gray-500">Founder of Chai Chat</p>
                 </div>
               </div>
             </div>
