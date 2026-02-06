@@ -4,34 +4,34 @@ export const dynamic = 'force-dynamic';
 
 // Generate ICS calendar invite content
 function generateICSContent({
-    title,
-    description,
-    startTime,
-    endTime,
-    mentorName,
-    mentorEmail,
-    menteeName,
-    menteeEmail,
-    sessionId,
+  title,
+  description,
+  startTime,
+  endTime,
+  mentorName,
+  mentorEmail,
+  menteeName,
+  menteeEmail,
+  sessionId,
 }: {
-    title: string;
-    description: string;
-    startTime: Date;
-    endTime: Date;
-    mentorName: string;
-    mentorEmail: string;
-    menteeName: string;
-    menteeEmail: string;
-    sessionId: string;
+  title: string;
+  description: string;
+  startTime: Date;
+  endTime: Date;
+  mentorName: string;
+  mentorEmail: string;
+  menteeName: string;
+  menteeEmail: string;
+  sessionId: string;
 }): string {
-    const formatDate = (date: Date) => {
-        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    };
+  const formatDate = (date: Date) => {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  };
 
-    const uid = `${sessionId}@chaichathub.com`;
-    const now = formatDate(new Date());
+  const uid = `${sessionId}@chaichathub.com`;
+  const now = formatDate(new Date());
 
-    return `BEGIN:VCALENDAR
+  return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Chai Chat//Mentorship Session//EN
 CALSCALE:GREGORIAN
@@ -54,120 +54,125 @@ END:VCALENDAR`;
 
 // Send email via Brevo API
 async function sendBrevoEmail({
-    to,
-    toName,
+  to,
+  toName,
+  subject,
+  htmlContent,
+  textContent,
+  icsContent,
+}: {
+  to: string;
+  toName: string;
+  subject: string;
+  htmlContent: string;
+  textContent: string;
+  icsContent?: string;
+}) {
+  const apiKey = process.env.BREVO_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('BREVO_API_KEY not configured');
+  }
+
+  const emailData: Record<string, unknown> = {
+    sender: {
+      name: process.env.BREVO_FROM_NAME || 'Chai Chat',
+      email: process.env.BREVO_FROM_EMAIL || 'noreply@chaichathub.com',
+    },
+    to: [{ email: to, name: toName }],
     subject,
     htmlContent,
     textContent,
-    icsContent,
-}: {
-    to: string;
-    toName: string;
-    subject: string;
-    htmlContent: string;
-    textContent: string;
-    icsContent?: string;
-}) {
-    const apiKey = process.env.BREVO_API_KEY;
+  };
 
-    if (!apiKey) {
-        throw new Error('BREVO_API_KEY not configured');
-    }
+  // Add calendar invite as attachment if provided
+  if (icsContent) {
+    emailData.attachment = [
+      {
+        name: 'invite.ics',
+        content: Buffer.from(icsContent).toString('base64'),
+      },
+    ];
+  }
 
-    const emailData: Record<string, unknown> = {
-        sender: {
-            name: process.env.BREVO_FROM_NAME || 'Chai Chat',
-            email: process.env.BREVO_FROM_EMAIL || 'noreply@chaichathub.com',
-        },
-        to: [{ email: to, name: toName }],
-        subject,
-        htmlContent,
-        textContent,
-    };
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'accept': 'application/json',
+      'api-key': apiKey,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(emailData),
+  });
 
-    // Add calendar invite as attachment if provided
-    if (icsContent) {
-        emailData.attachment = [
-            {
-                name: 'invite.ics',
-                content: Buffer.from(icsContent).toString('base64'),
-            },
-        ];
-    }
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Brevo API error: ${error}`);
+  }
 
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: {
-            'accept': 'application/json',
-            'api-key': apiKey,
-            'content-type': 'application/json',
-        },
-        body: JSON.stringify(emailData),
-    });
-
-    if (!response.ok) {
-        const error = await response.text();
-        throw new Error(`Brevo API error: ${error}`);
-    }
-
-    return response.json();
+  return response.json();
 }
 
 export async function POST(request: Request) {
-    try {
-        const body = await request.json();
-        const {
-            mentorName,
-            mentorEmail,
-            menteeName,
-            menteeEmail,
-            sessionDate,
-            sessionTime,
-            sessionDuration = 30,
-            sessionId,
-            topic = 'Mentorship Session',
-        } = body;
+  try {
+    const body = await request.json();
+    const {
+      mentorName,
+      mentorEmail,
+      menteeName,
+      menteeEmail,
+      sessionDate,
+      sessionTime,
+      sessionDuration = 30,
+      sessionId,
+      topic = 'Mentorship Session',
+      meetingLink, // Optional: Zoom, Google Meet, Teams, or Calendly link
+    } = body;
 
-        // Validate required fields
-        if (!mentorName || !mentorEmail || !menteeName || !menteeEmail || !sessionDate || !sessionTime) {
-            return NextResponse.json(
-                { error: 'Missing required fields' },
-                { status: 400 }
-            );
-        }
+    // Validate required fields
+    if (!mentorName || !mentorEmail || !menteeName || !menteeEmail || !sessionDate || !sessionTime) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
 
-        // Parse session date and time
-        const startTime = new Date(`${sessionDate}T${sessionTime}`);
-        const endTime = new Date(startTime.getTime() + sessionDuration * 60 * 1000);
+    // Parse session date and time
+    const startTime = new Date(`${sessionDate}T${sessionTime}`);
+    const endTime = new Date(startTime.getTime() + sessionDuration * 60 * 1000);
 
-        // Generate calendar invite
-        const icsContent = generateICSContent({
-            title: `Chai Chat: ${topic}`,
-            description: `Mentorship session between ${mentorName} and ${menteeName}.\n\nTopic: ${topic}\n\nJoin via Chai Chat Dashboard: https://chaichathub.com/dashboard`,
-            startTime,
-            endTime,
-            mentorName,
-            mentorEmail,
-            menteeName,
-            menteeEmail,
-            sessionId: sessionId || `session-${Date.now()}`,
-        });
+    // Generate calendar invite with meeting link if provided
+    const calendarDescription = meetingLink
+      ? `Mentorship session between ${mentorName} and ${menteeName}.\n\nTopic: ${topic}\n\nJoin Meeting: ${meetingLink}\n\nOr view in Dashboard: https://chaichathub.com/dashboard`
+      : `Mentorship session between ${mentorName} and ${menteeName}.\n\nTopic: ${topic}\n\nJoin via Chai Chat Dashboard: https://chaichathub.com/dashboard`;
 
-        // Format date for display
-        const formattedDate = startTime.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-        const formattedTime = startTime.toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-        });
+    const icsContent = generateICSContent({
+      title: `Chai Chat: ${topic}`,
+      description: calendarDescription,
+      startTime,
+      endTime,
+      mentorName,
+      mentorEmail,
+      menteeName,
+      menteeEmail,
+      sessionId: sessionId || `session-${Date.now()}`,
+    });
 
-        // Email template for mentor (no emojis - clean professional design)
-        const mentorHtml = `
+    // Format date for display
+    const formattedDate = startTime.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const formattedTime = startTime.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+
+    // Email template for mentor (no emojis - clean professional design)
+    const mentorHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,13 +219,22 @@ export async function POST(request: Request) {
           <span class="session-value">${topic}</span>
         </div>
       </div>
+      ${meetingLink ? `
+      <div class="session-card" style="background: #f0fdfa; border: 1px solid #14b8a6;">
+        <p style="margin: 0 0 10px 0; font-weight: 600; color: #0d9488;">Join Meeting</p>
+        <a href="${meetingLink}" style="color: #0d9488; word-break: break-all;">${meetingLink}</a>
+      </div>` : ''}
       
       <div class="note">
         A calendar invite is attached to this email. Click to add it to your calendar.
       </div>
       
       <center>
-        <a href="https://chaichathub.com/dashboard/sessions" class="button">View in Dashboard</a>
+        ${meetingLink
+        ? `<a href="${meetingLink}" class="button">Join Meeting</a>
+             <br/><br/>
+             <a href="https://chaichathub.com/dashboard/sessions" style="color: #14b8a6;">View in Dashboard</a>`
+        : `<a href="https://chaichathub.com/dashboard/sessions" class="button">View in Dashboard</a>`}
       </center>
       
       <div class="footer">
@@ -232,8 +246,8 @@ export async function POST(request: Request) {
 </body>
 </html>`;
 
-        // Email template for mentee (no emojis - clean professional design)
-        const menteeHtml = `
+    // Email template for mentee (no emojis - clean professional design)
+    const menteeHtml = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -284,13 +298,22 @@ export async function POST(request: Request) {
           <span class="session-value">${topic}</span>
         </div>
       </div>
+      ${meetingLink ? `
+      <div class="session-card" style="background: #f0fdfa; border: 1px solid #14b8a6;">
+        <p style="margin: 0 0 10px 0; font-weight: 600; color: #0d9488;">Join Meeting</p>
+        <a href="${meetingLink}" style="color: #0d9488; word-break: break-all;">${meetingLink}</a>
+      </div>` : ''}
       
       <div class="note">
         A calendar invite is attached to this email. Click to add it to your calendar.
       </div>
       
       <center>
-        <a href="https://chaichathub.com/dashboard/sessions" class="button">View in Dashboard</a>
+        ${meetingLink
+        ? `<a href="${meetingLink}" class="button">Join Meeting</a>
+             <br/><br/>
+             <a href="https://chaichathub.com/dashboard/sessions" style="color: #14b8a6;">View in Dashboard</a>`
+        : `<a href="https://chaichathub.com/dashboard/sessions" class="button">View in Dashboard</a>`}
       </center>
       
       <div class="footer">
@@ -302,8 +325,8 @@ export async function POST(request: Request) {
 </body>
 </html>`;
 
-        // Plain text versions
-        const mentorText = `New Mentorship Session Booked
+    // Plain text versions
+    const mentorText = `New Mentorship Session Booked
 
 Hi ${mentorName},
 
@@ -314,6 +337,8 @@ Session Details:
 - Time: ${formattedTime}
 - Duration: ${sessionDuration} minutes
 - Topic: ${topic}
+${meetingLink ? `
+Join Meeting: ${meetingLink}` : ''}
 
 A calendar invite is attached to this email.
 
@@ -322,7 +347,7 @@ View in Dashboard: https://chaichathub.com/dashboard/sessions
 ---
 Chai Chat - Where Sonder Becomes Connection`;
 
-        const menteeText = `Your Session is Confirmed!
+    const menteeText = `Your Session is Confirmed!
 
 Hi ${menteeName},
 
@@ -334,6 +359,8 @@ Session Details:
 - Duration: ${sessionDuration} minutes
 - Mentor: ${mentorName}
 - Topic: ${topic}
+${meetingLink ? `
+Join Meeting: ${meetingLink}` : ''}
 
 A calendar invite is attached to this email.
 
@@ -342,38 +369,38 @@ View in Dashboard: https://chaichathub.com/dashboard/sessions
 ---
 Chai Chat - Where Sonder Becomes Connection`;
 
-        // Send emails (no emojis in subject lines)
-        const [mentorResult, menteeResult] = await Promise.all([
-            sendBrevoEmail({
-                to: mentorEmail,
-                toName: mentorName,
-                subject: `New Session: ${menteeName} booked ${formattedDate}`,
-                htmlContent: mentorHtml,
-                textContent: mentorText,
-                icsContent,
-            }),
-            sendBrevoEmail({
-                to: menteeEmail,
-                toName: menteeName,
-                subject: `Session Confirmed with ${mentorName} - ${formattedDate}`,
-                htmlContent: menteeHtml,
-                textContent: menteeText,
-                icsContent,
-            }),
-        ]);
+    // Send emails (no emojis in subject lines)
+    const [mentorResult, menteeResult] = await Promise.all([
+      sendBrevoEmail({
+        to: mentorEmail,
+        toName: mentorName,
+        subject: `New Session: ${menteeName} booked ${formattedDate}`,
+        htmlContent: mentorHtml,
+        textContent: mentorText,
+        icsContent,
+      }),
+      sendBrevoEmail({
+        to: menteeEmail,
+        toName: menteeName,
+        subject: `Session Confirmed with ${mentorName} - ${formattedDate}`,
+        htmlContent: menteeHtml,
+        textContent: menteeText,
+        icsContent,
+      }),
+    ]);
 
-        return NextResponse.json({
-            success: true,
-            message: 'Booking emails sent successfully',
-            mentorEmailId: mentorResult.messageId,
-            menteeEmailId: menteeResult.messageId,
-        });
+    return NextResponse.json({
+      success: true,
+      message: 'Booking emails sent successfully',
+      mentorEmailId: mentorResult.messageId,
+      menteeEmailId: menteeResult.messageId,
+    });
 
-    } catch (error) {
-        console.error('Booking email error:', error);
-        return NextResponse.json(
-            { error: error instanceof Error ? error.message : 'Failed to send booking emails' },
-            { status: 500 }
-        );
-    }
+  } catch (error) {
+    console.error('Booking email error:', error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Failed to send booking emails' },
+      { status: 500 }
+    );
+  }
 }

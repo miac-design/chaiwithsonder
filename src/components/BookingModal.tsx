@@ -7,6 +7,8 @@ interface BookingModalProps {
         name: string;
         title: string;
         email?: string;
+        meetingLink?: string; // Zoom, Google Meet, Teams, or Calendly link
+        calendly?: string;
     };
     isOpen: boolean;
     onClose: () => void;
@@ -74,6 +76,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                     sessionTime,
                     sessionDuration: 30,
                     topic: topic || 'General Mentorship',
+                    meetingLink: mentor.meetingLink || mentor.calendly || undefined,
                 }),
             });
 
@@ -182,8 +185,8 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                             key={day.toISOString()}
                                             onClick={() => setSelectedDate(day)}
                                             className={`p-3 rounded-lg text-center transition ${isSelected
-                                                    ? 'bg-teal-500 text-white'
-                                                    : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
+                                                ? 'bg-teal-500 text-white'
+                                                : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
                                                 }`}
                                         >
                                             <div className="text-xs font-medium">
@@ -209,8 +212,8 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                             key={time}
                                             onClick={() => setSelectedTime(time)}
                                             className={`px-3 py-2 rounded-lg text-sm font-medium transition ${isSelected
-                                                    ? 'bg-teal-500 text-white'
-                                                    : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
+                                                ? 'bg-teal-500 text-white'
+                                                : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
                                                 }`}
                                         >
                                             {time}
