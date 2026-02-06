@@ -70,8 +70,8 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-            ? 'bg-slate-900/95 backdrop-blur-xl border-b border-teal-500/10 shadow-xl'
-            : 'bg-gradient-to-b from-slate-900/80 to-transparent'
+          ? 'bg-slate-900/95 backdrop-blur-xl border-b border-teal-500/10 shadow-xl'
+          : 'bg-gradient-to-b from-slate-900/80 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,8 +101,8 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${pathname === link.href
-                      ? 'text-teal-400 bg-teal-500/10'
-                      : 'text-white/80 hover:text-teal-400 hover:bg-white/5'
+                    ? 'text-teal-400 bg-teal-500/10'
+                    : 'text-white/80 hover:text-teal-400 hover:bg-white/5'
                     }`}
                 >
                   {link.name}
@@ -187,6 +187,13 @@ const Navbar = () => {
                       >
                         Dashboard
                       </Link>
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-3 text-white/80 hover:bg-teal-500/10 hover:text-teal-400 transition-colors text-sm font-medium border-t border-white/5"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        Profile
+                      </Link>
                       <button
                         onClick={() => { setUserMenuOpen(false); signOut(); }}
                         className="w-full text-left px-4 py-3 text-white/80 hover:bg-red-500/10 hover:text-red-400 transition-colors text-sm font-medium border-t border-white/10"
@@ -242,8 +249,8 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className={`block px-4 py-3 rounded-lg font-medium transition ${pathname === link.href
-                      ? 'text-teal-400 bg-teal-500/10'
-                      : 'text-white/80 hover:text-teal-400 hover:bg-white/5'
+                    ? 'text-teal-400 bg-teal-500/10'
+                    : 'text-white/80 hover:text-teal-400 hover:bg-white/5'
                     }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
