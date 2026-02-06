@@ -127,7 +127,7 @@ export default function Home() {
             playsInline
             poster="/new-hero.jpg"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-teal-900/80 via-teal-900/70 to-teal-900 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70 z-0" />
         </div>
 
         {/* Hero Content */}

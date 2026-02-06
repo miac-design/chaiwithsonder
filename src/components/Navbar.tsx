@@ -70,8 +70,8 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || !isHomePage
-          ? 'bg-teal-900/95 backdrop-blur-xl border-b border-teal-500/10 shadow-xl'
-          : 'bg-gradient-to-b from-teal-900/80 to-transparent'
+          ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200/50 shadow-sm'
+          : 'bg-gradient-to-b from-black/40 to-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,10 +85,10 @@ const Navbar = () => {
                 <AnimatedLogo size={48} />
               </motion.div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">
+                <span className={`text-xl font-bold transition-colors ${isScrolled || !isHomePage ? 'text-gray-900 group-hover:text-teal-600' : 'text-white group-hover:text-teal-400'}`}>
                   Chai Chat
                 </span>
-                <span className="text-xs text-white/40 hidden sm:block">
+                <span className={`text-xs hidden sm:block ${isScrolled || !isHomePage ? 'text-gray-500' : 'text-white/60'}`}>
                   Where Sonder Becomes Connection
                 </span>
               </div>
