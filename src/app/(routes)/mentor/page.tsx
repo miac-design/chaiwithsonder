@@ -3,6 +3,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Coffee, Zap, Linkedin } from 'lucide-react';
 import BookingModal from '@/components/BookingModal';
 
 // Modern SVG icons for badges
@@ -65,6 +66,8 @@ const mentors = [
     calendly: 'https://calendly.com/hamed-alikhani',
     linkedin: 'https://www.linkedin.com/in/hamedalikhani/',
     story: "I came to the US in 2014 with $200 and a dream. Happy to share what I've learned.",
+    specialties: ['Career', 'Visa', 'AI/ML'],
+    chaisShared: 47,
   },
   {
     name: 'Moein Razavi, PhD',
@@ -73,6 +76,8 @@ const mentors = [
     calendly: 'https://calendly.com/moein-razavi',
     linkedin: 'https://www.linkedin.com/in/moeinrazavi/',
     story: "Navigated the PhD journey and tech transition — love helping others do the same.",
+    specialties: ['Academia', 'AI/ML', 'Career'],
+    chaisShared: 32,
   },
   {
     name: 'Reza Haghighi, MS',
@@ -80,6 +85,9 @@ const mentors = [
     photo: '/team/reza.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/rezahaghighi/',
+    story: "Engineering is about solving puzzles — I love sharing those aha moments.",
+    specialties: ['Tech', 'Career'],
+    chaisShared: 18,
   },
   {
     name: 'Parisa Ghane, PhD',
@@ -87,6 +95,9 @@ const mentors = [
     photo: '/team/parisa.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/parisaghane/',
+    story: "From research to consulting — happy to chat about making that leap.",
+    specialties: ['Consulting', 'Career'],
+    chaisShared: 21,
   },
   {
     name: 'Alireza Tahsini, MS',
@@ -94,6 +105,9 @@ const mentors = [
     photo: '/team/alireza.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/alirezatahsini/',
+    story: "Building great software starts with great conversations.",
+    specialties: ['Tech', 'Resume'],
+    chaisShared: 15,
   },
   {
     name: 'Monica Far',
@@ -101,6 +115,9 @@ const mentors = [
     photo: '/team/monica-far.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/monicafar/',
+    story: "Sales is about connection first — let's chat about breaking into big tech.",
+    specialties: ['Sales', 'Big Tech', 'Career'],
+    chaisShared: 28,
   },
   {
     name: 'Bita Shirazi',
@@ -108,6 +125,9 @@ const mentors = [
     photo: '/team/bita.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/bitashirazi/',
+    story: "Numbers tell stories — I help people write their own financial chapter.",
+    specialties: ['Finance', 'Big Tech'],
+    chaisShared: 19,
   },
   {
     name: 'Reza Piri',
@@ -115,6 +135,9 @@ const mentors = [
     photo: '/team/rezapiri.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/rezapiri/',
+    story: "Started from zero, built a company. Happy to share the founder journey.",
+    specialties: ['Startup', 'Product'],
+    chaisShared: 24,
   },
   {
     name: 'Meysam Gamini',
@@ -122,6 +145,9 @@ const mentors = [
     photo: '/team/meysam.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/meysamgamini/',
+    story: "Engineering leadership is a skill you can learn — let me help.",
+    specialties: ['Tech', 'Leadership'],
+    chaisShared: 31,
   },
   {
     name: 'Ali Rezajoo',
@@ -129,6 +155,9 @@ const mentors = [
     photo: '/team/alirezajoo.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/alirezajoo/',
+    story: "Transitioned from engineering to PM — happy to guide your pivot.",
+    specialties: ['Product', 'Career'],
+    chaisShared: 22,
   },
   {
     name: 'Ramin Jahedi',
@@ -136,6 +165,9 @@ const mentors = [
     photo: '/team/ramin.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/raminjahedi/',
+    story: "Built an agency from scratch. Let's talk entrepreneurship.",
+    specialties: ['Startup', 'Marketing'],
+    chaisShared: 16,
   },
   {
     name: 'Ramin Komeili',
@@ -143,6 +175,9 @@ const mentors = [
     photo: '/team/ramin-komeili.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/raminkomeili/',
+    story: "Engineering meets urban planning — a unique path worth exploring.",
+    specialties: ['Engineering', 'Career'],
+    chaisShared: 12,
   },
   {
     name: 'Amin Rashidi',
@@ -150,6 +185,9 @@ const mentors = [
     photo: '/team/amin.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/aminrashidi/',
+    story: "Data engineering is the backbone of AI. Let's talk pipelines.",
+    specialties: ['Data', 'Tech'],
+    chaisShared: 27,
   },
 ];
 
@@ -161,56 +199,123 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
   const avatarUrl = mentor.photo
     ? mentor.photo
     : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
+
+  // Specialty color mapping for visual variety
+  const specialtyColors: Record<string, string> = {
+    'Career': 'bg-teal-100 text-teal-700',
+    'Visa': 'bg-amber-100 text-amber-700',
+    'AI/ML': 'bg-purple-100 text-purple-700',
+    'Academia': 'bg-blue-100 text-blue-700',
+    'Tech': 'bg-slate-100 text-slate-700',
+    'Resume': 'bg-emerald-100 text-emerald-700',
+    'Consulting': 'bg-cyan-100 text-cyan-700',
+    'Sales': 'bg-orange-100 text-orange-700',
+    'Big Tech': 'bg-indigo-100 text-indigo-700',
+    'Finance': 'bg-green-100 text-green-700',
+    'Startup': 'bg-rose-100 text-rose-700',
+    'Product': 'bg-violet-100 text-violet-700',
+    'Leadership': 'bg-yellow-100 text-yellow-700',
+    'Marketing': 'bg-pink-100 text-pink-700',
+    'Engineering': 'bg-sky-100 text-sky-700',
+    'Data': 'bg-fuchsia-100 text-fuchsia-700',
+  };
+
   return (
-    <div className="bg-white/85 backdrop-blur-xl border border-white/30 rounded-2xl shadow-xl p-6 text-center hover:shadow-2xl hover:shadow-teal-100/50 transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
-      <img
-        src={avatarUrl}
-        alt={`Photo of ${mentor.name}`}
-        className="rounded-full w-32 h-32 mx-auto object-cover ring-2 ring-teal-200"
-        onError={(e) => {
-          e.currentTarget.onerror = null;
-          e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
-        }}
-      />
-      <div className="text-lg font-semibold mt-4">{mentor.name}</div>
-      <div className="text-sm text-gray-500">{mentor.title}</div>
+    <div className="group bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:shadow-teal-100/60 transition-all duration-300 hover:-translate-y-2 flex flex-col h-full">
+      {/* Header with larger photo and gradient overlay */}
+      <div className="relative bg-gradient-to-br from-teal-500/10 via-teal-400/5 to-transparent p-6 pb-4">
+        <div className="flex items-start gap-4">
+          {/* Larger Photo */}
+          <div className="relative flex-shrink-0">
+            <img
+              src={avatarUrl}
+              alt={`Photo of ${mentor.name}`}
+              className="rounded-2xl w-24 h-24 sm:w-28 sm:h-28 object-cover ring-2 ring-teal-200 shadow-lg group-hover:ring-teal-400 transition-all"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
+              }}
+            />
+            {/* Chais Shared Badge */}
+            {mentor.chaisShared && mentor.chaisShared > 0 && (
+              <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-2 py-1 shadow-md border border-teal-100 flex items-center gap-1">
+                <Coffee className="w-3.5 h-3.5 text-teal-600" />
+                <span className="text-xs font-bold text-teal-700">{mentor.chaisShared}</span>
+              </div>
+            )}
+          </div>
 
-      {/* Grab a Chai Button */}
-      <div className="mt-4 flex flex-col gap-2 w-full">
-        <button
-          onClick={() => onBook(mentor)}
-          className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-full hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-        >
-          <span>☕</span> Grab a Chai
-        </button>
+          {/* Name & Title */}
+          <div className="flex-1 min-w-0 pt-1">
+            <h3 className="text-lg font-bold text-gray-900 truncate">{mentor.name}</h3>
+            <p className="text-sm text-gray-500 truncate">{mentor.title}</p>
 
-        {/* Chai Now - Coming Soon */}
-        <div className="relative">
-          <button
-            disabled
-            className="w-full px-6 py-2 bg-gray-100 text-gray-400 font-medium rounded-full cursor-not-allowed flex items-center justify-center gap-2"
-          >
-            <span>⚡</span> Chai Now
-          </button>
-          <span className="absolute -top-1 -right-1 px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-xs font-bold rounded-full shadow">Coming Soon</span>
+            {/* Specialty Tags */}
+            {mentor.specialties && mentor.specialties.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {mentor.specialties.map((specialty) => (
+                  <span
+                    key={specialty}
+                    className={`px-2 py-0.5 text-xs font-medium rounded-full ${specialtyColors[specialty] || 'bg-gray-100 text-gray-600'}`}
+                  >
+                    {specialty}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="inline-flex gap-4 justify-center mt-4 text-xl">
-        {/* LinkedIn Icon - only show if URL exists */}
-        {mentor.linkedin && (
-          <a
-            href={mentor.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${mentor.name}'s LinkedIn`}
-            className="text-teal-600 hover:text-teal-700 transition"
-            title="View LinkedIn"
+      {/* Story/Journey Section - The Sonder Element */}
+      <div className="px-6 py-3 flex-1">
+        {mentor.story && (
+          <div className="border-l-2 border-teal-300/60 pl-3">
+            <p className="text-sm text-gray-600 italic leading-relaxed line-clamp-3">
+              "{mentor.story}"
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Action Zone */}
+      <div className="px-6 pb-6 pt-2 mt-auto">
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={() => onBook(mentor)}
+            className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-xl hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-          </a>
+            <Coffee className="w-4 h-4" /> Grab a Chai
+          </button>
+
+          {/* Chai Now - Coming Soon */}
+          <div className="relative">
+            <button
+              disabled
+              className="w-full px-6 py-2 bg-gray-50 text-gray-400 font-medium rounded-xl cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+            >
+              <Zap className="w-4 h-4" /> Chai Now
+            </button>
+            <span className="absolute -top-1 -right-1 px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-[10px] font-bold rounded-full shadow">Soon</span>
+          </div>
+        </div>
+
+        {/* LinkedIn Link */}
+        {mentor.linkedin && (
+          <div className="flex justify-center mt-3">
+            <a
+              href={mentor.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${mentor.name}'s LinkedIn`}
+              className="text-teal-500 hover:text-teal-600 transition inline-flex items-center gap-1.5 text-xs font-medium"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              View Profile
+            </a>
+          </div>
         )}
       </div>
     </div>
@@ -247,8 +352,8 @@ export default function Mentor() {
     <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            ☕ Grab a Chai With…
+          <h1 className="text-4xl font-bold mb-2 text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl flex items-center justify-center gap-3">
+            <Coffee className="w-10 h-10 sm:w-12 sm:h-12 text-teal-600" /> Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
             15-minute chats with people who've been there. No formal agenda—just connect.

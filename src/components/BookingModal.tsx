@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Briefcase, FileText, Globe, Coffee, Calendar, Clock, Star, Sparkles, X } from 'lucide-react';
 
 interface BookingModalProps {
     mentor: {
@@ -17,10 +18,10 @@ interface BookingModalProps {
 
 // Session types for the V5 card-based selection
 const SESSION_TYPES = [
-    { id: 'career', icon: '💼', title: 'Career Chat', description: 'Career advice & guidance' },
-    { id: 'resume', icon: '📝', title: 'Resume Review', description: 'Get feedback on your resume' },
-    { id: 'visa', icon: '🌍', title: 'Visa / Immigration', description: 'Navigate the visa process' },
-    { id: 'chat', icon: '☕', title: 'Just Chat', description: 'No agenda, just connect' },
+    { id: 'career', icon: 'briefcase', title: 'Career Chat', description: 'Career advice & guidance' },
+    { id: 'resume', icon: 'filetext', title: 'Resume Review', description: 'Get feedback on your resume' },
+    { id: 'visa', icon: 'globe', title: 'Visa / Immigration', description: 'Navigate the visa process' },
+    { id: 'chat', icon: 'coffee', title: 'Just Chat', description: 'No agenda, just connect' },
 ];
 
 // Sample testimonials (would come from database)
@@ -47,6 +48,18 @@ function getNextDays(count: number) {
     }
     return days;
 }
+
+// Helper to render session type icons
+const SessionIcon = ({ icon, className }: { icon: string; className?: string }) => {
+    const iconClass = className || 'w-6 h-6';
+    switch (icon) {
+        case 'briefcase': return <Briefcase className={iconClass} />;
+        case 'filetext': return <FileText className={iconClass} />;
+        case 'globe': return <Globe className={iconClass} />;
+        case 'coffee': return <Coffee className={iconClass} />;
+        default: return <Coffee className={iconClass} />;
+    }
+};
 
 export default function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     const [step, setStep] = useState<'type' | 'schedule' | 'info'>('type');
@@ -165,19 +178,19 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                 {/* Header with mentor info */}
                 <div className="bg-gradient-to-br from-teal-500 via-teal-600 to-teal-700 p-6 rounded-t-2xl relative overflow-hidden">
                     {/* Decorative chai cup pattern */}
-                    <div className="absolute top-2 right-2 text-4xl opacity-20">☕</div>
+                    <div className="absolute top-2 right-2 opacity-20">
+                        <Coffee className="w-12 h-12 text-white" />
+                    </div>
 
                     <button
                         onClick={onClose}
                         className="absolute top-4 right-4 text-white/80 hover:text-white transition z-10"
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <X className="w-6 h-6" />
                     </button>
 
                     <div className="flex items-center gap-3">
-                        <span className="text-3xl">☕</span>
+                        <Coffee className="w-8 h-8 text-white" />
                         <div>
                             <h2 className="text-xl font-bold text-white">Grab a Chai with {mentor.name.split(' ')[0]}</h2>
                             <p className="text-teal-100 text-sm mt-0.5">15-minute chat • No pressure</p>
@@ -194,14 +207,14 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                 {showSuccess ? (
                     <div className="p-8 text-center">
                         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-teal-100 flex items-center justify-center">
-                            <span className="text-3xl">☕</span>
+                            <Coffee className="w-8 h-8 text-teal-600" />
                         </div>
                         <h3 className="text-xl font-bold text-gray-900">Your Chai is Scheduled!</h3>
                         <p className="text-gray-600 mt-2">
                             Check your email for the calendar invite.
                         </p>
-                        <p className="text-sm text-teal-600 mt-3 font-medium">
-                            Looking forward to connecting! 🌟
+                        <p className="text-sm text-teal-600 mt-3 font-medium flex items-center justify-center gap-1">
+                            <Sparkles className="w-4 h-4" /> Looking forward to connecting!
                         </p>
                     </div>
                 ) : (
@@ -222,11 +235,11 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                             key={type.id}
                                             onClick={() => handleTypeSelect(type.id)}
                                             className={`p-4 rounded-xl border-2 text-left transition-all hover:shadow-md hover:-translate-y-0.5 ${selectedType === type.id
-                                                    ? 'border-teal-500 bg-teal-50'
-                                                    : 'border-gray-100 hover:border-teal-200 bg-white'
+                                                ? 'border-teal-500 bg-teal-50'
+                                                : 'border-gray-100 hover:border-teal-200 bg-white'
                                                 }`}
                                         >
-                                            <span className="text-2xl">{type.icon}</span>
+                                            <SessionIcon icon={type.icon} className="w-6 h-6 text-teal-600" />
                                             <p className="font-medium text-gray-900 mt-2 text-sm">{type.title}</p>
                                             <p className="text-xs text-gray-500 mt-0.5">{type.description}</p>
                                         </button>
@@ -250,7 +263,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
 
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                        <span>📅</span> Pick a Day
+                                        <Calendar className="w-5 h-5 text-teal-600" /> Pick a Day
                                     </h3>
                                     <div className="flex gap-2 overflow-x-auto pb-2">
                                         {availableDays.map((day, idx) => {
@@ -277,7 +290,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
 
                                 <div>
                                     <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                                        <span>⏰</span> Pick a Time
+                                        <Clock className="w-5 h-5 text-teal-600" /> Pick a Time
                                     </h3>
                                     <div className="grid grid-cols-4 gap-2">
                                         {TIME_SLOTS.map((time) => {
@@ -321,9 +334,9 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                     Back
                                 </button>
 
-                                <div className="bg-teal-50 rounded-xl p-3 text-sm text-teal-800">
-                                    <span className="font-medium">
-                                        {SESSION_TYPES.find(t => t.id === selectedType)?.icon}{' '}
+                                <div className="bg-teal-50 rounded-xl p-3 text-sm text-teal-800 flex items-center gap-2">
+                                    <span className="font-medium flex items-center gap-1">
+                                        <SessionIcon icon={SESSION_TYPES.find(t => t.id === selectedType)?.icon || 'coffee'} className="w-4 h-4" />
                                         {SESSION_TYPES.find(t => t.id === selectedType)?.title}
                                     </span>
                                     {' • '}
@@ -372,7 +385,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                     disabled={isSubmitting || !menteeName || !menteeEmail}
                                     className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-xl hover:from-teal-600 hover:to-teal-700 transition shadow-lg shadow-teal-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                 >
-                                    <span>☕</span>
+                                    <Coffee className="w-5 h-5" />
                                     {isSubmitting ? 'Scheduling...' : 'Schedule Your Chai'}
                                 </button>
                             </div>
@@ -382,7 +395,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                         {!showSuccess && (
                             <div className="mt-6 pt-4 border-t border-gray-100">
                                 <div className="flex items-start gap-2 text-sm">
-                                    <span className="text-yellow-400">⭐</span>
+                                    <Star className="w-5 h-5 text-yellow-400 fill-yellow-400 flex-shrink-0" />
                                     <div>
                                         <p className="text-gray-600 italic">"{randomTestimonial.text}"</p>
                                         <p className="text-gray-400 text-xs mt-1">
