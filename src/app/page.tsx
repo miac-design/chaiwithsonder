@@ -31,7 +31,7 @@ function HowItWorksSection() {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-grid-pattern"
+      className="py-20 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div className="text-center mb-16">
@@ -370,7 +370,7 @@ export default function Home() {
           GET INVOLVED (LIGHT)
           ============================= */}
       <motion.section
-        className="py-24 px-4 bg-grid-pattern"
+        className="py-24 px-4"
       >
         <div className="max-w-5xl mx-auto">
           <h2 className="heading-serif text-3xl md:text-4xl text-center mb-4">

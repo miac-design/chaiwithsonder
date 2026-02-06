@@ -182,21 +182,6 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
       </button>
 
       <div className="inline-flex gap-4 justify-center mt-4 text-xl">
-        {/* Calendly Icon - only show if URL exists */}
-        {mentor.calendly && (
-          <a
-            href={mentor.calendly}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Book a session with ${mentor.name}`}
-            className="text-teal-500 hover:text-teal-600 transition"
-            title="Book via Calendly"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a.75.75 0 00.75-.75V6.75A2.25 2.25 0 0018 4.5H6A2.25 2.25 0 003.75 6.75v13.5c0 .414.336.75.75.75z" />
-            </svg>
-          </a>
-        )}
         {/* LinkedIn Icon - only show if URL exists */}
         {mentor.linkedin && (
           <a
