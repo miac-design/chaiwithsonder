@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import VideoCall from '@/components/VideoCall';
 import Link from 'next/link';
 
-export default function VideoCallPage() {
+function VideoCallContent() {
     const searchParams = useSearchParams();
     const roomId = searchParams.get('room') || '';
     const partnerName = searchParams.get('partner') || 'Your Partner';
@@ -111,5 +111,17 @@ export default function VideoCallPage() {
                 }}
             />
         </div>
+    );
+}
+
+export default function VideoCallPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+                <div className="text-white text-lg">Loading...</div>
+            </div>
+        }>
+            <VideoCallContent />
+        </Suspense>
     );
 }

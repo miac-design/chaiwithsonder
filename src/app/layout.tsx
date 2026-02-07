@@ -18,29 +18,29 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
     title: "ChaiChat — Community-Driven Mentoring Platform",
     description:
-          "Connect with mentors who understand your journey. A learning and mentorship community where every story matters.",
+        "Connect with mentors who understand your journey. A learning and mentorship community where every story matters.",
     keywords: ["mentoring", "mentorship", "community", "accountability", "career growth", "peer learning"],
     openGraph: {
-          title: "ChaiChat — Where Sonder Becomes Connection",
-          description: "A learning and mentorship community where every story matters.",
-          url: "https://chaichathub.com",
-          siteName: "ChaiChat",
-          type: "website",
+        title: "ChaiChat — Where Sonder Becomes Connection",
+        description: "A learning and mentorship community where every story matters.",
+        url: "https://chaichathub.com",
+        siteName: "ChaiChat",
+        type: "website",
     },
     twitter: {
-          card: "summary_large_image",
-          title: "ChaiChat — Community-Driven Mentoring Platform",
-          description: "Connect with mentors who understand your journey.",
+        card: "summary_large_image",
+        title: "ChaiChat — Community-Driven Mentoring Platform",
+        description: "Connect with mentors who understand your journey.",
     },
     icons: {
-          icon: [
+        icon: [
             { url: "/favicon.ico", sizes: "any" },
             { url: "/favicon.png", type: "image/png", sizes: "96x96" },
-                ],
-          shortcut: "/favicon.ico",
-          apple: [
+        ],
+        shortcut: "/favicon.ico",
+        apple: [
             { url: "/favicon.png", sizes: "180x180", type: "image/png" },
-                ],
+        ],
     },
 };
 
@@ -50,13 +50,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-          <html
-                  lang="en"
-                  className={`${inter.variable} ${merriweather.variable} font-sans`}
-                >
-                <body className="min-h-screen bg-gray-50 text-gray-900">
-                        <ClientLayout>{children}</ClientLayout>ClientLayout>
-                </body>body>
-          </html>html>
-        );
-}</html>
+        <html
+            lang="en"
+            className={`${inter.variable} ${merriweather.variable} font-sans`}
+        >
+            <body className="min-h-screen bg-gray-50 text-gray-900">
+                <ClientLayout>{children}</ClientLayout>
+            </body>
+        </html>
+    );
+}
