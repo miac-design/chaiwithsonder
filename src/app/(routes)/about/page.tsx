@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Users, Sprout, Globe, ExternalLink } from 'lucide-react';
 
 export const dynamic = "force-dynamic";
 
@@ -186,6 +187,32 @@ export default function About() {
           </motion.div>
         </section>
 
+        {/* Austin AI Hub Connection */}
+        <section className="py-8">
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-gradient-to-r from-teal-50/80 to-white rounded-2xl border border-teal-100 p-6 flex items-start gap-4">
+              <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                <Users className="w-5 h-5 text-teal-600" />
+              </div>
+              <div>
+                <p className="text-gray-700 leading-relaxed">
+                  ChaiChat Hub is a community initiative of{' '}
+                  <a
+                    href="https://austinaihub.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-600 font-semibold hover:text-teal-700 inline-flex items-center gap-1 transition-colors"
+                  >
+                    Austin AI Hub
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  , Austin's nonprofit dedicated to making AI accessible to everyone. Through workshops, events, and mentorship, we're building a community where technology serves humanity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* What is Sonder - Elegant Quote */}
         <section className="py-12">
           <div className="max-w-3xl mx-auto text-center">
@@ -255,16 +282,16 @@ export default function About() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: '👥', title: 'Community', desc: 'We believe in the power of community and the strength that comes from supporting one another.' },
-              { icon: '🌱', title: 'Growth', desc: 'We foster an environment where continuous learning and personal development thrive.' },
-              { icon: '🌍', title: 'Accessibility', desc: 'We make mentorship accessible to everyone, regardless of background or circumstances.' },
+              { icon: <Users className="w-8 h-8 text-teal-600" />, title: 'Community', desc: 'We believe in the power of community and the strength that comes from supporting one another.' },
+              { icon: <Sprout className="w-8 h-8 text-teal-600" />, title: 'Growth', desc: 'We foster an environment where continuous learning and personal development thrive.' },
+              { icon: <Globe className="w-8 h-8 text-teal-600" />, title: 'Accessibility', desc: 'We make mentorship accessible to everyone, regardless of background or circumstances.' },
             ].map((v) => (
               <motion.div
                 key={v.title}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center"
                 whileHover={{ y: -4 }}
               >
-                <span className="text-4xl mb-4 block">{v.icon}</span>
+                <div className="flex justify-center mb-4">{v.icon}</div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{v.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
               </motion.div>

@@ -316,6 +316,76 @@ export interface Database {
                     updated_at?: string;
                 };
             };
+            match_intake: {
+                Row: {
+                    id: string;
+                    user_id: string;
+                    desired_flavor: string;
+                    career_stage: string;
+                    preferred_vibe: string;
+                    additional_context: string | null;
+                    created_at: string;
+                    updated_at: string;
+                };
+                Insert: {
+                    id?: string;
+                    user_id: string;
+                    desired_flavor: string;
+                    career_stage: string;
+                    preferred_vibe: string;
+                    additional_context?: string | null;
+                    created_at?: string;
+                    updated_at?: string;
+                };
+                Update: {
+                    id?: string;
+                    user_id?: string;
+                    desired_flavor?: string;
+                    career_stage?: string;
+                    preferred_vibe?: string;
+                    additional_context?: string | null;
+                    created_at?: string;
+                    updated_at?: string;
+                };
+            };
+            match_results: {
+                Row: {
+                    id: string;
+                    mentee_id: string;
+                    mentor_id: string;
+                    total_score: number;
+                    expertise_score: number | null;
+                    stage_score: number | null;
+                    engagement_score: number | null;
+                    style_score: number | null;
+                    story_score: number | null;
+                    computed_at: string;
+                };
+                Insert: {
+                    id?: string;
+                    mentee_id: string;
+                    mentor_id: string;
+                    total_score: number;
+                    expertise_score?: number | null;
+                    stage_score?: number | null;
+                    engagement_score?: number | null;
+                    style_score?: number | null;
+                    story_score?: number | null;
+                    computed_at?: string;
+                };
+                Update: {
+                    id?: string;
+                    mentee_id?: string;
+                    mentor_id?: string;
+                    total_score?: number;
+                    expertise_score?: number | null;
+                    stage_score?: number | null;
+                    engagement_score?: number | null;
+                    style_score?: number | null;
+                    story_score?: number | null;
+                    computed_at?: string;
+                };
+            };
         };
         Views: Record<string, never>;
         Functions: Record<string, never>;

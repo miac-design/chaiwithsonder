@@ -3,8 +3,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Coffee, Zap, Linkedin } from 'lucide-react';
+import { Coffee, Zap, Linkedin, Sparkles, X } from 'lucide-react';
 import BookingModal from '@/components/BookingModal';
+import MatchIntakeQuiz from '@/components/MatchIntakeQuiz';
+import RecommendedMentors from '@/components/RecommendedMentors';
 
 // Modern SVG icons for badges
 const BadgeIcons = {
@@ -272,7 +274,7 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
         {mentor.story && (
           <div className="border-l-2 border-teal-300/60 pl-3">
             <p className="text-sm text-gray-600 italic leading-relaxed line-clamp-3">
-              "{mentor.story}"
+              &quot;{mentor.story}&quot;
             </p>
           </div>
         )}
@@ -324,10 +326,31 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
 
 export const dynamic = "force-dynamic";
 
+interface MatchedMentorResponse {
+  mentor_id: string;
+  name: string;
+  title: string;
+  photo?: string;
+  linkedin?: string;
+  story?: string;
+  specialties: string[];
+  chaisShared: number;
+  total_score: number;
+  expertise_score: number;
+  stage_score: number;
+  engagement_score: number;
+  style_score: number;
+  story_score: number;
+  match_reasons: string[];
+}
+
 export default function Mentor() {
   const [search, setSearch] = useState('');
   const [filteredMentors, setFilteredMentors] = useState(mentors);
   const [selectedMentor, setSelectedMentor] = useState<typeof mentors[0] | null>(null);
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [matchResults, setMatchResults] = useState<MatchedMentorResponse[] | null>(null);
+  const [isLoadingMatches, setIsLoadingMatches] = useState(false);
 
   // Debounce search input
   useEffect(() => {
@@ -347,6 +370,62 @@ export default function Mentor() {
     return () => clearTimeout(handler);
   }, [search]);
 
+  // Check localStorage for saved match results
+  useEffect(() => {
+    const saved = localStorage.getItem('sonder_match_results');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Check if results are less than 7 days old
+        if (parsed.computed_at && Date.now() - parsed.computed_at < 7 * 24 * 60 * 60 * 1000) {
+          setMatchResults(parsed.matches);
+        } else {
+          localStorage.removeItem('sonder_match_results');
+        }
+      } catch {
+        localStorage.removeItem('sonder_match_results');
+      }
+    }
+  }, []);
+
+  const handleQuizComplete = async (intake: { desired_flavor: string; career_stage: string; preferred_vibe: string; additional_context: string }) => {
+    setIsLoadingMatches(true);
+    try {
+      const response = await fetch('/api/match', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(intake),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMatchResults(data.matches);
+        setShowQuiz(false);
+        // Cache results locally
+        localStorage.setItem('sonder_match_results', JSON.stringify({
+          matches: data.matches,
+          computed_at: Date.now(),
+          intake,
+        }));
+      }
+    } catch (error) {
+      console.error('Match error:', error);
+    } finally {
+      setIsLoadingMatches(false);
+    }
+  };
+
+  const handleBookFromMatch = (mentorName: string) => {
+    const mentor = mentors.find(m => m.name === mentorName);
+    if (mentor) setSelectedMentor(mentor);
+  };
+
+  const handleRetakeQuiz = () => {
+    setMatchResults(null);
+    localStorage.removeItem('sonder_match_results');
+    setShowQuiz(true);
+  };
+
 
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 min-h-screen">
@@ -356,12 +435,56 @@ export default function Mentor() {
             <Coffee className="w-10 h-10 sm:w-12 sm:h-12 text-teal-600" /> Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            15-minute chats with people who've been there. No formal agenda—just connect.
+            15-minute chats with people who&apos;ve been there. No formal agenda—just connect.
           </p>
           <p className="mt-3 text-sm text-teal-600 font-medium">
             Career advice • Visa guidance • Resume tips • Or just chat
           </p>
         </div>
+
+        {/* Sonder Match: Quiz or Results */}
+        {showQuiz ? (
+          <div className="max-w-xl mx-auto mb-16">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6 md:p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-teal-500" />
+                  Find Your Match
+                </h2>
+                <button
+                  onClick={() => setShowQuiz(false)}
+                  className="text-gray-400 hover:text-gray-600 transition"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <MatchIntakeQuiz onComplete={handleQuizComplete} />
+            </div>
+          </div>
+        ) : matchResults ? (
+          <RecommendedMentors
+            matches={matchResults}
+            onBookMentor={handleBookFromMatch}
+            onRetakeQuiz={handleRetakeQuiz}
+          />
+        ) : (
+          /* Find Your Match CTA */
+          <div className="max-w-2xl mx-auto mb-12">
+            <button
+              onClick={() => setShowQuiz(true)}
+              className="w-full bg-gradient-to-r from-teal-50/80 to-white border border-teal-100 rounded-2xl p-6 hover:shadow-lg hover:border-teal-200 transition-all duration-300 group text-left flex items-center gap-4"
+            >
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-teal-200 transition">
+                <Sparkles className="w-6 h-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 group-hover:text-teal-700 transition">Find Your Perfect Match</h3>
+                <p className="text-sm text-gray-500">Take a quick quiz and we&apos;ll recommend mentors tailored to your journey</p>
+              </div>
+            </button>
+          </div>
+        )}
+
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto mb-8">
           <span className="absolute left-4 top-1/2 transform -translate-y-1 text-gray-400 pointer-events-none">
@@ -404,4 +527,4 @@ export default function Mentor() {
       )}
     </div>
   );
-} 
+}
