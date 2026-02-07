@@ -1,19 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: {
-    enabled: false, // disables Turbopack, uses Webpack instead
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'api.dicebear.com',
-        pathname: '/7.x/initials/svg',
-      },
-    ],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+    images: {
+          remotePatterns: [
+            {
+                      protocol: 'https',
+                      hostname: '**',
+            },
+                ],
+    },
+    eslint: {
+          ignoreDuringBuilds: true,
+    },
+    // Removed turbopack.enabled — not a valid next.config key in Next.js 15.3+
+    // Turbopack is enabled via CLI flag: next dev --turbopack
 };
-module.exports = nextConfig; 
+
+module.exports = nextConfig;
