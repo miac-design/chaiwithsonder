@@ -2,11 +2,21 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Coffee, Briefcase, Rocket, FileText, MessageCircle, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import {
+    Coffee, Briefcase, Rocket, FileText, MessageCircle,
+    ChevronLeft, ChevronRight, Sparkles, GraduationCap,
+    TrendingUp, Building2, Crown, Compass,
+    ArrowRightLeft, Wrench, ShieldQuestion, Scale, UserPlus,
+    Handshake, Ear, Target, Lightbulb,
+    ListChecks, Smile, Flame, Heart,
+    PenLine
+} from 'lucide-react';
 
-interface MatchIntakeData {
+export interface MatchIntakeData {
     desired_flavor: string;
     career_stage: string;
+    current_challenge: string;
+    support_style: string;
     preferred_vibe: string;
     additional_context: string;
 }
@@ -19,13 +29,13 @@ interface MatchIntakeQuizProps {
 const STEPS = [
     {
         id: 'desired_flavor',
-        question: 'What are you looking for right now?',
-        subtitle: 'Pick the chai that fits your mood',
+        question: 'Pick your chai',
+        subtitle: 'What kind of conversation are you looking for?',
         options: [
             { value: 'career', label: 'Career Cardamom', desc: 'Career advice, job strategy, growth planning', icon: Briefcase },
             { value: 'startup', label: 'Startup Saffron', desc: 'Entrepreneurship, product, and founder talk', icon: Rocket },
             { value: 'resume', label: 'Resume Ginger', desc: 'Resume reviews, interview prep, job search', icon: FileText },
-            { value: 'just_chat', label: 'Just Chat', desc: 'No agenda, just a good conversation', icon: MessageCircle },
+            { value: 'just_chat', label: 'Just Chat', desc: 'No agenda — just a good conversation', icon: MessageCircle },
         ],
     },
     {
@@ -33,27 +43,52 @@ const STEPS = [
         question: 'Where are you in your journey?',
         subtitle: 'This helps us find mentors a step or two ahead',
         options: [
-            { value: 'exploring', label: 'Exploring', desc: 'Still figuring out my direction' },
-            { value: 'early_career', label: 'Early Career', desc: '0-3 years of professional experience' },
-            { value: 'mid_career', label: 'Mid-Career', desc: '3-10 years, looking to level up' },
-            { value: 'senior', label: 'Senior', desc: '10+ years, leadership or specialist track' },
-            { value: 'executive', label: 'Executive', desc: 'C-suite, VP, or director level' },
+            { value: 'exploring', label: 'Exploring', desc: 'Still figuring out my direction', icon: Compass },
+            { value: 'early_career', label: 'Early Career', desc: '0–3 years of professional experience', icon: GraduationCap },
+            { value: 'mid_career', label: 'Mid-Career', desc: '3–10 years, looking to level up', icon: TrendingUp },
+            { value: 'senior', label: 'Senior', desc: '10+ years, leadership or specialist track', icon: Building2 },
+            { value: 'executive', label: 'Executive', desc: 'C-suite, VP, or director level', icon: Crown },
+        ],
+    },
+    {
+        id: 'current_challenge',
+        question: 'What are you navigating right now?',
+        subtitle: 'Pick the one that resonates most',
+        options: [
+            { value: 'career_pivot', label: 'Career Pivot', desc: 'Changing industries, roles, or direction', icon: ArrowRightLeft },
+            { value: 'skill_building', label: 'Skill Building', desc: 'Growing technical or professional skills', icon: Wrench },
+            { value: 'confidence', label: 'Confidence & Imposter Syndrome', desc: 'Feeling like I don\'t belong or am not ready', icon: ShieldQuestion },
+            { value: 'work_life', label: 'Work-Life Balance', desc: 'Managing burnout, priorities, or boundaries', icon: Scale },
+            { value: 'leadership', label: 'Leadership Growth', desc: 'Stepping into management or expanding influence', icon: UserPlus },
+        ],
+    },
+    {
+        id: 'support_style',
+        question: 'What kind of support helps you most?',
+        subtitle: 'How you like to be helped matters',
+        options: [
+            { value: 'accountability', label: 'Accountability Partner', desc: 'Someone to keep me on track and check in', icon: Handshake },
+            { value: 'experience', label: 'Voice of Experience', desc: 'Someone who\'s been there and can share lessons', icon: Coffee },
+            { value: 'listener', label: 'Just Someone Who Listens', desc: 'I need to talk it out, not be told what to do', icon: Ear },
+            { value: 'challenger', label: 'Honest Challenger', desc: 'Push me, ask hard questions, don\'t sugarcoat', icon: Target },
+            { value: 'brainstorm', label: 'Brainstorm Partner', desc: 'Think through ideas and possibilities together', icon: Lightbulb },
         ],
     },
     {
         id: 'preferred_vibe',
-        question: "What\u2019s your vibe?",
-        subtitle: 'We match you with mentors who communicate your way',
+        question: 'What energy do you want from your mentor?',
+        subtitle: 'We\'ll match you with someone who communicates your way',
         options: [
-            { value: 'casual', label: 'Casual & Friendly', desc: 'Relaxed, conversational, like chatting with a friend' },
-            { value: 'structured', label: 'Structured & Goal-Oriented', desc: 'Clear agenda, actionable takeaways' },
-            { value: 'in_between', label: 'Somewhere in Between', desc: 'Flexible, depends on the topic' },
+            { value: 'structured', label: 'Structured & Goal-Oriented', desc: 'Clear agenda, actionable takeaways', icon: ListChecks },
+            { value: 'casual', label: 'Warm & Casual', desc: 'Relaxed, conversational, like chatting with a friend', icon: Smile },
+            { value: 'challenge_me', label: 'Push Me Hard', desc: 'Direct, high-expectations, growth-focused', icon: Flame },
+            { value: 'calm', label: 'Calm & Patient', desc: 'Gentle, empathetic, no pressure', icon: Heart },
         ],
     },
     {
         id: 'additional_context',
-        question: 'Tell us a bit about you',
-        subtitle: 'Optional — helps us find even better matches',
+        question: 'One thing you want your mentor to know',
+        subtitle: 'Optional — but it helps us find a deeper match',
         isTextInput: true,
     },
 ];
@@ -63,6 +98,8 @@ export default function MatchIntakeQuiz({ onComplete, onClose }: MatchIntakeQuiz
     const [answers, setAnswers] = useState<MatchIntakeData>({
         desired_flavor: '',
         career_stage: '',
+        current_challenge: '',
+        support_style: '',
         preferred_vibe: '',
         additional_context: '',
     });
@@ -134,12 +171,19 @@ export default function MatchIntakeQuiz({ onComplete, onClose }: MatchIntakeQuiz
 
                     {step.isTextInput ? (
                         <div className="max-w-lg mx-auto space-y-4">
-                            <textarea
-                                value={answers.additional_context}
-                                onChange={(e) => handleTextChange(e.target.value)}
-                                placeholder="Share anything you'd like — your background, what you're working on, or what you hope to get from mentorship..."
-                                className="w-full h-32 p-4 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-0 outline-none resize-none text-gray-700 placeholder-gray-400 transition-colors"
-                            />
+                            <div className="relative">
+                                <PenLine className="absolute top-4 left-4 w-5 h-5 text-gray-300" />
+                                <textarea
+                                    value={answers.additional_context}
+                                    onChange={(e) => handleTextChange(e.target.value)}
+                                    maxLength={200}
+                                    placeholder="e.g. I'm an international student trying to break into tech, feeling stuck and unsure where to start..."
+                                    className="w-full h-32 p-4 pl-12 rounded-xl border-2 border-gray-200 focus:border-teal-400 focus:ring-0 outline-none resize-none text-gray-700 placeholder-gray-400 transition-colors"
+                                />
+                                <span className="absolute bottom-3 right-3 text-xs text-gray-300">
+                                    {answers.additional_context.length}/200
+                                </span>
+                            </div>
                             <button
                                 onClick={handleSubmit}
                                 disabled={isSubmitting}
@@ -176,8 +220,8 @@ export default function MatchIntakeQuiz({ onComplete, onClose }: MatchIntakeQuiz
                                         key={option.value}
                                         onClick={() => handleSelect(option.value)}
                                         className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 flex items-start gap-3 ${isSelected
-                                                ? 'border-teal-500 bg-teal-50 shadow-sm'
-                                                : 'border-gray-200 hover:border-teal-300 hover:bg-gray-50'
+                                            ? 'border-teal-500 bg-teal-50 shadow-sm'
+                                            : 'border-gray-200 hover:border-teal-300 hover:bg-gray-50'
                                             }`}
                                         whileHover={{ scale: 1.01 }}
                                         whileTap={{ scale: 0.99 }}

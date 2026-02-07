@@ -11,9 +11,11 @@
 // ==========================================
 
 export interface MatchIntake {
-    desired_flavor: string;   // 'career' | 'startup' | 'resume' | 'just_chat'
-    career_stage: string;     // 'exploring' | 'early_career' | 'mid_career' | 'senior' | 'executive'
-    preferred_vibe: string;   // 'casual' | 'structured' | 'in_between'
+    desired_flavor: string;     // 'career' | 'startup' | 'resume' | 'just_chat'
+    career_stage: string;       // 'exploring' | 'early_career' | 'mid_career' | 'senior' | 'executive'
+    current_challenge?: string; // 'career_pivot' | 'skill_building' | 'confidence' | 'work_life' | 'leadership'
+    support_style?: string;     // 'accountability' | 'experience' | 'listener' | 'challenger' | 'brainstorm'
+    preferred_vibe: string;     // 'structured' | 'casual' | 'challenge_me' | 'calm'
     additional_context?: string;
 }
 
@@ -89,6 +91,20 @@ const STYLE_COMPATIBILITY: Record<string, Record<string, number>> = {
         'casual': 0.3,
         'storyteller': 0.5,
     },
+    'challenge_me': {
+        'direct': 1.0,
+        'structured': 0.8,
+        'analytical': 0.7,
+        'casual': 0.3,
+        'storyteller': 0.4,
+    },
+    'calm': {
+        'storyteller': 1.0,
+        'casual': 0.9,
+        'structured': 0.5,
+        'direct': 0.2,
+        'analytical': 0.6,
+    },
     'in_between': {
         'casual': 0.7,
         'storyteller': 0.7,
@@ -96,6 +112,15 @@ const STYLE_COMPATIBILITY: Record<string, Record<string, number>> = {
         'direct': 0.7,
         'analytical': 0.7,
     },
+};
+
+// Support style compatibility with mentor communication style
+const SUPPORT_COMPATIBILITY: Record<string, Record<string, number>> = {
+    'accountability': { 'structured': 1.0, 'direct': 0.9, 'analytical': 0.7, 'casual': 0.4, 'storyteller': 0.5 },
+    'experience': { 'storyteller': 1.0, 'casual': 0.8, 'structured': 0.7, 'direct': 0.6, 'analytical': 0.6 },
+    'listener': { 'casual': 1.0, 'storyteller': 0.9, 'structured': 0.3, 'direct': 0.2, 'analytical': 0.4 },
+    'challenger': { 'direct': 1.0, 'structured': 0.8, 'analytical': 0.7, 'casual': 0.3, 'storyteller': 0.4 },
+    'brainstorm': { 'casual': 0.9, 'storyteller': 0.8, 'analytical': 0.8, 'structured': 0.6, 'direct': 0.5 },
 };
 
 // ==========================================
@@ -214,12 +239,13 @@ export function computeMatchScores(
     const hasEmbeddings = menteeEmbedding && menteeEmbedding.length > 0 &&
         eligible.some(m => m.embedding_vector && m.embedding_vector.length > 0);
 
-    // Signal weights
-    const expertiseWeight = hasEmbeddings ? 0.30 : 0.40; // absorb 10% if no embeddings
-    const stageWeight = 0.25;
-    const engagementWeight = 0.20;
-    const styleWeight = 0.15;
+    // Signal weights — redistributed for 6-question quiz
+    const expertiseWeight = hasEmbeddings ? 0.25 : 0.30;
+    const stageWeight = 0.20;
+    const engagementWeight = 0.15;
+    const styleWeight = 0.20; // now combines vibe + support style
     const storyWeight = hasEmbeddings ? 0.10 : 0;
+    const challengeWeight = 0.10; // new signal from current_challenge
 
     // Derive mentee learning goals from flavor + context
     const menteeGoals = deriveLearningGoals(intake);
@@ -232,7 +258,12 @@ export function computeMatchScores(
         );
         const stageScore = computeStageScore(mentor.growth_stage, intake.career_stage);
         const engagementScore = computeEngagementScore(mentor);
-        const styleScore = computeStyleScore(intake.preferred_vibe, mentor.communication_style);
+        const vibeScore = computeStyleScore(intake.preferred_vibe, mentor.communication_style);
+        const supportScore = intake.support_style
+            ? computeSupportScore(intake.support_style, mentor.communication_style)
+            : vibeScore;
+        const styleScore = (vibeScore * 0.5) + (supportScore * 0.5);
+        const challengeScore = computeChallengeScore(intake.current_challenge, mentor.specialties);
 
         let storyScore = 0;
         if (hasEmbeddings && mentor.embedding_vector && mentor.embedding_vector.length > 0 && menteeEmbedding) {
@@ -244,10 +275,14 @@ export function computeMatchScores(
             (stageScore * stageWeight) +
             (engagementScore * engagementWeight) +
             (styleScore * styleWeight) +
-            (storyScore * storyWeight);
+            (storyScore * storyWeight) +
+            (challengeScore * challengeWeight);
 
-        // Generate match reasons (top 2)
-        const reasons = generateMatchReasons(expertiseScore, stageScore, engagementScore, styleScore, storyScore);
+        // Generate narrative match reasons (top 2)
+        const reasons = generateMatchReasons(
+            expertiseScore, stageScore, engagementScore, styleScore, storyScore, challengeScore,
+            intake, mentor
+        );
 
         return {
             mentor,
@@ -321,8 +356,68 @@ function deriveLearningGoals(intake: MatchIntake): string[] {
             break;
     }
 
+    // From current challenge
+    switch (intake.current_challenge) {
+        case 'career_pivot':
+            goals.push('career change', 'transition', 'pivot');
+            break;
+        case 'skill_building':
+            goals.push('skill development', 'technical growth', 'upskilling');
+            break;
+        case 'confidence':
+            goals.push('mentorship', 'guidance', 'support');
+            break;
+        case 'work_life':
+            goals.push('balance', 'wellbeing', 'boundaries');
+            break;
+        case 'leadership':
+            goals.push('leadership', 'management', 'influence');
+            break;
+    }
+
     return goals;
 }
+
+function computeSupportScore(supportStyle: string, mentorStyle: string | undefined): number {
+    if (!mentorStyle) return 0.7;
+    const map = SUPPORT_COMPATIBILITY[supportStyle];
+    if (!map) return 0.7;
+    return map[mentorStyle.toLowerCase()] ?? 0.5;
+}
+
+const CHALLENGE_SPECIALTY_MAP: Record<string, string[]> = {
+    'career_pivot': ['Career', 'Consulting', 'Product'],
+    'skill_building': ['Tech', 'Engineering', 'Data', 'AI/ML'],
+    'confidence': [], // universal — no specialty filter
+    'work_life': ['Leadership', 'Consulting'],
+    'leadership': ['Leadership', 'Big Tech', 'Startup'],
+};
+
+function computeChallengeScore(challenge: string | undefined, mentorSpecialties: string[]): number {
+    if (!challenge) return 0.5;
+    const wanted = CHALLENGE_SPECIALTY_MAP[challenge] || [];
+    if (wanted.length === 0) return 0.7; // universal challenges match broadly
+    const overlap = wanted.filter(w =>
+        mentorSpecialties.some(s => s.toLowerCase().includes(w.toLowerCase()))
+    ).length;
+    return Math.min(overlap / Math.max(wanted.length, 1) + 0.3, 1.0);
+}
+
+const CHALLENGE_LABELS: Record<string, string> = {
+    'career_pivot': 'navigating a career pivot',
+    'skill_building': 'building new skills',
+    'confidence': 'building confidence',
+    'work_life': 'finding balance',
+    'leadership': 'growing as a leader',
+};
+
+const SUPPORT_LABELS: Record<string, string> = {
+    'accountability': 'accountability',
+    'experience': 'real-world experience',
+    'listener': 'empathy and listening',
+    'challenger': 'honest feedback',
+    'brainstorm': 'brainstorming together',
+};
 
 function generateMatchReasons(
     expertise: number,
@@ -330,17 +425,46 @@ function generateMatchReasons(
     engagement: number,
     style: number,
     story: number,
+    challenge: number,
+    intake: MatchIntake,
+    mentor: MentorProfile,
 ): string[] {
-    const scored = [
-        { score: expertise, label: 'Strong expertise overlap' },
-        { score: stage, label: 'Similar career stage' },
-        { score: engagement, label: 'Highly engaged mentor' },
-        { score: style, label: 'Great communication fit' },
-        { score: story, label: 'Similar life journey' },
-    ];
+    const reasons: { score: number; label: string }[] = [];
 
-    return scored
-        .filter(s => s.score >= 0.6)
+    // Narrative reasons based on actual quiz answers
+    if (expertise >= 0.6) {
+        reasons.push({ score: expertise, label: `${mentor.name.split(' ')[0]} has deep expertise in areas you care about` });
+    }
+    if (stage >= 0.8) {
+        reasons.push({ score: stage, label: `Just a step ahead in career stage — ideal for mentoring` });
+    }
+    if (engagement >= 0.7) {
+        reasons.push({ score: engagement, label: `Highly active mentor with ${mentor.chaisShared}+ chais shared` });
+    }
+    if (style >= 0.7) {
+        const supportLabel = intake.support_style ? SUPPORT_LABELS[intake.support_style] : null;
+        if (supportLabel) {
+            reasons.push({ score: style, label: `Mentors with ${supportLabel} — exactly what you asked for` });
+        } else {
+            reasons.push({ score: style, label: `Communication style aligns with your vibe` });
+        }
+    }
+    if (challenge >= 0.7 && intake.current_challenge) {
+        const challengeLabel = CHALLENGE_LABELS[intake.current_challenge];
+        if (challengeLabel) {
+            reasons.push({ score: challenge, label: `Has helped others ${challengeLabel}` });
+        }
+    }
+    if (story >= 0.6) {
+        reasons.push({ score: story, label: `Similar life journey and background` });
+    }
+
+    // Fallback if nothing scored high enough
+    if (reasons.length === 0) {
+        reasons.push({ score: 0.5, label: `A well-rounded mentor with broad experience` });
+    }
+
+    return reasons
         .sort((a, b) => b.score - a.score)
         .slice(0, 2)
         .map(s => s.label);

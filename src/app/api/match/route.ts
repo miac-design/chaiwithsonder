@@ -175,6 +175,8 @@ export async function POST(request: Request) {
         const intake: MatchIntake = {
             desired_flavor: body.desired_flavor,
             career_stage: body.career_stage,
+            current_challenge: body.current_challenge,
+            support_style: body.support_style,
             preferred_vibe: body.preferred_vibe,
             additional_context: body.additional_context,
         };

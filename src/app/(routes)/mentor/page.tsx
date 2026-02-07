@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Coffee, Zap, Linkedin, Sparkles, X } from 'lucide-react';
 import BookingModal from '@/components/BookingModal';
 import MatchIntakeQuiz from '@/components/MatchIntakeQuiz';
+import type { MatchIntakeData } from '@/components/MatchIntakeQuiz';
 import RecommendedMentors from '@/components/RecommendedMentors';
 
 // Modern SVG icons for badges
@@ -350,6 +351,7 @@ export default function Mentor() {
   const [selectedMentor, setSelectedMentor] = useState<typeof mentors[0] | null>(null);
   const [showQuiz, setShowQuiz] = useState(false);
   const [matchResults, setMatchResults] = useState<MatchedMentorResponse[] | null>(null);
+  const [intakeData, setIntakeData] = useState<MatchIntakeData | null>(null);
   const [isLoadingMatches, setIsLoadingMatches] = useState(false);
 
   // Debounce search input
@@ -379,6 +381,7 @@ export default function Mentor() {
         // Check if results are less than 7 days old
         if (parsed.computed_at && Date.now() - parsed.computed_at < 7 * 24 * 60 * 60 * 1000) {
           setMatchResults(parsed.matches);
+          if (parsed.intake) setIntakeData(parsed.intake);
         } else {
           localStorage.removeItem('sonder_match_results');
         }
@@ -388,7 +391,7 @@ export default function Mentor() {
     }
   }, []);
 
-  const handleQuizComplete = async (intake: { desired_flavor: string; career_stage: string; preferred_vibe: string; additional_context: string }) => {
+  const handleQuizComplete = async (intake: MatchIntakeData) => {
     setIsLoadingMatches(true);
     try {
       const response = await fetch('/api/match', {
@@ -400,6 +403,7 @@ export default function Mentor() {
       if (response.ok) {
         const data = await response.json();
         setMatchResults(data.matches);
+        setIntakeData(intake);
         setShowQuiz(false);
         // Cache results locally
         localStorage.setItem('sonder_match_results', JSON.stringify({
@@ -422,6 +426,7 @@ export default function Mentor() {
 
   const handleRetakeQuiz = () => {
     setMatchResults(null);
+    setIntakeData(null);
     localStorage.removeItem('sonder_match_results');
     setShowQuiz(true);
   };
@@ -464,6 +469,7 @@ export default function Mentor() {
         ) : matchResults ? (
           <RecommendedMentors
             matches={matchResults}
+            intake={intakeData || undefined}
             onBookMentor={handleBookFromMatch}
             onRetakeQuiz={handleRetakeQuiz}
           />
