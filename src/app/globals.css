@@ -15,9 +15,9 @@
   --chai-dark: #0F172A;
   --chai-navy: #1E293B;
 
-  /* Brand accents - EDRON-inspired */
-  --chai-teal: #10B981;
-  --chai-teal-dark: #059669;
+  /* Brand accents - Teal palette */
+  --chai-teal: #14b8a6;
+  --chai-teal-dark: #0d9488;
   --chai-sky: #0EA5E9;
   --chai-sky-light: #38BDF8;
 
@@ -29,9 +29,9 @@
 
   --foreground-rgb: 15, 23, 42;
 
-  /* EDRON AI-Inspired Design Tokens */
-  --edron-teal: #10B981;
-  --edron-teal-dark: #059669;
+  /* Design Tokens */
+  --edron-teal: #14b8a6;
+  --edron-teal-dark: #0d9488;
   --edron-blue: #3B82F6;
   --edron-dark: #0A1128;
   --edron-light: #F8FAFC;
@@ -138,14 +138,14 @@ body {
   /* Accent Button - Teal */
   .btn-accent {
     @apply px-6 py-3 rounded-full font-semibold transition-all duration-300;
-    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     color: white;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
   }
 
   .btn-accent:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
   }
 
   /* ================================
@@ -289,14 +289,29 @@ body {
   /* Teal primary button */
   .btn-teal {
     @apply px-8 py-4 rounded-full font-semibold transition-all duration-300;
-    background: linear-gradient(135deg, var(--edron-teal) 0%, var(--edron-teal-dark) 100%);
+    background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
     color: white;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
   }
 
   .btn-teal:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45);
+  }
+
+  /* Teal secondary (outline) button */
+  .btn-teal-outline {
+    @apply px-8 py-4 rounded-full font-semibold transition-all duration-300;
+    background: transparent;
+    border: 2px solid #14b8a6;
+    color: #14b8a6;
+  }
+
+  .btn-teal-outline:hover {
+    background: #14b8a6;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
   }
 
   /* Pulsing button animation */
@@ -402,11 +417,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
   }
 
   50% {
-    box-shadow: 0 4px 25px rgba(16, 185, 129, 0.6);
+    box-shadow: 0 4px 25px rgba(13, 148, 136, 0.6);
   }
 }
 
