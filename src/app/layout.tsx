@@ -1,53 +1,62 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Merriweather } from "next/font/google";
+import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import ClientLayout from '@/components/ClientLayout';
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-space-grotesk",
-});
-
 const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-inter",
 });
 
 const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-merriweather",
+    subsets: ["latin"],
+    weight: ["400", "700"],
+    variable: "--font-merriweather",
 });
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
-  title: "Chai Chat - Community-Driven Mentoring Platform",
-  description: "Empowering growth through story-sharing and mutual support — one cup at a time.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png", sizes: "96x96" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: [
-      { url: "/favicon.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
+    title: "ChaiChat — Community-Driven Mentoring Platform",
+    description:
+          "Connect with mentors who understand your journey. A learning and mentorship community where every story matters.",
+    keywords: ["mentoring", "mentorship", "community", "accountability", "career growth", "peer learning"],
+    openGraph: {
+          title: "ChaiChat — Where Sonder Becomes Connection",
+          description: "A learning and mentorship community where every story matters.",
+          url: "https://chaichathub.com",
+          siteName: "ChaiChat",
+          type: "website",
+    },
+    twitter: {
+          card: "summary_large_image",
+          title: "ChaiChat — Community-Driven Mentoring Platform",
+          description: "Connect with mentors who understand your journey.",
+    },
+    icons: {
+          icon: [
+            { url: "/favicon.ico", sizes: "any" },
+            { url: "/favicon.png", type: "image/png", sizes: "96x96" },
+                ],
+          shortcut: "/favicon.ico",
+          apple: [
+            { url: "/favicon.png", sizes: "180x180", type: "image/png" },
+                ],
+    },
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${merriweather.variable} font-sans`}>
-      <body className="min-h-screen bg-cosmic-deep text-white">
-        <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
-  );
-}
+    return (
+          <html
+                  lang="en"
+                  className={`${inter.variable} ${merriweather.variable} font-sans`}
+                >
+                <body className="min-h-screen bg-gray-50 text-gray-900">
+                        <ClientLayout>{children}</ClientLayout>ClientLayout>
+                </body>body>
+          </html>html>
+        );
+}</html>
