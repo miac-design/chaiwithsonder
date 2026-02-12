@@ -22,12 +22,24 @@ export default function About() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            About Us
-          </h1>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-medium rounded-full mb-6">
+              Our Story
+            </span>
+            <h1 className="heading-serif text-4xl md:text-5xl lg:text-6xl mb-6">
+              Where Sonder Becomes <span className="heading-italic-accent">Connection</span>
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              A community-driven mentoring platform built on the belief that everyone has a story worth sharing and wisdom worth receiving.
+            </p>
+          </motion.div>
         </div>
+      </section>
 
         <MissionSection />
         <ValuesSection />
@@ -41,6 +53,27 @@ export default function About() {
 
         <TestimonialsSection />
         <FAQSection />
+
+        {/* CTA */}
+        <section className="py-16 text-center">
+          <h2 className="heading-serif text-3xl mb-4">
+            Ready to <span className="heading-italic-accent">Get Started?</span>
+          </h2>
+          <p className="text-gray-600 mb-8 max-w-xl mx-auto">
+            Whether you want to share your experience or find guidance, there's a place for you here.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/mentor" className="btn-teal inline-flex items-center justify-center gap-2">
+              Find a Mentor
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <Link href="/mentor/become" className="btn-secondary inline-flex items-center justify-center gap-2">
+              Become a Mentor
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -59,6 +59,12 @@ export default function Navbar() {
     ? 'text-amber-700'
     : 'text-white';
 
+  const mainNavLinks = [
+    { name: 'Find a Mentor', href: '/mentor' },
+    { name: 'Become a Mentor', href: '/mentor/become' },
+    { name: 'About', href: '/about' },
+  ];
+
   return (
     <>
       <nav
@@ -150,6 +156,17 @@ export default function Navbar() {
                 </svg>
               </button>
             </div>
+
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`lg:hidden inline-flex items-center justify-center p-2 rounded-lg hover:bg-white/10 ${
+                isScrolled || !isHomePage ? 'text-gray-700' : 'text-white'
+              }`}>
+              <motion.div animate={isMenuOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-center items-center">
+                <motion.span className="w-6 h-0.5 bg-current block" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 6 } }} />
+                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} />
+                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -6 } }} />
+              </motion.div>
+            </button>
           </div>
         </div>
 

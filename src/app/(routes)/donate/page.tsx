@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 
@@ -11,8 +12,6 @@ export default function Donate() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Here you would typically integrate with a payment processor
-    // For now, we'll just simulate a submission
     setTimeout(() => {
       setIsSubmitting(false);
       alert('Thank you for your donation! This is a demo, so no actual payment was processed.');
@@ -21,92 +20,166 @@ export default function Donate() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Support Our Mission
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-4xl mx-auto text-center">
+          {/* Glass pill badge */}
+          <div className="glass-pill inline-flex items-center gap-2 mb-6">
+            <span className="w-2 h-2 rounded-full bg-teal-500" />
+            <span>Support Meaningful Connections</span>
+          </div>
+
+          {/* Serif headline with italic accent */}
+          <h1 className="heading-serif text-4xl sm:text-5xl lg:text-6xl mb-6">
+            Fund Mentorship{' '}
+            <span className="heading-italic-accent">with Sonder</span>
           </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            Help us make mentorship accessible for all. Your donation supports our community and enables us to continue providing valuable mentoring opportunities.
+
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-12">
+            Your donation helps keep our platform free and supports mentorship for those who need it most. Every contribution creates a ripple of connection.
           </p>
         </div>
+      </section>
 
-        <div className="mt-16 max-w-lg mx-auto">
-          <div className="bg-white/90 border border-white/30 backdrop-blur-lg shadow-2xl rounded-[20px] p-8 max-w-md mx-auto flex flex-col items-center transition-all duration-300">
+      {/* Donation Form Section */}
+      <section className="relative py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-lg mx-auto">
+          {/* Donation Card */}
+          <div className="edron-card p-8">
             {/* Preset donation buttons */}
-            <div className="flex gap-3 mb-6 w-full justify-center">
-              {[10, 25, 50].map((preset) => (
+            <div className="flex gap-3 mb-8 justify-center">
+              {[10, 25, 50, 100].map((preset) => (
                 <button
                   key={preset}
                   type="button"
                   onClick={() => setAmount(String(preset))}
-                  className={`px-6 py-2 rounded-full font-bold text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2
+                  className={`px-5 py-3 rounded-xl font-semibold text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2
                     ${amount === String(preset)
-                      ? 'bg-gradient-to-r from-indigo-200 to-indigo-400 text-indigo-800 shadow-md scale-105'
-                      : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'}
+                      ? 'bg-teal-500 text-white shadow-lg shadow-teal-500/30 scale-105'
+                      : 'bg-gray-50 text-gray-700 hover:bg-teal-50 hover:text-teal-700 border border-gray-100'
+                    }
                   `}
-                  style={{ minWidth: 80 }}
                 >
                   ${preset}
                 </button>
               ))}
             </div>
-            <form onSubmit={handleSubmit} className="space-y-6 w-full">
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="amount" className="block text-xs font-medium text-gray-500 mb-1 tracking-wide">
-                  Donation Amount
+                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
+                  Custom Amount
                 </label>
-                <div className="relative flex items-center">
-                  <span className="absolute left-3 text-gray-400 text-lg pointer-events-none">$
-                  </span>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <span className="text-teal-600 text-lg font-semibold">$</span>
+                  </div>
                   <input
                     type="number"
                     name="amount"
                     id="amount"
-                    className="pl-8 pr-14 py-3 w-full rounded-xl text-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition shadow-sm bg-white/80 placeholder-gray-400"
-                    placeholder="0.00"
+                    className="block w-full pl-8 pr-16 py-4 text-lg bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition"
+                    placeholder="Enter amount"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     min="1"
                     step="1"
                     required
                   />
-                  <span className="absolute right-3 text-gray-400 text-base">USD</span>
+                  <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                    <span className="text-gray-400 text-sm">USD</span>
+                  </div>
                 </div>
               </div>
-              <div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex justify-center py-4 px-4 rounded-2xl font-bold text-lg text-white bg-gradient-to-r from-[#7f5fff] to-[#5e3bff] shadow-xl transition-all duration-200 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 disabled:opacity-60"
-                  style={{ minHeight: 56 }}
-                >
-                  {isSubmitting ? 'Processing...' : 'Donate Now'}
-                </button>
-              </div>
-            </form>
-          </div>
 
-          <div className="mt-12 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Donate?</h2>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mt-8">
-              <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support Our Community</h3>
-                <p className="text-gray-600">
-                  Your donation helps us maintain and improve our platform, ensuring that mentorship remains accessible to everyone.
-                </p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Enable Growth</h3>
-                <p className="text-gray-600">
-                  By supporting Chai Chat, you're helping individuals achieve their personal and professional goals through mentorship.
-                </p>
-              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-teal btn-pulse w-full flex items-center justify-center gap-2 text-lg py-4 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <span>Processing...</span>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <span>Donate Now</span>
+                  </>
+                )}
+              </button>
+            </form>
+
+            {/* Security note */}
+            <p className="text-center text-sm text-gray-500 mt-6 flex items-center justify-center gap-2">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Secure payment powered by Stripe
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Donate Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="heading-serif text-3xl sm:text-4xl text-center mb-4">
+            Why <span className="heading-italic-accent">Your Support</span> Matters
+          </h2>
+          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
+            Every donation directly impacts our community
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="edron-card p-8">
+              <div className="edron-step-pill mb-4">1</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Keep Mentorship Free</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Your contribution ensures that anyone can receive guidance, regardless of their financial situation.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="edron-card p-8">
+              <div className="edron-step-pill mb-4">2</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Grow Our Community</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Help us reach more people and expand the network of mentors and mentees connecting through Chai Chat.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="edron-card p-8">
+              <div className="edron-step-pill mb-4">3</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Enable Innovation</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Support the development of new features that make mentorship more accessible and impactful.
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-teal-50/50">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="heading-serif text-2xl sm:text-3xl mb-4">
+            Not ready to donate?
+          </h2>
+          <p className="text-gray-600 mb-6">
+            You can still make a difference by becoming a mentor and sharing your experience with others.
+          </p>
+          <Link href="/mentor#application" className="btn-secondary inline-flex items-center gap-2">
+            Become a Mentor
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
+        </div>
+      </section>
     </div>
   );
-} 
+}

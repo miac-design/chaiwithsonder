@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import ClientLayout from '@/components/ClientLayout';
 import SchemaMarkup from '@/components/SchemaMarkup';
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+const inter = Inter({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: {
   children: React.ReactNode;
 }) {
