@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export const dynamic = "force-dynamic";
+
 
 export default function Partner() {
   const [formData, setFormData] = useState({
@@ -152,9 +152,8 @@ export default function Partner() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                    isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
+                  className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                    }`}
                 >
                   {isSubmitting ? 'Submitting...' : 'Find My Partner'}
                 </button>
