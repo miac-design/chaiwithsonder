@@ -2,22 +2,27 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import { HeartStraight, ArrowsLeftRight, UsersThree } from '@phosphor-icons/react';
 
 const swapCards = [
     {
-        emoji: '👨‍💼→👩‍💻',
+        icon: HeartStraight,
         title: 'A CEO learning AI from a college student',
         description: 'Because fresh eyes see what experience misses.',
+        color: 'text-purple-500',
     },
     {
-        emoji: '👩‍🎓→👨‍💼',
+        icon: UsersThree,
         title: 'A new grad getting career advice from a retired exec',
         description: '30 years of wisdom, shared over one conversation.',
+        color: 'text-amber-500',
     },
     {
-        emoji: '↔️',
+        icon: ArrowsLeftRight,
         title: 'Both. At the same time.',
         description: 'Teach what you know. Learn what you don\'t. That\'s Sonder Swap.',
+        color: 'text-emerald-500',
     },
 ];
 
@@ -45,26 +50,31 @@ export default function SonderSwapTeaser() {
                     </p>
                 </motion.div>
 
-                {/* Cards */}
+                {/* Cards — Phosphor duotone for marketing sections */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    {swapCards.map((card, i) => (
-                        <motion.div
-                            key={card.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: i * 0.12 }}
-                            className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-amber-100/60 text-center group"
-                        >
-                            <div className="text-4xl mb-4">{card.emoji}</div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-snug">
-                                {card.title}
-                            </h3>
-                            <p className="text-gray-500 text-sm leading-relaxed">
-                                {card.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                    {swapCards.map((card, i) => {
+                        const Icon = card.icon;
+                        return (
+                            <motion.div
+                                key={card.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.12 }}
+                                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-amber-100/60 text-center group"
+                            >
+                                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gray-50 mb-4">
+                                    <Icon size={32} weight="duotone" className={card.color} aria-hidden="true" />
+                                </div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-snug">
+                                    {card.title}
+                                </h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">
+                                    {card.description}
+                                </p>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
                 {/* CTA */}
@@ -80,9 +90,7 @@ export default function SonderSwapTeaser() {
                         className="inline-flex items-center gap-2 px-8 py-4 bg-amber-600 text-white font-semibold rounded-xl hover:bg-amber-500 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                     >
                         Explore Sonder Swap
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        <ArrowRight className="w-5 h-5" aria-hidden="true" />
                     </Link>
                 </motion.div>
             </div>

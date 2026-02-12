@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { ArrowRight, Check } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const fadeUp = {
     initial: { opacity: 0, y: 30 },
@@ -40,7 +42,7 @@ export default function HeroSection() {
                         <motion.p
                             variants={fadeUp}
                             transition={{ duration: 0.6, delay: 0.1 }}
-                            className="mt-6 text-lg sm:text-xl text-amber-100/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+                            className="hero-description mt-6 text-lg sm:text-xl text-amber-100/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
                         >
                             ChaiChat is a free mentoring community where every story matters.
                             Get matched with real people who listen, share, and help you grow.
@@ -56,9 +58,7 @@ export default function HeroSection() {
                                 className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-teal-500 text-white hover:bg-teal-400 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 min-h-[52px]"
                             >
                                 Find a Mentor
-                                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
+                                <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
                             </Link>
                             <Link
                                 href="/mentor/become"
@@ -75,15 +75,15 @@ export default function HeroSection() {
                             className="mt-6 flex flex-wrap gap-x-6 gap-y-2 justify-center lg:justify-start text-sm text-amber-200/70"
                         >
                             <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4 text-teal-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                <Check className="w-4 h-4 text-teal-400" aria-hidden="true" />
                                 Always free
                             </span>
                             <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4 text-teal-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                <Check className="w-4 h-4 text-teal-400" aria-hidden="true" />
                                 500+ community members
                             </span>
                             <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4 text-teal-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                <Check className="w-4 h-4 text-teal-400" aria-hidden="true" />
                                 Backed by Austin AI Hub, a 501(c)(3)
                             </span>
                         </motion.div>
@@ -121,9 +121,7 @@ export default function HeroSection() {
                     transition={{ duration: 2, repeat: Infinity }}
                     className="text-white/40"
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
+                    <ChevronDown className="w-6 h-6" aria-hidden="true" />
                 </motion.div>
             </div>
         </section>

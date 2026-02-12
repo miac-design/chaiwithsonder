@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { mentors } from '@/data/mentors';
 import type { Mentor } from '@/types';
 
@@ -70,7 +71,6 @@ function MentorPreviewCard({ mentor, index }: { mentor: Mentor; index: number })
 }
 
 export default function MentorPreviewSection() {
-    // Show first 6 mentors
     const previewMentors = mentors.slice(0, 6);
 
     return (
@@ -92,7 +92,7 @@ export default function MentorPreviewSection() {
                     </p>
                 </motion.div>
 
-                {/* Mentor cards — horizontal scroll on mobile, grid on desktop */}
+                {/* Mentor cards */}
                 <div className="flex lg:grid lg:grid-cols-3 gap-6 overflow-x-auto pb-4 lg:pb-0 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 lg:mx-0 lg:px-0">
                     {previewMentors.map((mentor, i) => (
                         <MentorPreviewCard key={mentor.name} mentor={mentor} index={i} />
@@ -112,9 +112,7 @@ export default function MentorPreviewSection() {
                         className="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold text-base transition-colors"
                     >
                         See All Mentors
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>
                 </motion.div>
             </div>
