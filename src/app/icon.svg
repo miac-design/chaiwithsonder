@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="cup" x1="8" y1="24" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="50%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="46" y1="30" x2="58" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <!-- Steam wisps -->
+  <path d="M22 22 Q24 16 22 10 Q20 4 24 0" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M32 20 Q34 14 32 8 Q30 2 34 -2" stroke="#0d9488" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.4"/>
+  <path d="M42 22 Q40 16 42 10 Q44 4 40 0" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <!-- Speech bubble (small, top-right) -->
+  <rect x="42" y="4" width="16" height="12" rx="6" fill="#F5A623" opacity="0.85"/>
+  <polygon points="46,15 50,15 47,19" fill="#F5A623" opacity="0.85"/>
+  <!-- Cup body -->
+  <path d="M8 28C8 26 10 24 12 24H48C50 24 52 26 52 28V48C52 54 46 60 32 60C18 60 8 54 8 48V28Z" fill="url(#cup)"/>
+  <!-- Cup handle -->
+  <path d="M52 32H54C58 32 62 36 62 42C62 48 58 52 54 52H52" stroke="url(#handle)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <!-- Rim highlight -->
+  <ellipse cx="30" cy="26" rx="18" ry="4" fill="#5eead4" opacity="0.6"/>
+  <!-- Cup shine -->
+  <ellipse cx="20" cy="40" rx="4" ry="8" fill="white" opacity="0.15"/>
+</svg>

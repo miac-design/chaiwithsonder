@@ -5,37 +5,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Users, Sprout, Globe, ExternalLink } from 'lucide-react';
+import { menteeFaqs, mentorFaqs } from '@/data/faq-data';
 
 function FAQSection() {
   const [activeTab, setActiveTab] = useState('mentees' as 'mentees' | 'mentors');
   const [openMentee, setOpenMentee] = useState<number | null>(null);
   const [openMentor, setOpenMentor] = useState<number | null>(null);
 
-  const menteeFaqs = [
-    { q: 'How do I find the right mentor?', a: 'Use the mentor directory to explore profiles, topics, and availability that align with your goals.' },
-    { q: 'Is Chai Chat free for mentees?', a: 'Yes! Our platform is completely free for mentees seeking guidance and support.' },
-    { q: 'Can I meet with more than one mentor?', a: 'Yes, you can schedule sessions with different mentors based on your needs.' },
-    { q: 'What should I bring to my first session?', a: 'Bring curiosity and clarity. You can also jot down a few goals or challenges ahead of time.' },
-    { q: 'Can I change mentors later?', a: 'Absolutely. You\'re encouraged to find the best match for your journey.' },
-  ];
-  const mentorFaqs = [
-    { q: 'How do I become a mentor?', a: 'Click "Become a Mentor," fill out your profile, and we\'ll review it within 48 hours.' },
-    { q: 'Is there a time commitment?', a: 'No fixed time commitment — you set your availability and pace.' },
-    { q: 'Can I choose who I mentor?', a: 'Yes. You have full control over which requests you accept.' },
-    { q: 'How do badges work?', a: 'Mentors earn badges based on hours, sessions, and community engagement milestones.' },
-    { q: 'Can I pause or stop mentoring?', a: 'Yes — update your availability anytime from your dashboard.' },
-  ];
-
   const faqs = activeTab === 'mentees' ? menteeFaqs : mentorFaqs;
   const openIdx = activeTab === 'mentees' ? openMentee : openMentor;
   const setOpen = activeTab === 'mentees' ? setOpenMentee : setOpenMentor;
 
   return (
-    <section className="py-16">
+    <section id="faq" className="py-16">
       <div className="max-w-3xl mx-auto">
-        <h2 className="heading-serif text-3xl text-center mb-8">
+        <h2 className="heading-serif text-3xl text-center mb-3">
           Frequently Asked <span className="heading-italic-accent">Questions</span>
         </h2>
+        <p className="text-center text-gray-500 mb-8 text-sm">
+          Everything you need to know about ChaiChat mentorship
+        </p>
         <div className="flex justify-center mb-8 gap-3">
           <button
             className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all ${activeTab === 'mentees'
@@ -63,13 +52,13 @@ function FAQSection() {
               >
                 <span className="font-medium text-gray-900">{faq.q}</span>
                 <svg
-                  className={`w-5 h-5 text-teal-500 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-teal-500 flex-shrink-0 ml-3 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`}
                   fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-40' : 'max-h-0'}`}>
+              <div className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-60' : 'max-h-0'}`}>
                 <p className="px-5 pb-5 text-gray-600 leading-relaxed">{faq.a}</p>
               </div>
             </div>
@@ -146,7 +135,7 @@ export default function About() {
       </section>
 
       <div className="max-w-6xl mx-auto px-4">
-        {/* Founder's Story - Compact Card */}
+        {/* Founder's Story */}
         <section className="py-8">
           <motion.div
             className="relative bg-white rounded-2xl shadow-lg overflow-hidden max-w-3xl mx-auto"
@@ -156,30 +145,42 @@ export default function About() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600" />
             <div className="p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
+              <div className="flex items-start gap-5 mb-5">
+                {/* Mia's photo */}
+                <div className="flex-shrink-0">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-md ring-2 ring-teal-100">
+                    <Image
+                      src="/mia-founder.jpg"
+                      alt="Mia — Founder of ChaiChat"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">Why I Built This</h2>
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center">
+                      <svg className="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    </div>
+                    <h2 className="text-xl font-bold text-gray-900">Why I Built This</h2>
+                  </div>
+                  <p className="text-sm text-gray-500">Mia C. — Founder of ChaiChat</p>
+                </div>
               </div>
 
               <div className="space-y-3 text-gray-600 text-base leading-relaxed">
                 <p>
-                  In 2018, I came to the US searching for opportunity — no connections, no network. But strangers helped me. <strong className="text-gray-900">People I never met reviewed my resume, made introductions, and offered guidance.</strong>
+                  In 2018, I came to the US as a PhD student — no connections, no network, no idea how things worked here. After graduation, when I was looking for a job, something unexpected happened: <strong className="text-gray-900">complete strangers stepped up to help me.</strong>
                 </p>
                 <p>
-                  That experience changed me. I realized many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That's why I built Chai Chat.</strong>
+                  People I had never met reviewed my resume, made introductions, practiced mock interviews with me, and offered guidance when I felt completely lost. They didn&apos;t have to — but they did. That generosity changed my life.
                 </p>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-gray-100 flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white text-sm font-semibold">M</div>
-                <div>
-                  <p className="font-medium text-gray-900 text-sm">Mia</p>
-                  <p className="text-xs text-gray-500">Founder of Chai Chat</p>
-                </div>
+                <p>
+                  I realized that many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That&apos;s why I built ChaiChat.</strong> It&apos;s my way of paying it forward — creating a space where a simple 15-minute conversation over chai can open doors you never knew existed.
+                </p>
               </div>
             </div>
           </motion.div>
@@ -196,7 +197,7 @@ export default function About() {
                 <p className="text-gray-700 leading-relaxed">
                   ChaiChat Hub is a community initiative of{' '}
                   <a
-                    href="https://austinaihub.com"
+                    href="https://austinhub.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-teal-600 font-semibold hover:text-teal-700 inline-flex items-center gap-1 transition-colors"
@@ -204,7 +205,7 @@ export default function About() {
                     Austin AI Hub
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
-                  , Austin's nonprofit dedicated to making AI accessible to everyone. Through workshops, events, and mentorship, we're building a community where technology serves humanity.
+                  , Austin&apos;s nonprofit dedicated to making AI accessible to everyone. Through workshops, events, and mentorship, we&apos;re building a community where technology serves humanity.
                 </p>
               </div>
             </div>
@@ -232,7 +233,7 @@ export default function About() {
             </div>
 
             <p className="text-gray-600 mt-8 leading-relaxed">
-              When you mentor someone, you're not just sharing knowledge — you're acknowledging their humanity. That's Sonder in action.
+              When you mentor someone, you&apos;re not just sharing knowledge — you&apos;re acknowledging their humanity. That&apos;s Sonder in action.
             </p>
           </div>
         </section>
@@ -309,7 +310,7 @@ export default function About() {
             Ready to <span className="heading-italic-accent">Get Started?</span>
           </h2>
           <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-            Whether you want to share your experience or find guidance, there's a place for you here.
+            Whether you want to share your experience or find guidance, there&apos;s a place for you here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/mentor" className="btn-teal inline-flex items-center justify-center gap-2">
