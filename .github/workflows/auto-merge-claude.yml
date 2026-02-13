@@ -10,91 +10,60 @@ permissions:
   pull-requests: write
 
 jobs:
-  auto-merge:
-    name: Create PR and auto-merge
+  # First run the same CI checks
+  ci-check:
+    name: CI Check
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Run tests
+        run: npm test -- --passWithNoTests
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXTAUTH_SECRET: ci-test-secret
+          NEXTAUTH_URL: http://localhost:3000
+
+  # Only merge after CI passes
+  auto-merge:
+    name: Merge to main
+    needs: ci-check
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create and merge PR
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const branch = context.ref.replace('refs/heads/', '');
+      - name: Merge branch into main
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Merging $BRANCH into main..."
 
-            // Check if PR already exists for this branch
-            const { data: existingPRs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: `${context.repo.owner}:${branch}`,
-              state: 'open',
-            });
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            let pr;
+          git checkout main
+          git merge origin/$BRANCH --no-edit -m "Auto-merge $BRANCH into main"
+          git push origin main
 
-            if (existingPRs.length > 0) {
-              pr = existingPRs[0];
-              console.log(`PR #${pr.number} already exists, will merge it.`);
-            } else {
-              // Get the latest commit message for the PR title
-              const { data: commits } = await github.rest.repos.listCommits({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                sha: branch,
-                per_page: 1,
-              });
-
-              const title = commits[0].commit.message.split('\n')[0];
-
-              // Create PR
-              const { data: newPR } = await github.rest.pulls.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: title,
-                head: branch,
-                base: 'main',
-                body: `Auto-created PR from \`${branch}\`.\n\nThis PR was automatically created and will be merged.`,
-              });
-
-              pr = newPR;
-              console.log(`Created PR #${pr.number}`);
-            }
-
-            // Wait a moment for CI to register
-            await new Promise(resolve => setTimeout(resolve, 5000));
-
-            // Merge the PR
-            try {
-              await github.rest.pulls.merge({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: pr.number,
-                merge_method: 'squash',
-              });
-              console.log(`Merged PR #${pr.number} successfully!`);
-            } catch (error) {
-              console.log(`Could not merge yet: ${error.message}`);
-              console.log('Enabling auto-merge instead...');
-
-              // If immediate merge fails (e.g. branch protection), enable auto-merge
-              try {
-                await github.graphql(`
-                  mutation {
-                    enablePullRequestAutoMerge(input: {
-                      pullRequestId: "${pr.node_id}",
-                      mergeMethod: SQUASH
-                    }) {
-                      pullRequest { number }
-                    }
-                  }
-                `);
-                console.log(`Auto-merge enabled for PR #${pr.number}`);
-              } catch (autoMergeError) {
-                console.log(`Auto-merge also failed: ${autoMergeError.message}`);
-                console.log('PR created but needs manual merge.');
-              }
-            }
+          echo "Successfully merged $BRANCH into main!"
