@@ -8,7 +8,7 @@ export const metadata: Metadata = {
         template: "%s | ChaiChat",
     },
     description:
-        "Free 15-minute chats with mentors from Big Tech, startups, and academia. Connect with people who understand your journey. No fees, no agenda — just real conversations.",
+        "Free 30-minute chats with mentors from Big Tech, startups, and academia. Connect with people who understand your journey. No fees, no agenda — just real conversations.",
     keywords: ["mentoring", "mentorship", "community", "accountability", "career growth", "peer learning", "free mentorship", "career advice", "chai chat", "sonder"],
     metadataBase: new URL("https://chaichathub.com"),
     alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "ChaiChat — Where Sonder Becomes Connection",
-        description: "Free 15-minute chats with mentors from Big Tech, startups, and academia. No fees, no agenda — just real conversations.",
+        description: "Free 30-minute chats with mentors from Big Tech, startups, and academia. No fees, no agenda — just real conversations.",
         url: "https://chaichathub.com",
         siteName: "ChaiChat",
         type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "ChaiChat — Community-Driven Mentoring Platform",
-        description: "Free 15-minute chats with mentors from Big Tech, startups, and academia.",
+        description: "Free 30-minute chats with mentors from Big Tech, startups, and academia.",
         images: ["/new-hero.jpg"],
     },
     robots: {
@@ -66,7 +66,7 @@ const jsonLd = {
     alternateName: "ChaiChatHub",
     url: "https://chaichathub.com",
     logo: "https://chaichathub.com/logo-new.png",
-    description: "A free, community-driven mentorship platform where every story matters. Free 15-minute chats with mentors from Big Tech, startups, and academia.",
+    description: "A free, community-driven mentorship platform where every story matters. Free 30-minute chats with mentors from Big Tech, startups, and academia.",
     foundingDate: "2024",
     parentOrganization: {
         "@type": "Organization",
@@ -86,7 +86,7 @@ const jsonLd = {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        description: "Free 15-minute mentorship sessions",
+        description: "Free 30-minute mentorship sessions",
     },
 };
 
@@ -135,7 +135,7 @@ const faqJsonLd = {
         },
         {
             "@type": "Question",
-            name: "What happens during a 15-minute chai session?",
+            name: "What happens during a 30-minute chai session?",
             acceptedAnswer: {
                 "@type": "Answer",
                 text: "Think of it as a focused, friendly conversation over a virtual cup of chai. You can ask questions, get advice, discuss challenges, or just listen to someone who has walked a similar path. No pressure, no agenda — just real human connection.",
@@ -171,7 +171,7 @@ const faqJsonLd = {
             name: "How much time do I need to commit as a mentor?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "There's no fixed time commitment. You set your own availability — whether that's one 15-minute session per week or several per month. Mentor on your schedule.",
+                text: "There's no fixed time commitment. You set your own availability — whether that's one 30-minute session per week or several per month. Mentor on your schedule.",
             },
         },
         {

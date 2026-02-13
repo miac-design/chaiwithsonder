@@ -12,7 +12,7 @@ export const menteeFaqs = [
     a: 'Absolutely. We encourage you to connect with different mentors for different needs — career advice, technical skills, interview prep, or personal growth. There are no limits.',
   },
   {
-    q: 'What happens during a 15-minute chai session?',
+    q: 'What happens during a 30-minute chai session?',
     a: 'Think of it as a focused, friendly conversation over a virtual cup of chai. You can ask questions, get advice, discuss challenges, or just listen to someone who has walked a similar path. No pressure, no agenda — just real human connection.',
   },
   {
@@ -32,7 +32,7 @@ export const mentorFaqs = [
   },
   {
     q: 'How much time do I need to commit as a mentor?',
-    a: "There's no fixed time commitment. You set your own availability — whether that's one 15-minute session per week or several per month. Mentor on your schedule.",
+    a: "There's no fixed time commitment. You set your own availability — whether that's one 30-minute session per week or several per month. Mentor on your schedule.",
   },
   {
     q: 'Can I choose who I mentor?',

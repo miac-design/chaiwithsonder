@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Search, UserPlus, ChevronDown, ArrowRight, Quote } from "lucide-react";
 import LiveNowFeed from "@/components/LiveNowFeed";
 
 const staggerContainer = {
@@ -77,7 +78,7 @@ function HowItWorksSection() {
           >
             <div className="edron-step-pill mx-auto mb-6">3</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Book a Free 15-Min Chat
+              Book a Free 30-Min Chat
             </h3>
             <p className="text-gray-600 leading-relaxed">
               Pick a time, grab a virtual chai, and have a real conversation. No agenda required.
@@ -149,9 +150,7 @@ function SocialProofSection() {
               transition={{ delay: 0.4 + idx * 0.15 }}
             >
               <div className="flex items-start gap-3 mb-4">
-                <svg className="w-8 h-8 text-teal-300 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
+                <Quote className="w-8 h-8 text-teal-300 flex-shrink-0 mt-1" />
                 <p className="text-gray-600 leading-relaxed italic">{t.quote}</p>
               </div>
               <div className="flex items-center gap-3 ml-11">
@@ -225,7 +224,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Free 15-minute chats with mentors from Big Tech, startups, and academia. No agenda needed.
+            Free 30-minute chats with mentors from Big Tech, startups, and academia. No agenda needed.
           </motion.p>
 
           <motion.div
@@ -238,20 +237,14 @@ export default function Home() {
               href="/mentor"
               className="btn-teal btn-pulse flex items-center justify-center gap-2 text-lg"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <Search className="w-6 h-6" />
               <span>Find a Mentor</span>
             </Link>
             <Link
               href="/mentor/become"
               className="btn-teal-outline flex items-center justify-center gap-2 text-lg"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <UserPlus className="w-6 h-6" />
               <span>Become a Mentor</span>
             </Link>
           </motion.div>
@@ -272,9 +265,7 @@ export default function Home() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-white/50">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
+          <ChevronDown className="w-8 h-8 text-white/50" />
         </motion.div>
       </motion.section>
 
@@ -307,9 +298,7 @@ export default function Home() {
                 className="text-teal-600 font-medium hover:text-teal-700 inline-flex items-center gap-2"
               >
                 See all live mentors
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="w-full lg:w-96">

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Users, Sprout, Globe, ExternalLink } from 'lucide-react';
+import { Users, Sprout, Globe, ExternalLink, Heart, Zap, Eye, ChevronDown, ArrowRight } from 'lucide-react';
 import { menteeFaqs, mentorFaqs } from '@/data/faq-data';
 
 function FAQSection() {
@@ -51,12 +51,7 @@ function FAQSection() {
                 onClick={() => setOpen(openIdx === idx ? null : idx)}
               >
                 <span className="font-medium text-gray-900">{faq.q}</span>
-                <svg
-                  className={`w-5 h-5 text-teal-500 flex-shrink-0 ml-3 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`}
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <ChevronDown className={`w-5 h-5 text-teal-500 flex-shrink-0 ml-3 transition-transform ${openIdx === idx ? 'rotate-180' : ''}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-60' : 'max-h-0'}`}>
                 <p className="px-5 pb-5 text-gray-600 leading-relaxed">{faq.a}</p>
@@ -161,9 +156,7 @@ export default function About() {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center">
-                      <svg className="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
+                      <Heart className="w-4 h-4 text-teal-600" />
                     </div>
                     <h2 className="text-xl font-bold text-gray-900">Why I Built This</h2>
                   </div>
@@ -179,7 +172,7 @@ export default function About() {
                   People I had never met reviewed my resume, made introductions, practiced mock interviews with me, and offered guidance when I felt completely lost. They didn&apos;t have to — but they did. That generosity changed my life.
                 </p>
                 <p>
-                  I realized that many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That&apos;s why I built ChaiChat.</strong> It&apos;s my way of paying it forward — creating a space where a simple 15-minute conversation over chai can open doors you never knew existed.
+                  I realized that many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That&apos;s why I built ChaiChat.</strong> It&apos;s my way of paying it forward — creating a space where a simple 30-minute conversation over chai can open doors you never knew existed.
                 </p>
               </div>
             </div>
@@ -246,9 +239,7 @@ export default function About() {
               whileHover={{ y: -4 }}
             >
               <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+                <Zap className="w-6 h-6 text-teal-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -261,10 +252,7 @@ export default function About() {
               whileHover={{ y: -4 }}
             >
               <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
+                <Eye className="w-6 h-6 text-teal-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Our Vision</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -315,9 +303,7 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/mentor" className="btn-teal inline-flex items-center justify-center gap-2">
               Find a Mentor
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/mentor/become" className="btn-secondary inline-flex items-center justify-center gap-2">
               Become a Mentor
