@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Smartphone } from 'lucide-react';
 import AnimatedLogo from './AnimatedLogo';
 
 const navLinks = [
@@ -173,13 +173,21 @@ export default function Navbar() {
                     </Link>
                   );
                 })}
-                <div className="pt-3 border-t border-gray-100">
+                <div className="pt-3 border-t border-gray-100 space-y-1">
                   <Link
                     href="/login"
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 rounded-lg text-base font-medium text-gray-600 hover:bg-gray-50"
                   >
                     Login
+                  </Link>
+                  <Link
+                    href="/get-app"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center gap-2 px-4 py-3 rounded-lg text-base font-medium text-teal-600 hover:bg-teal-50"
+                  >
+                    <Smartphone className="w-4 h-4" />
+                    Get the App
                   </Link>
                 </div>
               </div>

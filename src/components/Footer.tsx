@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Linkedin, Mail, Heart } from 'lucide-react';
+import { Linkedin, Mail, Heart, Smartphone } from 'lucide-react';
 import AnimatedLogo from './AnimatedLogo';
 
 const Footer = () => {
@@ -73,6 +73,10 @@ const Footer = () => {
               </Link>
               <Link href="/privacy" className="text-sm text-slate-400 hover:text-teal-300 transition-colors">Ethics &amp; Privacy</Link>
               <Link href="/about#faq" className="text-sm text-slate-400 hover:text-teal-300 transition-colors">FAQ</Link>
+              <Link href="/get-app" className="text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium flex items-center gap-1.5">
+                <Smartphone className="w-3.5 h-3.5" />
+                Get the App
+              </Link>
             </nav>
           </div>
 

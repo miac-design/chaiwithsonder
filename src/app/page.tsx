@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Search, UserPlus, ChevronDown, ArrowRight, Quote } from "lucide-react";
+import { Search, UserPlus, ChevronDown, ArrowRight, Quote, Smartphone } from "lucide-react";
 import LiveNowFeed from "@/components/LiveNowFeed";
 
 const staggerContainer = {
@@ -249,14 +249,21 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <motion.p
-            className="mt-6 text-sm text-white/50"
+          <motion.div
+            className="mt-6 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
           >
-            Sonder. Connect. Grow.
-          </motion.p>
+            <p className="text-sm text-white/50">Sonder. Connect. Grow.</p>
+            <Link
+              href="/get-app"
+              className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors"
+            >
+              <Smartphone className="w-4 h-4" />
+              Get the App — iPhone & Android
+            </Link>
+          </motion.div>
         </div>
 
         {/* Scroll indicator */}
