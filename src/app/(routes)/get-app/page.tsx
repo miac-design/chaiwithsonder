@@ -55,7 +55,7 @@ export default function GetAppPage() {
             Get ChaiChat on Your Phone
           </h1>
           <p className="text-lg text-gray-500 max-w-xl mx-auto">
-            Install ChaiChat as an app on your iPhone, Android, or desktop. No App Store needed — it works right from your browser.
+            Install ChaiChat as an app on your iPhone, Android, or desktop. No App Store needed, it works right from your browser.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function GetAppPage() {
                 <ol className="space-y-3 text-sm text-gray-600">
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
-                    <span>Open <strong>chaichathub.com</strong> in <strong>Safari</strong> (required — Chrome won&apos;t work for this)</span>
+                    <span>Open <strong>chaichathub.com</strong> in <strong>Safari</strong> (required, Chrome won&apos;t work for this)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
@@ -110,7 +110,7 @@ export default function GetAppPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
-                    <span>Tap <strong>Add</strong> — ChaiChat will appear as an app icon on your home screen</span>
+                    <span>Tap <strong>Add</strong> and ChaiChat will appear as an app icon on your home screen</span>
                   </li>
                 </ol>
               </div>
@@ -141,7 +141,7 @@ export default function GetAppPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
-                    <span>Tap <strong>Install</strong> — ChaiChat launches full-screen like a native app</span>
+                    <span>Tap <strong>Install</strong> and ChaiChat launches full-screen like a native app</span>
                   </li>
                 </ol>
               </div>
@@ -168,7 +168,7 @@ export default function GetAppPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
-                    <span>Click <strong>Install</strong> — ChaiChat opens as its own window</span>
+                    <span>Click <strong>Install</strong> and ChaiChat opens as its own window</span>
                   </li>
                 </ol>
               </div>

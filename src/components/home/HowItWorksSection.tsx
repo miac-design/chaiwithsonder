@@ -14,13 +14,13 @@ const steps = [
     {
         number: '02',
         title: 'Get Matched by Sonder Match AI',
-        description: 'Our AI-powered matching finds mentors who truly understand your journey — based on shared experiences, not just keywords.',
+        description: 'Our AI-powered matching finds mentors who truly understand your journey, based on shared experiences, not just keywords.',
         icon: Sparkles,
     },
     {
         number: '03',
         title: 'Start a Conversation',
-        description: 'Book a session or jump into a live chat. Listen, share, and grow — at your own pace.',
+        description: 'Book a session or jump into a live chat. Listen, share, and grow at your own pace.',
         icon: MessageCircle,
     },
 ];

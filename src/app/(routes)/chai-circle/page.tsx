@@ -36,7 +36,7 @@ const sessions: Session[] = [
   {
     id: '1',
     title: 'Breaking Into Big Tech',
-    description: 'An open conversation about navigating the Big Tech hiring process — from resumes to system design interviews. Bring your questions.',
+    description: 'An open conversation about navigating the Big Tech hiring process, from resumes to system design interviews. Bring your questions.',
     host: 'Hamed A.',
     hostRole: 'Gen AI Expert @ Meta',
     date: 'Mar 8, 2026',
@@ -98,7 +98,7 @@ const sessions: Session[] = [
   {
     id: '5',
     title: 'Networking Without the Awkward',
-    description: 'Learn how to build genuine professional connections. No elevator pitches — just real human-to-human strategies.',
+    description: 'Learn how to build genuine professional connections. No elevator pitches, just real human-to-human strategies.',
     host: 'Mia C.',
     hostRole: 'Founder, ChaiChat',
     date: 'Mar 22, 2026',
@@ -239,7 +239,7 @@ export default function ChaiCirclePage() {
             Chai Circle
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Join group conversations led by mentors. Learn together, network, and grow — over a virtual cup of chai.
+            Join group conversations led by mentors. Learn together, network, and grow over a virtual cup of chai.
           </p>
           <p className="mt-3 text-sm text-teal-600 font-medium">
             Career talks &bull; Tech workshops &bull; Community building &bull; And more

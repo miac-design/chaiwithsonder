@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Users, Sprout, Globe, ExternalLink, Heart, Zap, Eye, ChevronDown, ArrowRight } from 'lucide-react';
+import { Users, Sprout, Globe, ExternalLink, Heart, Zap, Eye, ChevronDown, ArrowRight, Linkedin } from 'lucide-react';
 import { menteeFaqs, mentorFaqs } from '@/data/faq-data';
 
 function FAQSection() {
@@ -67,7 +67,7 @@ function FAQSection() {
 function TestimonialsSection() {
   const testimonials = [
     { name: 'Sara', title: 'PhD Student', quote: 'Having a mentor who understands my academic journey has been transformative.' },
-    { name: 'Saleh', title: 'Power Systems Engineer', quote: 'Chai Chat helped me give back. The connections are more than professional — they\'re personal.' },
+    { name: 'Saleh', title: 'Power Systems Engineer', quote: 'Chai Chat helped me give back. The connections are more than professional, they\'re personal.' },
     { name: 'Raheleh', title: 'Research Scientist', quote: 'This platform makes you feel seen. It\'s about humanity and belonging.' },
     { name: 'Jason', title: 'UX Designer', quote: 'The one-on-one conversations gave me clarity I couldn\'t find elsewhere.' },
   ];
@@ -145,7 +145,7 @@ export default function About() {
                 <div className="flex-shrink-0">
                   <img
                     src="/team/mia.jpeg"
-                    alt="Mia — Founder of ChaiChat"
+                    alt="Mia, Founder of ChaiChat"
                     className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-md ring-2 ring-teal-100"
                   />
                 </div>
@@ -156,19 +156,41 @@ export default function About() {
                     </div>
                     <h2 className="text-xl font-bold text-gray-900">Why I Built This</h2>
                   </div>
-                  <p className="text-sm text-gray-500">Mia C. — Founder of ChaiChat</p>
+                  <p className="text-sm text-gray-500">
+                    Mia C., Founder of ChaiChat
+                    <span className="inline-flex items-center gap-2 ml-2">
+                      <a
+                        href="https://themiac.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-teal-500 hover:text-teal-600 transition-colors"
+                        aria-label="Mia's website"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/miacheraghian/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-teal-500 hover:text-teal-600 transition-colors"
+                        aria-label="Mia's LinkedIn"
+                      >
+                        <Linkedin className="w-3.5 h-3.5" />
+                      </a>
+                    </span>
+                  </p>
                 </div>
               </div>
 
               <div className="space-y-3 text-gray-600 text-base leading-relaxed">
                 <p>
-                  In 2018, I came to the US as a PhD student — no connections, no network, no idea how things worked here. After graduation, when I was looking for a job, something unexpected happened: <strong className="text-gray-900">complete strangers stepped up to help me.</strong>
+                  In 2018, I came to the US as a PhD student with no connections, no network, no idea how things worked here. After graduation, when I was looking for a job, something unexpected happened: <strong className="text-gray-900">complete strangers stepped up to help me.</strong>
                 </p>
                 <p>
-                  People I had never met reviewed my resume, made introductions, practiced mock interviews with me, and offered guidance when I felt completely lost. They didn&apos;t have to — but they did. That generosity changed my life.
+                  People I had never met reviewed my resume, made introductions, practiced mock interviews with me, and offered guidance when I felt completely lost. They didn&apos;t have to, but they did. That generosity changed my life.
                 </p>
                 <p>
-                  I realized that many people <em>want</em> to help others — they just need a way to find those who need it. <strong className="text-gray-800">That&apos;s why I built ChaiChat.</strong> It&apos;s my way of paying it forward — creating a space where a simple 30-minute conversation over chai can open doors you never knew existed.
+                  I realized that many people <em>want</em> to help others, they just need a way to find those who need it. <strong className="text-gray-800">That&apos;s why I built ChaiChat.</strong> It&apos;s my way of paying it forward, creating a space where a simple 30-minute conversation over chai can open doors you never knew existed.
                 </p>
               </div>
             </div>
@@ -208,7 +230,7 @@ export default function About() {
               Why Chai Chat <span className="heading-italic-accent">Matters</span>
             </h2>
             <p className="text-gray-600 text-lg mb-6">
-              The word <strong className="text-teal-600">sonder</strong> was created by writer John Koenig in <em>The Dictionary of Obscure Sorrows</em>.
+              ChaiChat with Sonder is built on a simple but powerful idea: every person you meet is living a life as rich and complex as your own.
             </p>
 
             <div className="relative">
@@ -216,13 +238,13 @@ export default function About() {
               <blockquote className="relative bg-white border-l-4 border-teal-500 px-8 py-6 rounded-r-2xl shadow-lg text-left">
                 <p className="text-xl font-semibold text-teal-700 mb-2">Sonder</p>
                 <p className="text-gray-700 leading-relaxed italic">
-                  n. The realization that each passerby has a life as vivid and complex as your own — filled with thoughts, memories, and experiences, just like you.
+                  n. The realization that each passerby has a life as vivid and complex as your own, filled with thoughts, memories, and experiences, just like you.
                 </p>
               </blockquote>
             </div>
 
             <p className="text-gray-600 mt-8 leading-relaxed">
-              When you mentor someone, you&apos;re not just sharing knowledge — you&apos;re acknowledging their humanity. That&apos;s Sonder in action.
+              That&apos;s the heart of ChaiChat: a conversation over chai that says &quot;I see you, your story matters, and you don&apos;t have to figure it out alone.&quot;
             </p>
           </div>
         </section>
@@ -239,7 +261,7 @@ export default function About() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
               <p className="text-gray-600 leading-relaxed">
-                To connect people who want to help with those who need guidance — creating meaningful mentorship relationships that foster growth, belonging, and mutual support.
+                To connect people who want to help with those who need guidance, creating meaningful mentorship relationships that foster growth, belonging, and mutual support.
               </p>
             </motion.div>
 

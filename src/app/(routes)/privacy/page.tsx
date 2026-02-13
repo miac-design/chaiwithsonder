@@ -92,8 +92,8 @@ export default function PrivacyPage() {
                         <div className="space-y-3 text-gray-600 leading-relaxed">
                             <p>ChaiChat is a community initiative of Austin AI Hub. We are committed to being transparent about how the platform works:</p>
                             <ul className="list-disc list-inside space-y-2 ml-2">
-                                <li>Our matching algorithm uses your stated preferences — not hidden behavioral data</li>
-                                <li>We are a nonprofit initiative — all donations go to infrastructure and platform development</li>
+                                <li>Our matching algorithm uses your stated preferences, not hidden behavioral data</li>
+                                <li>We are a nonprofit initiative. All donations go to infrastructure and platform development</li>
                                 <li>This policy will be updated as the platform evolves, and we will notify users of any changes</li>
                             </ul>
                         </div>

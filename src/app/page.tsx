@@ -261,7 +261,7 @@ export default function Home() {
               className="inline-flex items-center gap-1.5 text-sm text-white/60 hover:text-white transition-colors"
             >
               <Smartphone className="w-4 h-4" />
-              Get the App — iPhone & Android
+              Get the App | iPhone & Android
             </Link>
           </motion.div>
         </div>
@@ -336,18 +336,18 @@ export default function Home() {
               </h2>
 
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                The word <span className="font-bold text-teal-600">sonder</span> was created by writer John Koenig in <em className="text-gray-800">The Dictionary of Obscure Sorrows</em>. It captures a powerful realization:
+                ChaiChat with Sonder is built on a simple but powerful idea: every person you meet is living a life as rich and complex as your own.
               </p>
 
               <blockquote className="border-l-4 border-teal-500 bg-teal-50/50 px-6 py-4 rounded-r-xl mb-6">
                 <p className="text-lg font-semibold text-teal-700 mb-1">Sonder</p>
                 <p className="text-gray-600 leading-relaxed italic">
-                  The feeling you get when you suddenly realize that every person you see — even strangers — has a life full of thoughts, memories, and experiences, just like you.
+                  The feeling you get when you suddenly realize that every person you see, even strangers, has a life full of thoughts, memories, and experiences, just like you.
                 </p>
               </blockquote>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                That&apos;s why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It&apos;s that simple.
+                That&apos;s the heart of ChaiChat: a conversation over chai that says &quot;I see you, your story matters, and you don&apos;t have to figure it out alone.&quot;
               </p>
             </motion.div>
 

@@ -67,7 +67,7 @@ const mentors = [
     photo: '/team/moein.jpg',
     calendly: 'https://calendly.com/moein-razavi',
     linkedin: 'https://www.linkedin.com/in/moeinrazavi/',
-    story: "Navigated the PhD journey and tech transition — love helping others do the same.",
+    story: "Navigated the PhD journey and tech transition. Love helping others do the same.",
     specialties: ['Academia', 'AI/ML', 'Career'],
     chaisShared: 32,
   },
@@ -77,7 +77,7 @@ const mentors = [
     photo: '/team/reza.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/rezahaghighi/',
-    story: "Engineering is about solving puzzles — I love sharing those aha moments.",
+    story: "Engineering is about solving puzzles. I love sharing those aha moments.",
     specialties: ['Tech', 'Career'],
     chaisShared: 18,
   },
@@ -87,7 +87,7 @@ const mentors = [
     photo: '/team/parisa.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/parisaghane/',
-    story: "From research to consulting — happy to chat about making that leap.",
+    story: "From research to consulting, happy to chat about making that leap.",
     specialties: ['Consulting', 'Career'],
     chaisShared: 21,
   },
@@ -107,7 +107,7 @@ const mentors = [
     photo: '/team/monica-far.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/monicafar/',
-    story: "Sales is about connection first — let's chat about breaking into big tech.",
+    story: "Sales is about connection first. Let's chat about breaking into big tech.",
     specialties: ['Sales', 'Big Tech', 'Career'],
     chaisShared: 28,
   },
@@ -117,7 +117,7 @@ const mentors = [
     photo: '/team/bita.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/bitashirazi/',
-    story: "Numbers tell stories — I help people write their own financial chapter.",
+    story: "Numbers tell stories. I help people write their own financial chapter.",
     specialties: ['Finance', 'Big Tech'],
     chaisShared: 19,
   },
@@ -137,7 +137,7 @@ const mentors = [
     photo: '/team/meysam.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/meysamgamini/',
-    story: "Engineering leadership is a skill you can learn — let me help.",
+    story: "Engineering leadership is a skill you can learn. Let me help.",
     specialties: ['Tech', 'Leadership'],
     chaisShared: 31,
   },
@@ -147,7 +147,7 @@ const mentors = [
     photo: '/team/alirezajoo.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/alirezajoo/',
-    story: "Transitioned from engineering to PM — happy to guide your pivot.",
+    story: "Transitioned from engineering to PM, happy to guide your pivot.",
     specialties: ['Product', 'Career'],
     chaisShared: 22,
   },
@@ -167,7 +167,7 @@ const mentors = [
     photo: '/team/ramin-komeili.jpg',
     calendly: '',
     linkedin: 'https://www.linkedin.com/in/raminkomeili/',
-    story: "Engineering meets urban planning — a unique path worth exploring.",
+    story: "Engineering meets urban planning, a unique path worth exploring.",
     specialties: ['Engineering', 'Career'],
     chaisShared: 12,
   },
@@ -415,7 +415,7 @@ export default function Mentor() {
             <Coffee className="w-10 h-10 sm:w-12 sm:h-12 text-teal-600" /> Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            30-minute chats with people who&apos;ve been there. No formal agenda—just connect.
+            30-minute chats with people who&apos;ve been there. No formal agenda, just connect.
           </p>
           <p className="mt-3 text-sm text-teal-600 font-medium">
             Career advice • Visa guidance • Resume tips • Or just chat

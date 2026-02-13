@@ -50,7 +50,7 @@ export default function SonderSwapTeaser() {
                     </p>
                 </motion.div>
 
-                {/* Cards — Phosphor duotone for marketing sections */}
+                {/* Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     {swapCards.map((card, i) => {
                         const Icon = card.icon;

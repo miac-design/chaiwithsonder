@@ -6,7 +6,7 @@ export default function OtherPlatforms() {
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Other Mentorship Platforms</h1>
         <p className="font-semibold text-center mb-6 text-gray-700">
-          <strong>Here's a hub of mentorship platforms — a curated list of other platforms you can explore to find the right fit for your needs.</strong>
+          <strong>Here's a hub of mentorship platforms, a curated list of other platforms you can explore to find the right fit for your needs.</strong>
         </p>
         <div className="overflow-x-auto rounded-2xl shadow-lg bg-white">
           <table className="min-w-full divide-y divide-gray-200 text-left">
