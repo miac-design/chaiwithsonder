@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-export const dynamic = "force-dynamic";
-
 export default function Partner() {
   const [formData, setFormData] = useState({
     name: '',

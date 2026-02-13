@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Coffee, Zap, Linkedin, Sparkles, X } from 'lucide-react';
+import { Coffee, Sparkles, X } from 'lucide-react';
 import BookingModal from '@/components/BookingModal';
 import MatchIntakeQuiz from '@/components/MatchIntakeQuiz';
 import type { MatchIntakeData } from '@/components/MatchIntakeQuiz';
@@ -314,8 +313,6 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
     </div>
   );
 }
-
-export const dynamic = "force-dynamic";
 
 interface MatchedMentorResponse {
   mentor_id: string;

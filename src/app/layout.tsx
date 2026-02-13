@@ -1,19 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import ClientLayout from '@/components/ClientLayout';
-
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-inter",
-});
-
-const merriweather = Merriweather({
-    subsets: ["latin"],
-    weight: ["400", "700"],
-    variable: "--font-merriweather",
-});
 
 export const metadata: Metadata = {
     title: {
@@ -124,7 +111,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${inter.variable} ${merriweather.variable} font-sans`}
+            className="font-sans"
         >
             <head>
                 <script

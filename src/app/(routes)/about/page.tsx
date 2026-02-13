@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Users, Sprout, Globe, ExternalLink } from 'lucide-react';
 
-export const dynamic = "force-dynamic";
-
 function FAQSection() {
   const [activeTab, setActiveTab] = useState('mentees' as 'mentees' | 'mentors');
   const [openMentee, setOpenMentee] = useState<number | null>(null);
