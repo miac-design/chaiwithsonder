@@ -143,12 +143,12 @@ export default function About() {
               <div className="flex items-start gap-5 mb-5">
                 {/* Mia's photo */}
                 <div className="flex-shrink-0">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-md ring-2 ring-teal-100">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-md ring-2 ring-teal-100">
                     <Image
-                      src="/mia-founder.jpg"
+                      src="/team/mia.jpeg"
                       alt="Mia — Founder of ChaiChat"
-                      width={96}
-                      height={96}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                     />
                   </div>
