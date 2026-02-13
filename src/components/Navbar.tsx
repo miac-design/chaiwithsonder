@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 import AnimatedLogo from './AnimatedLogo';
 
 const navLinks = [
   { name: 'Find a Mentor', href: '/mentor' },
   { name: 'Become a Mentor', href: '/mentor/become' },
-  { name: 'Sonder Swap', href: '/sonder-swap' },
+  { name: 'Chai Circle', href: '/chai-circle' },
   { name: 'How It Works', href: '/#how-it-works' },
   { name: 'About', href: '/about' },
 ];
@@ -136,26 +137,14 @@ export default function Navbar() {
                 aria-label="Toggle navigation menu"
                 aria-expanded={isMenuOpen}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
 
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden inline-flex items-center justify-center p-2 rounded-lg hover:bg-white/10 ${
-                isScrolled || !isHomePage ? 'text-gray-700' : 'text-white'
-              }`}>
-              <motion.div animate={isMenuOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-center items-center">
-                <motion.span className="w-6 h-0.5 bg-current block" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 6 } }} />
-                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} />
-                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -6 } }} />
-              </motion.div>
-            </button>
           </div>
         </div>
 

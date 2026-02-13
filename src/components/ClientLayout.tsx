@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import PWAInstall from '@/components/PWAInstall';
 import React from 'react';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -12,6 +13,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         <ErrorBoundary>{children}</ErrorBoundary>
       </main>
       <Footer />
+      <PWAInstall />
     </div>
   );
 }
