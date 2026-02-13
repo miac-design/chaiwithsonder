@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Upload, Download } from 'lucide-react';
 
 const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -34,14 +35,7 @@ export default function GetInvolvedSection() {
                     {/* Share a Chat Card */}
                     <motion.div variants={fadeIn} className="glass-card p-6 hover:shadow-2xl transition-shadow duration-300">
                         <motion.h3 variants={fadeIn} className="heading-3 mb-2 flex items-center gap-2">
-                            <span className="inline-block align-middle">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF" />
-                                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff" />
-                                    <path d="M14 6v6" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" />
-                                    <path d="M12 8l2-2 2 2" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </span>
+                            <Upload className="w-7 h-7 text-rose-500" />
                             Share a Chat
                         </motion.h3>
                         <motion.p variants={fadeIn} className="text-body mb-4">
@@ -55,14 +49,7 @@ export default function GetInvolvedSection() {
                     {/* Sip a Chat Card */}
                     <motion.div variants={fadeIn} className="glass-card p-6 hover:shadow-2xl transition-shadow duration-300">
                         <motion.h3 variants={fadeIn} className="heading-3 mb-2 flex items-center gap-2">
-                            <span className="inline-block align-middle">
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                    <rect x="3" y="8" width="22" height="14" rx="4" fill="#E0E7FF" />
-                                    <rect x="6" y="11" width="16" height="8" rx="2" fill="#fff" />
-                                    <path d="M14 16v-6" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" />
-                                    <path d="M12 14l2 2 2-2" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </span>
+                            <Download className="w-7 h-7 text-blue-500" />
                             Sip a Chat
                         </motion.h3>
                         <motion.p variants={fadeIn} className="text-body mb-4">

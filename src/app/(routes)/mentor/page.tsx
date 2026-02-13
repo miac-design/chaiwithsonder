@@ -2,29 +2,19 @@
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Coffee, Sparkles, X } from 'lucide-react';
+import { Coffee, Sparkles, X, Sprout, Handshake, Trophy, BarChart3, Star, Search, Linkedin } from 'lucide-react';
 import BookingModal from '@/components/BookingModal';
 import MatchIntakeQuiz from '@/components/MatchIntakeQuiz';
 import type { MatchIntakeData } from '@/components/MatchIntakeQuiz';
 import RecommendedMentors from '@/components/RecommendedMentors';
 
-// Modern SVG icons for badges
+// Lucide-based badge icons
 const BadgeIcons = {
-  sprout: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M7 20a5 5 0 0 1 10 0" /><path d="M12 20V10" /><path d="M9 6.5A3.5 3.5 0 0 1 12 10" /><path d="M12 10a3.5 3.5 0 0 0 3-3.5V2.5" /></svg>
-  ),
-  handshake: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 20h4l3-3" /><path d="M9 17l-5-5a2.828 2.828 0 0 1 4-4l1 1 1-1a2.828 2.828 0 0 1 4 4l-5 5" /><path d="M14 17l3 3h4" /></svg>
-  ),
-  trophy: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M8 21h8" /><path d="M12 17v4" /><path d="M17 17a5 5 0 0 0 5-5V5H2v7a5 5 0 0 0 5 5" /><path d="M7 4V2" /><path d="M17 4V2" /></svg>
-  ),
-  barchart: (
-    <svg width="22" height="22" fill="none" stroke="#4b5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 3v18h18" /><rect x="7" y="13" width="3" height="5" rx="1" /><rect x="12" y="9" width="3" height="9" rx="1" /><rect x="17" y="5" width="3" height="13" rx="1" /></svg>
-  ),
-  star: (
-    <svg width="22" height="22" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
-  ),
+  sprout: <Sprout className="w-[22px] h-[22px] text-gray-600" />,
+  handshake: <Handshake className="w-[22px] h-[22px] text-gray-600" />,
+  trophy: <Trophy className="w-[22px] h-[22px] text-gray-600" />,
+  barchart: <BarChart3 className="w-[22px] h-[22px] text-gray-600" />,
+  star: <Star className="w-[22px] h-[22px] text-amber-400" />,
 };
 
 const badgeDefinitions = [
@@ -285,7 +275,7 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
         <div className="flex flex-col gap-2">
           <button
             onClick={() => onBook(mentor)}
-            className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-xl hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+            className="w-full px-6 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium rounded-xl hover:from-amber-600 hover:to-orange-600 transition shadow-md hover:shadow-lg hover:shadow-amber-500/25 flex items-center justify-center gap-2"
           >
             <Coffee className="w-4 h-4" /> Grab a Chai
           </button>
@@ -302,9 +292,7 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
               aria-label={`View ${mentor.name}'s LinkedIn`}
               className="text-teal-500 hover:text-teal-600 transition inline-flex items-center gap-1.5 text-xs font-medium"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
+              <Linkedin className="w-4 h-4" />
               View Profile
             </a>
           </div>
@@ -427,7 +415,7 @@ export default function Mentor() {
             <Coffee className="w-10 h-10 sm:w-12 sm:h-12 text-teal-600" /> Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            15-minute chats with people who&apos;ve been there. No formal agenda—just connect.
+            30-minute chats with people who&apos;ve been there. No formal agenda—just connect.
           </p>
           <p className="mt-3 text-sm text-teal-600 font-medium">
             Career advice • Visa guidance • Resume tips • Or just chat
@@ -481,8 +469,7 @@ export default function Mentor() {
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto mb-8">
           <span className="absolute left-4 top-1/2 transform -translate-y-1 text-gray-400 pointer-events-none">
-            {/* Search Icon (Heroicon) */}
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+            <Search className="w-5 h-5" />
           </span>
           <input
             type="text"

@@ -125,7 +125,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                     menteeEmail,
                     sessionDate,
                     sessionTime,
-                    sessionDuration: 15, // V5: 15-minute sessions
+                    sessionDuration: 30, // V5: 30-minute sessions
                     topic: `${sessionTypeName}: ${topic || 'General'}`,
                     meetingLink: mentor.meetingLink || mentor.calendly || undefined,
                 }),
@@ -193,7 +193,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                         <Coffee className="w-8 h-8 text-white" />
                         <div>
                             <h2 className="text-xl font-bold text-white">Grab a Chai with {mentor.name.split(' ')[0]}</h2>
-                            <p className="text-teal-100 text-sm mt-0.5">15-minute chat • No pressure</p>
+                            <p className="text-teal-100 text-sm mt-0.5">30-minute chat • No pressure</p>
                         </div>
                     </div>
 
