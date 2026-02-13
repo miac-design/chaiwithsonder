@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "echo \"No test runner configured\" && exit 0"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
