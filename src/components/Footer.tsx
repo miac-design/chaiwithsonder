@@ -1,101 +1,101 @@
 import Link from 'next/link';
-import { Calendar, Users, BookOpen, Linkedin, Instagram, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import { Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-teal-700 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold text-white mb-2">Chai Chat</h3>
-            <p className="text-white/60">Where Sonder Becomes Connection</p>
+    <footer className="bg-stone-900 text-stone-300">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          {/* Column 1: Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link href="/" className="flex items-center gap-3 mb-4">
+              <Image src="/logo-new.png" alt="ChaiChat Logo" width={36} height={36} className="rounded-lg" />
+              <span className="text-xl font-bold text-white">ChaiChat</span>
+            </Link>
+            <p className="text-sm text-stone-400 leading-relaxed mb-2">
+              Where Sonder Becomes Connection
+            </p>
+            <p className="text-xs text-stone-500">
+              A Community Initiative by{' '}
+              <a
+                href="https://austinai.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400/80 hover:text-amber-300 transition-colors"
+              >
+                Austin AI Hub
+              </a>
+            </p>
+            {/* Social icons */}
+            <div className="flex gap-4 mt-5">
+              <a
+                href="https://www.linkedin.com/company/chaichathub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-400 hover:text-white transition-colors"
+                aria-label="Follow ChaiChat on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" aria-hidden="true" />
+              </a>
+              <a
+                href="mailto:hello@chaichathub.com"
+                className="text-stone-400 hover:text-white transition-colors"
+                aria-label="Email ChaiChat"
+              >
+                <Mail className="w-5 h-5" aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-white/70">
-            <Link href="/about" className="hover:text-teal-400 transition-colors">About</Link>
-            <Link href="/mentor" className="hover:text-teal-400 transition-colors">Find a Mentor</Link>
-            <Link href="/mentor/become" className="hover:text-teal-400 transition-colors">Become a Mentor</Link>
-            <Link href="/donate" className="hover:text-teal-400 transition-colors">Support Us</Link>
-            <Link href="/contact" className="hover:text-teal-400 transition-colors">Contact</Link>
-            <Link href="/about#ethics" className="hover:text-teal-400 transition-colors">Ethics & Privacy</Link>
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              Quick Links
+            </h3>
+            <nav className="flex flex-col gap-3">
+              <Link href="/about" className="text-sm text-stone-400 hover:text-white transition-colors">About</Link>
+              <Link href="/mentor" className="text-sm text-stone-400 hover:text-white transition-colors">Find a Mentor</Link>
+              <Link href="/mentor/become" className="text-sm text-stone-400 hover:text-white transition-colors">Become a Mentor</Link>
+              <Link href="/sonder-swap" className="text-sm text-stone-400 hover:text-white transition-colors">Sonder Swap ✨</Link>
+              <Link href="/contact" className="text-sm text-stone-400 hover:text-white transition-colors">Contact</Link>
+            </nav>
           </div>
-        </div>
 
-        <div className="w-full h-px bg-teal-500/30 my-8" />
+          {/* Column 3: Support */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+              Support
+            </h3>
+            <nav className="flex flex-col gap-3">
+              <Link href="/donate" className="text-sm text-amber-400/90 hover:text-amber-300 transition-colors font-medium">
+                Buy Us a Chai ☕
+              </Link>
+              <Link href="/privacy" className="text-sm text-stone-400 hover:text-white transition-colors">Ethics &amp; Privacy</Link>
+              <Link href="/about#faq" className="text-sm text-stone-400 hover:text-white transition-colors">FAQ</Link>
+            </nav>
+          </div>
 
-        {/* Austin AI Hub Cross-Links */}
-        <div className="flex flex-col items-center gap-6 mb-8">
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <span>A Community Initiative by</span>
-            <a
-              href="https://austinaihub.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-400 hover:text-teal-300 font-medium inline-flex items-center gap-1 transition-colors"
-            >
+          {/* Column 4: Austin AI Hub */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               Austin AI Hub
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <a
-              href="https://austinaihub.com/#events"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-400/80 hover:text-teal-300 inline-flex items-center gap-1.5 transition-colors"
-            >
-              <Calendar className="w-4 h-4" />
-              Events
-            </a>
-            <a
-              href="https://austinaihub.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-400/80 hover:text-teal-300 inline-flex items-center gap-1.5 transition-colors"
-            >
-              <Users className="w-4 h-4" />
-              Community
-            </a>
-            <a
-              href="https://austinaihub.com/#blog"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-400/80 hover:text-teal-300 inline-flex items-center gap-1.5 transition-colors"
-            >
-              <BookOpen className="w-4 h-4" />
-              Blog
-            </a>
-          </div>
-
-          {/* Austin AI Hub Social Links */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://linkedin.com/company/austinaihub"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Austin AI Hub on LinkedIn"
-              className="text-white/50 hover:text-teal-400 transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://instagram.com/austinaihub"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Austin AI Hub on Instagram"
-              className="text-white/50 hover:text-teal-400 transition-colors"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
+            </h3>
+            <nav className="flex flex-col gap-3">
+              <a href="https://austinai.org/events" target="_blank" rel="noopener noreferrer" className="text-sm text-stone-400 hover:text-white transition-colors">Events</a>
+              <a href="https://austinai.org" target="_blank" rel="noopener noreferrer" className="text-sm text-stone-400 hover:text-white transition-colors">Community</a>
+              <a href="https://austinai.org/blog" target="_blank" rel="noopener noreferrer" className="text-sm text-stone-400 hover:text-white transition-colors">Blog</a>
+              <a href="https://austinai.org/newsletter" target="_blank" rel="noopener noreferrer" className="text-sm text-stone-400 hover:text-white transition-colors">Newsletter</a>
+            </nav>
           </div>
         </div>
 
-        <div className="w-full h-px bg-teal-500/30 my-6" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/50 text-sm">
-          <p>&copy; {new Date().getFullYear()} ChaiChat | Powered by Sonder</p>
-          <p className="text-teal-400/80 font-medium">Sonder. Connect. Grow.</p>
+        {/* Bottom bar */}
+        <div className="mt-12 pt-8 border-t border-stone-800">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <p>© {new Date().getFullYear()} ChaiChat | Powered by Sonder</p>
+            <p className="flex items-center gap-1">Made with <Heart className="w-3.5 h-3.5 text-purple-400 fill-purple-400" aria-hidden="true" /> by Mia C. for the community</p>
+          </div>
         </div>
       </div>
     </footer>
