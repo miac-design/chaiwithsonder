@@ -77,7 +77,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
     const randomTestimonial = TESTIMONIALS[Math.floor(Math.random() * TESTIMONIALS.length)];
 
     // Default mentor story if not provided
-    const mentorStory = mentor.story || "I've been where you are — let's chat and share what I've learned.";
+    const mentorStory = mentor.story || "I've been where you are. Let's chat and share what I've learned.";
 
     const handleTypeSelect = (typeId: string) => {
         setSelectedType(typeId);
@@ -399,7 +399,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                     <div>
                                         <p className="text-gray-600 italic">"{randomTestimonial.text}"</p>
                                         <p className="text-gray-400 text-xs mt-1">
-                                            — {randomTestimonial.author}, {randomTestimonial.role}
+                                            - {randomTestimonial.author}, {randomTestimonial.role}
                                         </p>
                                     </div>
                                 </div>

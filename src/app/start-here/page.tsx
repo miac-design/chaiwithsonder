@@ -269,7 +269,7 @@ export default function StartHerePage() {
                                         <span className="text-4xl">✨</span>
                                         <div>
                                             <h3 className="font-bold text-gray-900">Both</h3>
-                                            <p className="text-sm text-gray-500">Give & receive — the best way</p>
+                                            <p className="text-sm text-gray-500">Give & receive, the best way</p>
                                         </div>
                                     </button>
                                 </div>

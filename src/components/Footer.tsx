@@ -68,8 +68,28 @@ const Footer = () => {
               Support
             </h3>
             <nav className="flex flex-col gap-3">
-              <Link href="/donate" className="text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium">
-                Buy Us a Chai ☕
+              <Link href="/donate" className="text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium inline-flex items-center gap-1.5">
+                Buy Us a Chai
+                <svg viewBox="0 0 56 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-5" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="footerCupGrad" x1="10" y1="45" x2="46" y2="80" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#2dd4bf" />
+                      <stop offset="50%" stopColor="#14b8a6" />
+                      <stop offset="100%" stopColor="#0d9488" />
+                    </linearGradient>
+                    <linearGradient id="footerHandleGrad" x1="46" y1="52" x2="54" y2="68" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#2dd4bf" />
+                      <stop offset="100%" stopColor="#14b8a6" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M22 42Q24 32 22 22Q20 12 24 2" stroke="rgba(255,255,255,0.3)" strokeWidth="2" strokeLinecap="round" fill="none" />
+                  <path d="M28 42Q30 30 28 18Q26 6 30-6" stroke="rgba(20,184,166,0.3)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M34 42Q32 30 34 18Q36 6 32-6" stroke="rgba(245,166,35,0.3)" strokeWidth="2" strokeLinecap="round" fill="none" />
+                  <path d="M12 49C12 47 14 45 16 45H40C42 45 44 47 44 49V70C44 76 40 82 28 82C16 82 12 76 12 70V49Z" fill="url(#footerCupGrad)" />
+                  <path d="M44 54H48C52 54 56 58 56 64C56 70 52 74 48 74H44" stroke="url(#footerHandleGrad)" strokeWidth="4" strokeLinecap="round" fill="none" />
+                  <ellipse cx="28" cy="47" rx="14" ry="4" fill="rgba(20,184,166,0.9)" />
+                  <ellipse cx="28" cy="46" rx="10" ry="2" fill="rgba(255,255,255,0.4)" />
+                </svg>
               </Link>
               <Link href="/privacy" className="text-sm text-slate-400 hover:text-teal-300 transition-colors">Ethics &amp; Privacy</Link>
               <Link href="/about#faq" className="text-sm text-slate-400 hover:text-teal-300 transition-colors">FAQ</Link>

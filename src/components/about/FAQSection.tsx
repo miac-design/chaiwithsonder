@@ -36,7 +36,7 @@ export default function FAQSection() {
         },
         {
             q: 'Is there a time commitment?',
-            a: 'No fixed time commitment — you set your availability and pace.',
+            a: 'No fixed time commitment. You set your availability and pace.',
         },
         {
             q: 'Can I choose who I mentor?',
@@ -48,7 +48,7 @@ export default function FAQSection() {
         },
         {
             q: 'Can I pause or stop mentoring?',
-            a: 'Yes — update your availability anytime from your dashboard.',
+            a: 'Yes! Update your availability anytime from your dashboard.',
         },
     ];
 

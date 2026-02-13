@@ -35,7 +35,7 @@ const STEPS = [
             { value: 'career', label: 'Career Cardamom', desc: 'Career advice, job strategy, growth planning', icon: Briefcase },
             { value: 'startup', label: 'Startup Saffron', desc: 'Entrepreneurship, product, and founder talk', icon: Rocket },
             { value: 'resume', label: 'Resume Ginger', desc: 'Resume reviews, interview prep, job search', icon: FileText },
-            { value: 'just_chat', label: 'Just Chat', desc: 'No agenda — just a good conversation', icon: MessageCircle },
+            { value: 'just_chat', label: 'Just Chat', desc: 'No agenda, just a good conversation', icon: MessageCircle },
         ],
     },
     {
@@ -88,7 +88,7 @@ const STEPS = [
     {
         id: 'additional_context',
         question: 'One thing you want your mentor to know',
-        subtitle: 'Optional — but it helps us find a deeper match',
+        subtitle: 'Optional, but it helps us find a deeper match',
         isTextInput: true,
     },
 ];

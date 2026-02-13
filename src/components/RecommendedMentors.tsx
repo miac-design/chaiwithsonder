@@ -84,7 +84,7 @@ function buildNarrativeIntro(intake?: IntakeSummary): string | null {
     }
 
     if (parts.length === 0) return 'Based on your preferences and journey';
-    return parts.join(', ') + ' — here are mentors who get it.';
+    return parts.join(', ') + ', here are mentors who get it.';
 }
 
 function MatchBadge({ score }: { score: number }) {

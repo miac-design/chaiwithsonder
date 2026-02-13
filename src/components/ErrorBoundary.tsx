@@ -37,7 +37,7 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
                             </svg>
                         </div>
                         <h2 className="text-xl font-semibold text-gray-900 mb-2">Something went wrong</h2>
-                        <p className="text-gray-500 mb-6">We&apos;re sorry — an unexpected error occurred. Please try refreshing the page.</p>
+                        <p className="text-gray-500 mb-6">We&apos;re sorry, an unexpected error occurred. Please try refreshing the page.</p>
                         <button
                             onClick={() => this.setState({ hasError: false, error: null })}
                             className="bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-indigo-700 transition"
