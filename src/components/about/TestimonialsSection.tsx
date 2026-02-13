@@ -11,13 +11,13 @@ const testimonials = [
         name: 'Saleh',
         title: 'Power Systems Engineer',
         initials: 'Sa',
-        quote: 'Chai Chat helped me give back and stay grounded. The connections I\'ve made are more than professional — they\'re personal.',
+        quote: 'Chai Chat helped me give back and stay grounded. The connections I\'ve made are more than professional, they\'re personal.',
     },
     {
         name: 'Raheleh',
         title: 'Research Scientist',
         initials: 'R',
-        quote: 'This platform makes you feel seen. It\'s not just about knowledge sharing — it\'s about humanity and belonging.',
+        quote: 'This platform makes you feel seen. It\'s not just about knowledge sharing, it\'s about humanity and belonging.',
     },
     {
         name: 'Jason',

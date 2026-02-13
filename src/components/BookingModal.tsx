@@ -77,7 +77,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
     const randomTestimonial = TESTIMONIALS[Math.floor(Math.random() * TESTIMONIALS.length)];
 
     // Default mentor story if not provided
-    const mentorStory = mentor.story || "I've been where you are — let's chat and share what I've learned.";
+    const mentorStory = mentor.story || "I've been where you are. Let's chat and share what I've learned.";
 
     const handleTypeSelect = (typeId: string) => {
         setSelectedType(typeId);
@@ -125,7 +125,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                     menteeEmail,
                     sessionDate,
                     sessionTime,
-                    sessionDuration: 15, // V5: 15-minute sessions
+                    sessionDuration: 30, // V5: 30-minute sessions
                     topic: `${sessionTypeName}: ${topic || 'General'}`,
                     meetingLink: mentor.meetingLink || mentor.calendly || undefined,
                 }),
@@ -193,7 +193,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                         <Coffee className="w-8 h-8 text-white" />
                         <div>
                             <h2 className="text-xl font-bold text-white">Grab a Chai with {mentor.name.split(' ')[0]}</h2>
-                            <p className="text-teal-100 text-sm mt-0.5">15-minute chat • No pressure</p>
+                            <p className="text-teal-100 text-sm mt-0.5">30-minute chat • No pressure</p>
                         </div>
                     </div>
 
@@ -399,7 +399,7 @@ export default function BookingModal({ mentor, isOpen, onClose }: BookingModalPr
                                     <div>
                                         <p className="text-gray-600 italic">"{randomTestimonial.text}"</p>
                                         <p className="text-gray-400 text-xs mt-1">
-                                            — {randomTestimonial.author}, {randomTestimonial.role}
+                                            - {randomTestimonial.author}, {randomTestimonial.role}
                                         </p>
                                     </div>
                                 </div>

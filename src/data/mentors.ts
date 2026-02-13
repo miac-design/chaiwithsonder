@@ -1,4 +1,4 @@
-// Mentor data — will eventually move to Supabase
+// Mentor data: will eventually move to Supabase
 import type { Mentor } from '@/types';
 
 export const mentors: Mentor[] = [

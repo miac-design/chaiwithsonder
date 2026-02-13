@@ -77,7 +77,7 @@ const websiteSchema = {
     "@type": "WebSite",
     "@id": "https://www.chaichathub.com/#website",
     name: "ChaiChat",
-    alternateName: "ChaiChat — Where Sonder Becomes Connection",
+    alternateName: "ChaiChat | Where Sonder Becomes Connection",
     url: "https://www.chaichathub.com",
     description:
         "A free mentoring platform powered by AI matching. Find a mentor, become a mentor, or grow together through meaningful human connection.",
@@ -113,7 +113,7 @@ const webAppSchema = {
         "Mentor profile browsing and filtering",
         "Session booking and scheduling",
         "Community-driven peer mentorship",
-        "Free to use — no subscription required",
+        "Free to use, no subscription required",
     ],
     offers: {
         "@type": "Offer",
@@ -208,7 +208,7 @@ const faqSchema = {
             name: "What is ChaiChat?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "ChaiChat is a free, community-driven mentoring platform where anyone can be a mentor or mentee. Built on the concept of 'sonder' — the realization that every person has a rich inner life — ChaiChat uses AI-powered Sonder Match technology to connect people based on shared experiences, not just keywords. It's a community initiative by Austin AI Hub, a 501(c)(3) nonprofit.",
+                text: "ChaiChat is a free, community-driven mentoring platform where anyone can be a mentor or mentee. Built on the concept of 'sonder', the realization that every person has a rich inner life, ChaiChat uses AI-powered Sonder Match technology to connect people based on shared experiences, not just keywords. It's a community initiative by Austin AI Hub, a 501(c)(3) nonprofit.",
             },
         },
         {
@@ -224,7 +224,7 @@ const faqSchema = {
             name: "How does ChaiChat match mentors and mentees?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "ChaiChat uses Sonder Match, an AI-powered matching system that connects mentors and mentees based on shared life experiences, interests, and goals — not just keywords or job titles. You create a profile sharing your story, and the AI finds people who truly understand your journey.",
+                text: "ChaiChat uses Sonder Match, an AI-powered matching system that connects mentors and mentees based on shared life experiences, interests, and goals, not just keywords or job titles. You create a profile sharing your story, and the AI finds people who truly understand your journey.",
             },
         },
         {
@@ -240,7 +240,7 @@ const faqSchema = {
             name: "How do I become a mentor on ChaiChat?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Anyone can become a mentor on ChaiChat. Visit chaichathub.com/mentor/become, fill out a brief application sharing your experience and what you'd like to offer, and start connecting with mentees. No formal credentials required — just a willingness to listen, share, and support.",
+                text: "Anyone can become a mentor on ChaiChat. Visit chaichathub.com/mentor/become, fill out a brief application sharing your experience and what you'd like to offer, and start connecting with mentees. No formal credentials required, just a willingness to listen, share, and support.",
             },
         },
         {
@@ -248,7 +248,7 @@ const faqSchema = {
             name: "What is sonder?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Sonder is a word coined by writer John Koenig in The Dictionary of Obscure Sorrows. It means the realization that every person you encounter — even strangers — has a life as vivid and complex as your own, full of thoughts, memories, and experiences. ChaiChat is built on this philosophy, believing that mutual understanding is the foundation of meaningful mentorship.",
+                text: "Sonder is a word coined by writer John Koenig in The Dictionary of Obscure Sorrows. It means the realization that every person you encounter, even strangers, has a life as vivid and complex as your own, full of thoughts, memories, and experiences. ChaiChat is built on this philosophy, believing that mutual understanding is the foundation of meaningful mentorship.",
             },
         },
         {
@@ -307,7 +307,7 @@ const howToSchema = {
             "@type": "HowToStep",
             position: 2,
             name: "Get Matched by Sonder Match AI",
-            text: "ChaiChat's AI-powered Sonder Match technology analyzes your profile and recommends mentors based on shared life experiences — not just keywords or job titles.",
+            text: "ChaiChat's AI-powered Sonder Match technology analyzes your profile and recommends mentors based on shared life experiences, not just keywords or job titles.",
             url: "https://www.chaichathub.com/mentor",
         },
         {
@@ -337,7 +337,7 @@ const webpageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://www.chaichathub.com/#webpage",
-    name: "ChaiChat — Free AI-Powered Mentoring Platform",
+    name: "ChaiChat | Free AI-Powered Mentoring Platform",
     description:
         "Find a mentor who gets your journey. ChaiChat is a free mentoring community powered by AI matching, built on the philosophy of sonder. A community initiative by Austin AI Hub.",
     url: "https://www.chaichathub.com",

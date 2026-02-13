@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
-// POST /api/mentor-approval — Approve or reject a mentor application
+// POST /api/mentor-approval: Approve or reject a mentor application
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -24,58 +24,42 @@ export async function POST(req: NextRequest) {
 
         const newStatus = action === 'approve' ? 'approved' : 'rejected';
 
-        // Update in Supabase if configured
-        if (isSupabaseConfigured() && supabase) {
-            const { data, error } = await supabase
-                .from('mentor_applications')
-                .update({ status: newStatus })
-                .eq('id', applicationId)
-                .select()
-                .single();
+        const { data, error } = await (supabase as any)
+            .from('mentor_applications')
+            .update({ status: newStatus })
+            .eq('id', applicationId)
+            .select()
+            .single();
 
-            if (error) {
-                console.error('Supabase update error:', error);
-                return NextResponse.json(
-                    { error: 'Failed to update application status.' },
-                    { status: 500 }
-                );
-            }
-
-            // If approved, create a mentor record from the application data
-            if (action === 'approve' && data) {
-                const { error: insertError } = await supabase
-                    .from('mentors')
-                    .insert({
-                        name: data.name,
-                        email: data.email,
-                        expertise: data.expertise,
-                        experience: data.experience,
-                        availability: data.availability,
-                        goals: data.goals,
-                        status: 'approved',
-                    });
-
-                if (insertError) {
-                    console.error('Mentor record creation error:', insertError);
-                }
-            }
-
-            // TODO: Send email notification via Brevo/Resend
-            // if (action === 'approve') {
-            //   await sendEmail({ to: data.email, template: 'mentor_approved' });
-            // } else {
-            //   await sendEmail({ to: data.email, template: 'mentor_rejected' });
-            // }
-
+        if (error) {
+            console.error('Supabase update error:', error);
             return NextResponse.json(
-                { message: `Mentor application ${action}d successfully`, data },
-                { status: 200 }
+                { error: 'Failed to update application status.' },
+                { status: 500 }
             );
         }
 
-        // Fallback: mock response when Supabase is not configured
+        // If approved, create a mentor record from the application data
+        if (action === 'approve' && data) {
+            const { error: insertError } = await (supabase as any)
+                .from('mentors')
+                .insert({
+                    name: data.name,
+                    email: data.email,
+                    expertise: data.expertise,
+                    experience: data.experience,
+                    availability: data.availability,
+                    goals: data.goals,
+                    status: 'approved',
+                });
+
+            if (insertError) {
+                console.error('Mentor record creation error:', insertError);
+            }
+        }
+
         return NextResponse.json(
-            { message: `Mentor application ${action}d successfully`, applicationId },
+            { message: `Mentor application ${action}d successfully`, data },
             { status: 200 }
         );
     } catch (error) {

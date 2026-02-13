@@ -1,10 +1,306 @@
 'use client';
 
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { mentors } from '@/data/mentors';
-import MentorSearchBar from '@/components/mentor/MentorSearchBar';
-import MentorGrid from '@/components/mentor/MentorGrid';
-import MentorApplicationForm from '@/components/mentor/MentorApplicationForm';
+import { Coffee, Sparkles, X, Sprout, Handshake, Trophy, BarChart3, Star, Search, Linkedin } from 'lucide-react';
+import BookingModal from '@/components/BookingModal';
+import MatchIntakeQuiz from '@/components/MatchIntakeQuiz';
+import type { MatchIntakeData } from '@/components/MatchIntakeQuiz';
+import RecommendedMentors from '@/components/RecommendedMentors';
+
+// Lucide-based badge icons
+const BadgeIcons = {
+  sprout: <Sprout className="w-[22px] h-[22px] text-gray-600" />,
+  handshake: <Handshake className="w-[22px] h-[22px] text-gray-600" />,
+  trophy: <Trophy className="w-[22px] h-[22px] text-gray-600" />,
+  barchart: <BarChart3 className="w-[22px] h-[22px] text-gray-600" />,
+  star: <Star className="w-[22px] h-[22px] text-amber-400" />,
+};
+
+const badgeDefinitions = [
+  {
+    name: 'Rising Mentor',
+    icon: BadgeIcons.sprout,
+    description: 'Completed 5+ mentorship hours',
+    check: (mentor: any) => mentor.hours >= 5,
+  },
+  {
+    name: 'Trusted Mentor',
+    icon: BadgeIcons.handshake,
+    description: 'Completed 15+ mentorship hours',
+    check: (mentor: any) => mentor.hours >= 15,
+  },
+  {
+    name: 'Impact Maker',
+    icon: BadgeIcons.trophy,
+    description: 'Completed 30+ mentorship hours',
+    check: (mentor: any) => mentor.hours >= 30,
+  },
+  {
+    name: '10 Sessions Club',
+    icon: BadgeIcons.barchart,
+    description: 'Completed 10+ mentorship sessions',
+    check: (mentor: any) => mentor.sessions >= 10,
+  },
+  {
+    name: 'Highly Rated',
+    icon: BadgeIcons.star,
+    description: 'Average rating above 4.8',
+    check: (mentor: any) => mentor.rating && mentor.rating > 4.8,
+  },
+];
+
+const mentors = [
+  {
+    name: 'Hamed Alikhani, PhD',
+    title: 'Gen AI Expert',
+    photo: '/team/hamed.jpg',
+    calendly: 'https://calendly.com/hamed-alikhani',
+    linkedin: 'https://www.linkedin.com/in/hamedalikhani/',
+    story: "I came to the US in 2014 with $200 and a dream. Happy to share what I've learned.",
+    specialties: ['Career', 'Visa', 'AI/ML'],
+    chaisShared: 47,
+  },
+  {
+    name: 'Moein Razavi, PhD',
+    title: 'Gen AI Expert',
+    photo: '/team/moein.jpg',
+    calendly: 'https://calendly.com/moein-razavi',
+    linkedin: 'https://www.linkedin.com/in/moeinrazavi/',
+    story: "Navigated the PhD journey and tech transition. Love helping others do the same.",
+    specialties: ['Academia', 'AI/ML', 'Career'],
+    chaisShared: 32,
+  },
+  {
+    name: 'Reza Haghighi, MS',
+    title: 'Sr. Platform Engineer',
+    photo: '/team/reza.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/rezahaghighi/',
+    story: "Engineering is about solving puzzles. I love sharing those aha moments.",
+    specialties: ['Tech', 'Career'],
+    chaisShared: 18,
+  },
+  {
+    name: 'Parisa Ghane, PhD',
+    title: 'Sr. Consultant',
+    photo: '/team/parisa.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/parisaghane/',
+    story: "From research to consulting, happy to chat about making that leap.",
+    specialties: ['Consulting', 'Career'],
+    chaisShared: 21,
+  },
+  {
+    name: 'Alireza Tahsini, MS',
+    title: 'Sr. Software Engineer',
+    photo: '/team/alireza.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/alirezatahsini/',
+    story: "Building great software starts with great conversations.",
+    specialties: ['Tech', 'Resume'],
+    chaisShared: 15,
+  },
+  {
+    name: 'Monica Far',
+    title: 'Amazon Sales Leader',
+    photo: '/team/monica-far.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/monicafar/',
+    story: "Sales is about connection first. Let's chat about breaking into big tech.",
+    specialties: ['Sales', 'Big Tech', 'Career'],
+    chaisShared: 28,
+  },
+  {
+    name: 'Bita Shirazi',
+    title: 'Amazon Finance Manager',
+    photo: '/team/bita.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/bitashirazi/',
+    story: "Numbers tell stories. I help people write their own financial chapter.",
+    specialties: ['Finance', 'Big Tech'],
+    chaisShared: 19,
+  },
+  {
+    name: 'Reza Piri',
+    title: 'Productbot Founder',
+    photo: '/team/rezapiri.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/rezapiri/',
+    story: "Started from zero, built a company. Happy to share the founder journey.",
+    specialties: ['Startup', 'Product'],
+    chaisShared: 24,
+  },
+  {
+    name: 'Meysam Gamini',
+    title: 'Principal Software Engineer',
+    photo: '/team/meysam.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/meysamgamini/',
+    story: "Engineering leadership is a skill you can learn. Let me help.",
+    specialties: ['Tech', 'Leadership'],
+    chaisShared: 31,
+  },
+  {
+    name: 'Ali Rezajoo',
+    title: 'Senior Product Manager',
+    photo: '/team/alirezajoo.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/alirezajoo/',
+    story: "Transitioned from engineering to PM, happy to guide your pivot.",
+    specialties: ['Product', 'Career'],
+    chaisShared: 22,
+  },
+  {
+    name: 'Ramin Jahedi',
+    title: 'Black Ops Agency CEO',
+    photo: '/team/ramin.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/raminjahedi/',
+    story: "Built an agency from scratch. Let's talk entrepreneurship.",
+    specialties: ['Startup', 'Marketing'],
+    chaisShared: 16,
+  },
+  {
+    name: 'Ramin Komeili',
+    title: 'Senior Traffic/Transportation Engineer',
+    photo: '/team/ramin-komeili.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/raminkomeili/',
+    story: "Engineering meets urban planning, a unique path worth exploring.",
+    specialties: ['Engineering', 'Career'],
+    chaisShared: 12,
+  },
+  {
+    name: 'Amin Rashidi',
+    title: 'Lead Data Engineer',
+    photo: '/team/amin.jpg',
+    calendly: '',
+    linkedin: 'https://www.linkedin.com/in/aminrashidi/',
+    story: "Data engineering is the backbone of AI. Let's talk pipelines.",
+    specialties: ['Data', 'Tech'],
+    chaisShared: 27,
+  },
+];
+
+function getMentorBadges(mentor: any) {
+  return badgeDefinitions.filter((badge) => badge.check(mentor));
+}
+
+function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (mentor: typeof mentors[0]) => void }) {
+  const avatarUrl = mentor.photo
+    ? mentor.photo
+    : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
+
+  // Specialty color mapping for visual variety
+  const specialtyColors: Record<string, string> = {
+    'Career': 'bg-teal-100 text-teal-700',
+    'Visa': 'bg-amber-100 text-amber-700',
+    'AI/ML': 'bg-purple-100 text-purple-700',
+    'Academia': 'bg-blue-100 text-blue-700',
+    'Tech': 'bg-slate-100 text-slate-700',
+    'Resume': 'bg-emerald-100 text-emerald-700',
+    'Consulting': 'bg-cyan-100 text-cyan-700',
+    'Sales': 'bg-orange-100 text-orange-700',
+    'Big Tech': 'bg-indigo-100 text-indigo-700',
+    'Finance': 'bg-green-100 text-green-700',
+    'Startup': 'bg-rose-100 text-rose-700',
+    'Product': 'bg-violet-100 text-violet-700',
+    'Leadership': 'bg-yellow-100 text-yellow-700',
+    'Marketing': 'bg-pink-100 text-pink-700',
+    'Engineering': 'bg-sky-100 text-sky-700',
+    'Data': 'bg-fuchsia-100 text-fuchsia-700',
+  };
+
+  return (
+    <div className="group bg-white/90 backdrop-blur-xl border border-white/40 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:shadow-teal-100/60 transition-all duration-300 hover:-translate-y-2 flex flex-col h-full">
+      {/* Header with larger photo and gradient overlay */}
+      <div className="relative bg-gradient-to-br from-teal-500/10 via-teal-400/5 to-transparent p-6 pb-4">
+        <div className="flex items-start gap-4">
+          {/* Larger Photo */}
+          <div className="relative flex-shrink-0">
+            <img
+              src={avatarUrl}
+              alt={`Photo of ${mentor.name}`}
+              className="rounded-2xl w-24 h-24 sm:w-28 sm:h-28 object-cover ring-2 ring-teal-200 shadow-lg group-hover:ring-teal-400 transition-all"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(mentor.name)}`;
+              }}
+            />
+            {/* Chais Shared Badge */}
+            {mentor.chaisShared && mentor.chaisShared > 0 && (
+              <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-2 py-1 shadow-md border border-teal-100 flex items-center gap-1">
+                <Coffee className="w-3.5 h-3.5 text-teal-600" />
+                <span className="text-xs font-bold text-teal-700">{mentor.chaisShared}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Name & Title */}
+          <div className="flex-1 min-w-0 pt-1">
+            <h3 className="text-lg font-bold text-gray-900 truncate">{mentor.name}</h3>
+            <p className="text-sm text-gray-500 truncate">{mentor.title}</p>
+
+            {/* Specialty Tags */}
+            {mentor.specialties && mentor.specialties.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {mentor.specialties.map((specialty) => (
+                  <span
+                    key={specialty}
+                    className={`px-2 py-0.5 text-xs font-medium rounded-full ${specialtyColors[specialty] || 'bg-gray-100 text-gray-600'}`}
+                  >
+                    {specialty}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Story/Journey Section - The Sonder Element */}
+      <div className="px-6 py-3 flex-1">
+        {mentor.story && (
+          <div className="border-l-2 border-teal-300/60 pl-3">
+            <p className="text-sm text-gray-600 italic leading-relaxed line-clamp-3">
+              &quot;{mentor.story}&quot;
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Action Zone */}
+      <div className="px-6 pb-6 pt-2 mt-auto">
+        <div className="flex flex-col gap-2">
+          <button
+            onClick={() => onBook(mentor)}
+            className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-xl hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg hover:shadow-teal-500/25 flex items-center justify-center gap-2"
+          >
+            <Coffee className="w-4 h-4" /> Grab a Chai
+          </button>
+
+        </div>
+
+        {/* LinkedIn Link */}
+        {mentor.linkedin && (
+          <div className="flex justify-center mt-3">
+            <a
+              href={mentor.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${mentor.name}'s LinkedIn`}
+              className="text-teal-500 hover:text-teal-600 transition inline-flex items-center gap-1.5 text-xs font-medium"
+            >
+              <Linkedin className="w-4 h-4" />
+              View Profile
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 interface MatchedMentorResponse {
   mentor_id: string;
@@ -51,6 +347,66 @@ export default function Mentor() {
     return () => clearTimeout(handler);
   }, [search]);
 
+  // Check localStorage for saved match results
+  useEffect(() => {
+    const saved = localStorage.getItem('sonder_match_results');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Check if results are less than 7 days old
+        if (parsed.computed_at && Date.now() - parsed.computed_at < 7 * 24 * 60 * 60 * 1000) {
+          setMatchResults(parsed.matches);
+          if (parsed.intake) setIntakeData(parsed.intake);
+        } else {
+          localStorage.removeItem('sonder_match_results');
+        }
+      } catch {
+        localStorage.removeItem('sonder_match_results');
+      }
+    }
+  }, []);
+
+  const handleQuizComplete = async (intake: MatchIntakeData) => {
+    setIsLoadingMatches(true);
+    try {
+      const response = await fetch('/api/match', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(intake),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMatchResults(data.matches);
+        setIntakeData(intake);
+        setShowQuiz(false);
+        // Cache results locally
+        localStorage.setItem('sonder_match_results', JSON.stringify({
+          matches: data.matches,
+          computed_at: Date.now(),
+          intake,
+        }));
+      }
+    } catch (error) {
+      console.error('Match error:', error);
+    } finally {
+      setIsLoadingMatches(false);
+    }
+  };
+
+  const handleBookFromMatch = (mentorName: string) => {
+    const mentor = mentors.find(m => m.name === mentorName);
+    if (mentor) setSelectedMentor(mentor);
+  };
+
+  const handleRetakeQuiz = () => {
+    setMatchResults(null);
+    setIntakeData(null);
+    localStorage.removeItem('sonder_match_results');
+    setShowQuiz(true);
+  };
+
+
   return (
     <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
@@ -59,16 +415,86 @@ export default function Mentor() {
             <Coffee className="w-10 h-10 sm:w-12 sm:h-12 text-teal-600" /> Grab a Chai With…
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-            15-minute chats with people who&apos;ve been there. No formal agenda—just connect.
+            30-minute chats with people who&apos;ve been there. No formal agenda, just connect.
           </p>
           <p className="mt-3 text-sm text-teal-600 font-medium">
             Career advice • Visa guidance • Resume tips • Or just chat
           </p>
         </div>
 
-        <MentorSearchBar search={search} onSearchChange={setSearch} />
-        <MentorGrid mentors={filteredMentors} />
-        <MentorApplicationForm />
+        {/* Sonder Match: Quiz or Results */}
+        {showQuiz ? (
+          <div className="max-w-xl mx-auto mb-16">
+            <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 p-6 md:p-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-teal-500" />
+                  Find Your Match
+                </h2>
+                <button
+                  onClick={() => setShowQuiz(false)}
+                  className="text-gray-400 hover:text-gray-600 transition"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <MatchIntakeQuiz onComplete={handleQuizComplete} />
+            </div>
+          </div>
+        ) : matchResults ? (
+          <RecommendedMentors
+            matches={matchResults}
+            intake={intakeData || undefined}
+            onBookMentor={handleBookFromMatch}
+            onRetakeQuiz={handleRetakeQuiz}
+          />
+        ) : (
+          /* Find Your Match CTA */
+          <div className="max-w-2xl mx-auto mb-12">
+            <button
+              onClick={() => setShowQuiz(true)}
+              className="w-full bg-gradient-to-r from-teal-50/80 to-white border border-teal-100 rounded-2xl p-6 hover:shadow-lg hover:border-teal-200 transition-all duration-300 group text-left flex items-center gap-4"
+            >
+              <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-teal-200 transition">
+                <Sparkles className="w-6 h-6 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="font-bold text-gray-900 group-hover:text-teal-700 transition">Find Your Perfect Match</h3>
+                <p className="text-sm text-gray-500">Take a quick quiz and we&apos;ll recommend mentors tailored to your journey</p>
+              </div>
+            </button>
+          </div>
+        )}
+
+        {/* Search Bar */}
+        <div className="relative max-w-2xl mx-auto mb-8">
+          <span className="absolute left-4 top-1/2 transform -translate-y-1 text-gray-400 pointer-events-none">
+            <Search className="w-5 h-5" />
+          </span>
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full bg-white/85 backdrop-blur-xl border border-white/30 rounded-full px-5 py-3 pl-12 shadow-lg focus:ring-teal-500 focus:border-teal-500 text-gray-700 placeholder-gray-400"
+            placeholder="Search by name, expertise, or role…"
+            aria-label="Search mentors by name, expertise, or role"
+          />
+        </div>
+        {/* Mentor Cards Grid */}
+        <section id="meet-the-mentors">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {filteredMentors.length === 0 ? (
+              <div className="col-span-full text-center text-gray-500 text-lg py-12 animate-fadeInUp">No mentors found. Try a different search.</div>
+            ) : (
+              filteredMentors.map((mentor, idx) => (
+                <div key={mentor.name} className="animate-fadeInUp" style={{ animationDelay: `${idx * 60}ms` }}>
+                  <MentorCard mentor={mentor} onBook={setSelectedMentor} />
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+
       </div>
 
       {/* Booking Modal */}

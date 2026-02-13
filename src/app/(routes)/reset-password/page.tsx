@@ -6,8 +6,6 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 
-export const dynamic = "force-dynamic";
-
 export default function ResetPassword() {
     const router = useRouter();
     const [password, setPassword] = useState("");

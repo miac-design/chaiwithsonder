@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 
-// POST /api/mentors — Submit a new mentor application
+// POST /api/mentors: Submit a new mentor application
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -15,31 +15,22 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Persist to Supabase if configured, otherwise mock
-        if (isSupabaseConfigured() && supabase) {
-            const { data, error } = await supabase
-                .from('mentor_applications')
-                .insert({ name, email, expertise, experience, availability, goals, status: 'pending' })
-                .select()
-                .single();
+        const { data, error } = await (supabase as any)
+            .from('mentor_applications')
+            .insert({ name, email, expertise, experience, availability, goals, status: 'pending' })
+            .select()
+            .single();
 
-            if (error) {
-                console.error('Supabase insert error:', error);
-                return NextResponse.json(
-                    { error: 'Failed to save application. Please try again.' },
-                    { status: 500 }
-                );
-            }
-
+        if (error) {
+            console.error('Supabase insert error:', error);
             return NextResponse.json(
-                { message: 'Application submitted successfully', data },
-                { status: 201 }
+                { error: 'Failed to save application. Please try again.' },
+                { status: 500 }
             );
         }
 
-        // Fallback: mock response when Supabase is not configured
         return NextResponse.json(
-            { message: 'Application submitted successfully', data: { name, email } },
+            { message: 'Application submitted successfully', data },
             { status: 201 }
         );
     } catch (error) {
@@ -51,33 +42,24 @@ export async function POST(req: NextRequest) {
     }
 }
 
-// GET /api/mentors — Fetch approved mentors
+// GET /api/mentors: Fetch approved mentors
 export async function GET() {
     try {
-        // Fetch from Supabase if configured
-        if (isSupabaseConfigured() && supabase) {
-            const { data, error } = await supabase
-                .from('mentors')
-                .select('*')
-                .eq('status', 'approved')
-                .order('created_at', { ascending: false });
+        const { data, error } = await (supabase as any)
+            .from('mentors')
+            .select('*')
+            .eq('status', 'approved')
+            .order('created_at', { ascending: false });
 
-            if (error) {
-                console.error('Supabase fetch error:', error);
-                return NextResponse.json(
-                    { error: 'Failed to fetch mentors.' },
-                    { status: 500 }
-                );
-            }
-
-            return NextResponse.json({ data }, { status: 200 });
+        if (error) {
+            console.error('Supabase fetch error:', error);
+            return NextResponse.json(
+                { error: 'Failed to fetch mentors.' },
+                { status: 500 }
+            );
         }
 
-        // Fallback: empty response when Supabase is not configured
-        return NextResponse.json(
-            { message: 'Mentors API ready. Connect Supabase to fetch live data.', data: [] },
-            { status: 200 }
-        );
+        return NextResponse.json({ data }, { status: 200 });
     } catch (error) {
         console.error('Fetch mentors error:', error);
         return NextResponse.json(

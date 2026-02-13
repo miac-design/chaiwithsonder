@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="cup" x1="8" y1="24" x2="48" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="50%" stop-color="#14b8a6"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="handle" x1="48" y1="32" x2="58" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="12" y1="26" x2="48" y2="26" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Speech bubbles (rising like steam) -->
+  <!-- Amber bubble (left) -->
+  <rect x="14" y="6" width="14" height="10" rx="5" fill="#F5A623" opacity="0.9"/>
+  <polygon points="19,15 23,15 20,19" fill="#F5A623" opacity="0.9"/>
+
+  <!-- Teal bubble (center) -->
+  <rect x="26" y="1" width="12" height="9" rx="4.5" fill="#14b8a6" opacity="0.85"/>
+  <polygon points="30,9 34,9 31,13" fill="#14b8a6" opacity="0.85"/>
+
+  <!-- White bubble (right) -->
+  <rect x="38" y="8" width="11" height="8" rx="4" fill="#ffffff" opacity="0.8"/>
+  <polygon points="42,15 45,15 43,18" fill="#ffffff" opacity="0.8"/>
+
+  <!-- Cup body -->
+  <path d="M8 28C8 26 10 24 12 24H48C50 24 52 26 52 28V48C52 54 46 60 30 60C14 60 8 54 8 48V28Z" fill="url(#cup)"/>
+
+  <!-- Cup handle -->
+  <path d="M52 33H54C58 33 62 37 62 42C62 47 58 51 54 51H52" stroke="url(#handle)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Rim -->
+  <ellipse cx="30" cy="26" rx="20" ry="4.5" fill="url(#rim)"/>
+
+  <!-- Rim shine -->
+  <ellipse cx="30" cy="25" rx="14" ry="2.5" fill="white" opacity="0.35"/>
+
+  <!-- Cup body shine -->
+  <ellipse cx="20" cy="40" rx="4" ry="9" fill="white" opacity="0.15"/>
+</svg>

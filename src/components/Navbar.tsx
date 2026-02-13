@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
+import { Menu, X, Smartphone } from 'lucide-react';
+import AnimatedLogo from './AnimatedLogo';
 
 const navLinks = [
   { name: 'Find a Mentor', href: '/mentor' },
   { name: 'Become a Mentor', href: '/mentor/become' },
-  { name: 'Sonder Swap', href: '/sonder-swap', isNew: true },
+  { name: 'Chai Circle', href: '/chai-circle' },
   { name: 'How It Works', href: '/#how-it-works' },
   { name: 'About', href: '/about' },
 ];
@@ -56,7 +57,7 @@ export default function Navbar() {
     : 'text-white';
 
   const logoColor = isScrolled || !isHomePage
-    ? 'text-amber-700'
+    ? 'text-teal-700'
     : 'text-white';
 
   const mainNavLinks = [
@@ -74,19 +75,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Left: Logo + Tagline */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-              <Image
-                src="/logo-new.png"
-                alt="ChaiChat Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
+            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+              <AnimatedLogo size={36} />
               <div className="flex flex-col">
                 <span className={`text-xl font-bold tracking-tight transition-colors ${logoColor}`}>
                   ChaiChat
                 </span>
-                <span className={`text-[10px] font-medium tracking-wide transition-colors hidden sm:block ${isScrolled || !isHomePage ? 'text-amber-600/70' : 'text-white/70'}`}>
+                <span className={`text-[11px] font-medium tracking-wide transition-colors hidden sm:block ${isScrolled || !isHomePage ? 'text-teal-600/70' : 'text-white/70'}`}>
                   Where Sonder Becomes Connection
                 </span>
               </div>
@@ -102,16 +97,11 @@ export default function Navbar() {
                     href={link.href}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1.5
                       ${isActive
-                        ? (isScrolled || !isHomePage ? 'text-amber-700 bg-amber-50' : 'text-white bg-white/15')
+                        ? (isScrolled || !isHomePage ? 'text-teal-700 bg-teal-50' : 'text-white bg-white/15')
                         : `${textColor} hover:${isScrolled || !isHomePage ? 'bg-gray-100' : 'bg-white/10'}`
                       }`}
                   >
                     {link.name}
-                    {'isNew' in link && link.isNew && (
-                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-400 text-amber-900 leading-none">
-                        NEW
-                      </span>
-                    )}
                   </Link>
                 );
               })}
@@ -127,7 +117,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signup"
-                className="text-sm font-semibold px-5 py-2.5 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all shadow-sm hover:shadow-md"
+                className="text-sm font-semibold px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700 transition-all shadow-md hover:shadow-lg hover:shadow-teal-500/25 hover:-translate-y-0.5"
               >
                 Join Free
               </Link>
@@ -137,7 +127,7 @@ export default function Navbar() {
             <div className="flex md:hidden items-center gap-3">
               <Link
                 href="/signup"
-                className="text-xs font-semibold px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-all shadow-sm"
+                className="text-xs font-semibold px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white hover:from-teal-600 hover:to-teal-700 transition-all shadow-md"
               >
                 Join Free
               </Link>
@@ -147,26 +137,14 @@ export default function Navbar() {
                 aria-label="Toggle navigation menu"
                 aria-expanded={isMenuOpen}
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
 
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden inline-flex items-center justify-center p-2 rounded-lg hover:bg-white/10 ${
-                isScrolled || !isHomePage ? 'text-gray-700' : 'text-white'
-              }`}>
-              <motion.div animate={isMenuOpen ? 'open' : 'closed'} className="w-6 h-6 flex flex-col justify-center items-center">
-                <motion.span className="w-6 h-0.5 bg-current block" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: 45, y: 6 } }} />
-                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { opacity: 1 }, open: { opacity: 0 } }} />
-                <motion.span className="w-6 h-0.5 bg-current block mt-1.5" variants={{ closed: { rotate: 0, y: 0 }, open: { rotate: -45, y: -6 } }} />
-              </motion.div>
-            </button>
           </div>
         </div>
 
@@ -189,19 +167,27 @@ export default function Navbar() {
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
                       className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors
-                        ${isActive ? 'text-amber-700 bg-amber-50' : 'text-gray-700 hover:bg-gray-50'}`}
+                        ${isActive ? 'text-teal-700 bg-teal-50' : 'text-gray-700 hover:bg-gray-50'}`}
                     >
                       {link.name}
                     </Link>
                   );
                 })}
-                <div className="pt-3 border-t border-gray-100">
+                <div className="pt-3 border-t border-gray-100 space-y-1">
                   <Link
                     href="/login"
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-3 rounded-lg text-base font-medium text-gray-600 hover:bg-gray-50"
                   >
                     Login
+                  </Link>
+                  <Link
+                    href="/get-app"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center gap-2 px-4 py-3 rounded-lg text-base font-medium text-teal-600 hover:bg-teal-50"
+                  >
+                    <Smartphone className="w-4 h-4" />
+                    Get the App
                   </Link>
                 </div>
               </div>

@@ -10,6 +10,10 @@ const nextConfig = {
         hostname: 'api.dicebear.com',
         pathname: '/7.x/initials/svg',
       },
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+      },
     ],
   },
   eslint: {

@@ -93,7 +93,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
     const context = useContext(AuthContext);
     if (context === undefined) {
-        throw new Error('useAuth must be used within an AuthProvider');
+        // Return safe defaults during SSR/prerendering when AuthProvider isn't available
+        return {
+            user: null,
+            session: null,
+            loading: true,
+            signUp: async () => ({ error: new Error('AuthProvider not available') }),
+            signIn: async () => ({ error: new Error('AuthProvider not available') }),
+            signInWithGoogle: async () => {},
+            signOut: async () => {},
+        } as AuthContextType;
     }
     return context;
 }

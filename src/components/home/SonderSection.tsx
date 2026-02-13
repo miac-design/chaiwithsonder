@@ -48,7 +48,7 @@ export default function SonderSection() {
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
                             Sonder is the realization that every person around you has a life as vivid
                             and complex as your own. At ChaiChat, we believe mentorship isn&apos;t about
-                            titles or expertise — it&apos;s about shared humanity. Sometimes you listen.
+                            titles or expertise. It&apos;s about shared humanity. Sometimes you listen.
                             Sometimes you share. That&apos;s the magic.
                         </p>
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// POST /api/booking-email — Send booking confirmation email
+// POST /api/booking-email: Send booking confirmation email
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
