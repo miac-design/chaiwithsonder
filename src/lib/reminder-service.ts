@@ -71,7 +71,7 @@ function get24HourReminderEmail(reminder: SessionReminder): { subject: string; h
               ${reminder.meetingUrl ? `<a href="${reminder.meetingUrl}" class="button">Join Session →</a>` : ''}
               
               <p style="margin-top: 30px; color: #6b7280; font-size: 14px;">
-                — The ChaiChat Team
+                - The ChaiChat Team
               </p>
             </div>
           </div>

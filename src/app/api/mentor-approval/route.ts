@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
-// POST /api/mentor-approval — Approve or reject a mentor application
+// POST /api/mentor-approval: Approve or reject a mentor application
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();

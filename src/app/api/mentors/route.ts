@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 
-// POST /api/mentors — Submit a new mentor application
+// POST /api/mentors: Submit a new mentor application
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     }
 }
 
-// GET /api/mentors — Fetch approved mentors
+// GET /api/mentors: Fetch approved mentors
 export async function GET() {
     try {
         const { data, error } = await (supabase as any)
