@@ -1,4 +1,4 @@
-// ChaiChat Hub — Shared TypeScript Types
+// ChaiChat Hub: Shared TypeScript Types
 // All domain types used across the application
 
 export interface Mentor {

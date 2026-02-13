@@ -107,7 +107,7 @@ function SocialProofSection() {
       role: "Gen AI Expert & Mentor",
     },
     {
-      quote: "Navigated the PhD journey and tech transition \u2014 love helping others do the same.",
+      quote: "Navigated the PhD journey and tech transition. Love helping others do the same.",
       name: "Moein R.",
       role: "Gen AI Expert & Mentor",
     },

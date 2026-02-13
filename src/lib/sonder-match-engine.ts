@@ -1,8 +1,8 @@
 /**
- * Sonder Match Engine — 3-Tier Intelligent Mentor Matching
+ * Sonder Match Engine: 3-Tier Intelligent Mentor Matching
  * 
  * Tier 1: Hard Filters (eliminate bad matches)
- * Tier 2: Compatibility Score (rank remaining mentors — 0.0 to 1.0)
+ * Tier 2: Compatibility Score (rank remaining mentors, 0.0 to 1.0)
  * Tier 3: Tiebreakers (order equally-scored mentors)
  */
 
@@ -239,7 +239,7 @@ export function computeMatchScores(
     const hasEmbeddings = menteeEmbedding && menteeEmbedding.length > 0 &&
         eligible.some(m => m.embedding_vector && m.embedding_vector.length > 0);
 
-    // Signal weights — redistributed for 6-question quiz
+    // Signal weights, redistributed for 6-question quiz
     const expertiseWeight = hasEmbeddings ? 0.25 : 0.30;
     const stageWeight = 0.20;
     const engagementWeight = 0.15;
@@ -388,7 +388,7 @@ function computeSupportScore(supportStyle: string, mentorStyle: string | undefin
 const CHALLENGE_SPECIALTY_MAP: Record<string, string[]> = {
     'career_pivot': ['Career', 'Consulting', 'Product'],
     'skill_building': ['Tech', 'Engineering', 'Data', 'AI/ML'],
-    'confidence': [], // universal — no specialty filter
+    'confidence': [], // universal, no specialty filter
     'work_life': ['Leadership', 'Consulting'],
     'leadership': ['Leadership', 'Big Tech', 'Startup'],
 };
@@ -436,7 +436,7 @@ function generateMatchReasons(
         reasons.push({ score: expertise, label: `${mentor.name.split(' ')[0]} has deep expertise in areas you care about` });
     }
     if (stage >= 0.8) {
-        reasons.push({ score: stage, label: `Just a step ahead in career stage — ideal for mentoring` });
+        reasons.push({ score: stage, label: `Just a step ahead in career stage, ideal for mentoring` });
     }
     if (engagement >= 0.7) {
         reasons.push({ score: engagement, label: `Highly active mentor with ${mentor.chaisShared}+ chais shared` });
@@ -444,7 +444,7 @@ function generateMatchReasons(
     if (style >= 0.7) {
         const supportLabel = intake.support_style ? SUPPORT_LABELS[intake.support_style] : null;
         if (supportLabel) {
-            reasons.push({ score: style, label: `Mentors with ${supportLabel} — exactly what you asked for` });
+            reasons.push({ score: style, label: `Mentors with ${supportLabel}, exactly what you asked for` });
         } else {
             reasons.push({ score: style, label: `Communication style aligns with your vibe` });
         }
