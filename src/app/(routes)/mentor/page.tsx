@@ -275,7 +275,7 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
         <div className="flex flex-col gap-2">
           <button
             onClick={() => onBook(mentor)}
-            className="w-full px-6 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-medium rounded-xl hover:from-amber-600 hover:to-orange-600 transition shadow-md hover:shadow-lg hover:shadow-amber-500/25 flex items-center justify-center gap-2"
+            className="w-full px-6 py-2.5 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium rounded-xl hover:from-teal-600 hover:to-teal-700 transition shadow-md hover:shadow-lg hover:shadow-teal-500/25 flex items-center justify-center gap-2"
           >
             <Coffee className="w-4 h-4" /> Grab a Chai
           </button>
