@@ -291,16 +291,6 @@ function MentorCard({ mentor, onBook }: { mentor: typeof mentors[0]; onBook: (me
             <Coffee className="w-4 h-4" /> Grab a Chai
           </button>
 
-          {/* Chai Now - Coming Soon */}
-          <div className="relative">
-            <button
-              disabled
-              className="w-full px-6 py-2 bg-gray-50 text-gray-400 font-medium rounded-xl cursor-not-allowed flex items-center justify-center gap-2 text-sm"
-            >
-              <Zap className="w-4 h-4" /> Chai Now
-            </button>
-            <span className="absolute -top-1 -right-1 px-2 py-0.5 bg-gradient-to-r from-amber-400 to-orange-400 text-white text-[10px] font-bold rounded-full shadow">Soon</span>
-          </div>
         </div>
 
         {/* LinkedIn Link */}

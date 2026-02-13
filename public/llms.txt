@@ -1,0 +1,40 @@
+# ChaiChatHub.com
+
+> A free, community-driven mentorship platform where every story matters.
+
+ChaiChat (chaichathub.com) connects mentees with mentors from Big Tech, startups, and academia for free 15-minute conversations. Built on the concept of "sonder" — the realization that every person has a rich inner life — ChaiChat believes anyone can give or receive mentorship.
+
+## Key Facts
+- 100% free mentorship platform
+- 13+ mentors from companies like Amazon, Google, and startups
+- 350+ mentoring conversations ("chais") shared
+- 15-minute chat format — no formal agenda needed
+- AI-powered mentor matching via quiz
+- Video calls, real-time chat, and session notes
+- A community initiative by Austin AI Hub
+
+## Topics Covered
+- Career advice and pivots
+- Visa and immigration guidance
+- Resume and interview preparation
+- AI/ML and tech careers
+- Startup and entrepreneurship
+- Leadership and consulting
+- Finance and Big Tech careers
+
+## How It Works
+1. Take a 2-minute matching quiz
+2. Get matched with 3 recommended mentors
+3. Book a free 15-minute video chat
+
+## Pages
+- Homepage: https://chaichathub.com
+- Find a Mentor: https://chaichathub.com/mentor
+- Become a Mentor: https://chaichathub.com/mentor/become
+- About: https://chaichathub.com/about
+- Contact: https://chaichathub.com/contact
+- Donate: https://chaichathub.com/donate
+
+## Contact
+- Website: https://chaichathub.com
+- Parent Organization: Austin AI Hub (https://austinaihub.com)

@@ -6,14 +6,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import LiveNowFeed from "@/components/LiveNowFeed";
 
-export const dynamic = "force-dynamic";
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 20 },
-};
-
 const staggerContainer = {
   animate: {
     transition: {
@@ -53,10 +45,10 @@ function HowItWorksSection() {
           >
             <div className="edron-step-pill mx-auto mb-6">1</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Tell Your Story
+              Take a 2-Min Quiz
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Share what makes you unique — your experiences, passions, and what you're looking to learn or offer.
+              Answer a few quick questions about your goals, career stage, and what kind of support you need.
             </p>
           </motion.div>
 
@@ -69,10 +61,10 @@ function HowItWorksSection() {
           >
             <div className="edron-step-pill mx-auto mb-6">2</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Find Your Match
+              Get Matched with 3 Mentors
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Our smart matching connects you with someone who truly understands your journey.
+              Our smart matching engine recommends mentors who truly understand your journey and goals.
             </p>
           </motion.div>
 
@@ -85,12 +77,91 @@ function HowItWorksSection() {
           >
             <div className="edron-step-pill mx-auto mb-6">3</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">
-              Grow Together
+              Book a Free 15-Min Chat
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              Sometimes you listen. Sometimes you share. That's the magic of meaningful connection.
+              Pick a time, grab a virtual chai, and have a real conversation. No agenda required.
             </p>
           </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function SocialProofSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const stats = [
+    { number: "13+", label: "Mentors", description: "From Big Tech, startups & academia" },
+    { number: "350+", label: "Chais Shared", description: "Conversations that made a difference" },
+    { number: "100%", label: "Free", description: "No fees, ever. Mentorship for all." },
+  ];
+
+  const testimonials = [
+    {
+      quote: "I came to the US with $200 and a dream. ChaiChat let me pay it forward.",
+      name: "Hamed A.",
+      role: "Gen AI Expert & Mentor",
+    },
+    {
+      quote: "Navigated the PhD journey and tech transition \u2014 love helping others do the same.",
+      name: "Moein R.",
+      role: "Gen AI Expert & Mentor",
+    },
+  ];
+
+  return (
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50/50 to-white"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Stats Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-16">
+          {stats.map((stat, idx) => (
+            <motion.div
+              key={stat.label}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 + idx * 0.1 }}
+            >
+              <div className="text-4xl md:text-5xl font-extrabold text-teal-600 mb-2">{stat.number}</div>
+              <div className="text-lg font-bold text-gray-900 mb-1">{stat.label}</div>
+              <div className="text-sm text-gray-500">{stat.description}</div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={t.name}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 + idx * 0.15 }}
+            >
+              <div className="flex items-start gap-3 mb-4">
+                <svg className="w-8 h-8 text-teal-300 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-gray-600 leading-relaxed italic">{t.quote}</p>
+              </div>
+              <div className="flex items-center gap-3 ml-11">
+                <div>
+                  <p className="text-sm font-bold text-gray-900">{t.name}</p>
+                  <p className="text-xs text-gray-500">{t.role}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </motion.section>
@@ -101,8 +172,6 @@ function HowItWorksSection() {
 export default function Home() {
   const aboutRef = useRef(null);
   const aboutInView = useInView(aboutRef, { once: true, margin: "-100px" });
-  const donateRef = useRef(null);
-  const donateInView = useInView(donateRef, { once: true, margin: "-100px" });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -156,7 +225,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A learning and mentorship community where every story matters.
+            Free 15-minute chats with mentors from Big Tech, startups, and academia. No agenda needed.
           </motion.p>
 
           <motion.div
@@ -166,24 +235,24 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link
-              href="/mentor#application"
-              className="btn-teal btn-pulse flex items-center justify-center gap-2 text-lg"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span>Become a Mentor</span>
-            </Link>
-            <Link
               href="/mentor"
-              className="btn-teal-outline flex items-center justify-center gap-2 text-lg"
+              className="btn-teal btn-pulse flex items-center justify-center gap-2 text-lg"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span>Find a Mentor</span>
+            </Link>
+            <Link
+              href="/mentor/become"
+              className="btn-teal-outline flex items-center justify-center gap-2 text-lg"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Become a Mentor</span>
             </Link>
           </motion.div>
 
@@ -213,6 +282,11 @@ export default function Home() {
       <div className="divider-wave" style={{ marginTop: '-60px', position: 'relative', zIndex: 10 }} />
 
       <HowItWorksSection />
+
+      {/* ============================
+          SOCIAL PROOF SECTION
+          ============================ */}
+      <SocialProofSection />
 
       {/* ============================
           LIVE NOW SECTION
@@ -277,7 +351,7 @@ export default function Home() {
               </blockquote>
 
               <p className="text-lg text-gray-700 leading-relaxed">
-                That's why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It's that simple.
+                That&apos;s why we created ChaiChat — a place where sharing a story is just as powerful as hearing one. We believe in mutual support, not titles. Anyone can give or receive. It&apos;s that simple.
               </p>
             </motion.div>
 
@@ -306,163 +380,22 @@ export default function Home() {
       </motion.section>
 
       {/* =============================
-          DONATION SECTION (TEAL GRADIENT)
+          SUPPORT BANNER (SLIM)
           ============================= */}
-      <motion.section
-        ref={donateRef}
-        className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-white"
-      >
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="heading-serif text-3xl md:text-4xl mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={donateInView ? { opacity: 1, y: 0 } : {}}
-          >
-            Support <span className="heading-italic-accent">Accessible</span> Mentoring
-          </motion.h2>
-          <motion.p
-            className="text-lg text-gray-600 max-w-xl mx-auto mb-10"
-            initial={{ opacity: 0 }}
-            animate={donateInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            Your donation helps keep our platform free and supports mentorship for those who need it most.
-          </motion.p>
-
-          <motion.div
-            className="edron-card max-w-md mx-auto p-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={donateInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-          >
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-                  Donation Amount
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <span className="text-teal-600 text-lg font-semibold">$</span>
-                  </div>
-                  <input
-                    type="number"
-                    name="amount"
-                    id="amount"
-                    className="block w-full pl-8 pr-16 py-4 text-lg bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition"
-                    placeholder="25.00"
-                    min="1"
-                    step="1"
-                  />
-                  <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                    <span className="text-gray-400 text-sm">USD</span>
-                  </div>
-                </div>
-              </div>
-              <Link href="/donate" className="btn-teal btn-pulse w-full flex justify-center text-lg py-4">
-                Donate Now
-              </Link>
-            </form>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* =============================
-          GET INVOLVED (LIGHT)
-          ============================= */}
-      <motion.section
-        className="py-16 px-4"
-      >
-        <div className="max-w-5xl mx-auto">
-          <h2 className="heading-serif text-3xl md:text-4xl text-center mb-4">
-            Ready to <span className="heading-italic-accent">Get Involved?</span>
-          </h2>
-          <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-10">
-            Whether you want to share your experience or find guidance, there's a place for you here.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Become a Mentor */}
-            <motion.div
-              className="edron-card p-8 h-full flex flex-col"
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="12" cy="7" r="4" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Become a Mentor</h3>
-              </div>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Give a little time. Be a listener. Share your experience and make a meaningful difference.
-              </p>
-              <Link href="/mentor/become" className="btn-teal inline-flex items-center gap-2 mt-auto">
-                Start Mentoring
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </motion.div>
-
-            {/* Find a Mentor */}
-            <motion.div
-              className="edron-card p-8 h-full flex flex-col"
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M21 21l-4.35-4.35" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M11 8v6M8 11h6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Find a Mentor</h3>
-              </div>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Book a conversation. Get perspective, clarity, or just someone who truly listens.
-              </p>
-              <Link href="/mentor" className="btn-teal inline-flex items-center gap-2 mt-auto">
-                Browse Mentors
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </motion.div>
-
-            {/* Support Our Mission */}
-            <motion.div
-              className="edron-card p-8 h-full flex flex-col"
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Support Our Mission</h3>
-              </div>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Help keep mentorship free. Your donation covers infrastructure and ensures accessibility for all.
-              </p>
-              <Link href="/donate" className="btn-teal inline-flex items-center gap-2">
-                Donate Now
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </motion.div>
+      <section className="py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-teal-600 to-teal-700">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1">Help keep mentorship free for everyone</h2>
+            <p className="text-teal-100 text-sm">Your donation covers infrastructure and ensures accessibility for all.</p>
           </div>
+          <Link
+            href="/donate"
+            className="px-8 py-3 rounded-full font-semibold bg-white text-teal-700 hover:bg-teal-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex-shrink-0"
+          >
+            Support Us
+          </Link>
         </div>
-      </motion.section>
-
+      </section>
 
     </div>
   );

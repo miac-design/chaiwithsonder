@@ -1,0 +1,40 @@
+# ChaiChatHub.com - Robots.txt
+# https://chaichathub.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chaichathub.com/sitemap.xml
+
+# AI Crawlers - Allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block sensitive paths
+User-agent: *
+Disallow: /api/
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /profile/
