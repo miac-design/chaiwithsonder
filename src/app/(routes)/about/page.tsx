@@ -1,5 +1,8 @@
 'use client';
 
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { FAQSection, TestimonialsSection, MissionSection, ValuesSection } from '@/components/about';
 
 const faqJsonLd = {
@@ -22,6 +25,8 @@ export default function About() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
+      {/* Hero */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -31,8 +36,8 @@ export default function About() {
             <span className="inline-block px-4 py-1.5 bg-teal-100 text-teal-700 text-sm font-medium rounded-full mb-6">
               Our Story
             </span>
-            <h1 className="heading-serif text-4xl md:text-5xl lg:text-6xl mb-6">
-              Where Sonder Becomes <span className="heading-italic-accent">Connection</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Where Sonder Becomes <span className="italic text-teal-600">Connection</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
               A community-driven mentoring platform built on the belief that everyone has a story worth sharing and wisdom worth receiving.
@@ -41,40 +46,37 @@ export default function About() {
         </div>
       </section>
 
-        <MissionSection />
-        <ValuesSection />
+      <MissionSection />
+      <ValuesSection />
 
-        <div className="mt-20 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Community</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Whether you&apos;re looking to mentor others, find a mentor, or connect with accountability partners, Chai Chat is here to support your journey.
-          </p>
-        </div>
-
-        <TestimonialsSection />
-        <FAQSection />
-
-        {/* CTA */}
-        <section className="py-16 text-center">
-          <h2 className="heading-serif text-3xl mb-4">
-            Ready to <span className="heading-italic-accent">Get Started?</span>
-          </h2>
-          <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-            Whether you want to share your experience or find guidance, there's a place for you here.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/mentor" className="btn-teal inline-flex items-center justify-center gap-2">
-              Find a Mentor
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-            <Link href="/mentor/become" className="btn-secondary inline-flex items-center justify-center gap-2">
-              Become a Mentor
-            </Link>
-          </div>
-        </section>
+      <div className="mt-20 text-center px-4">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Join Our Community</h2>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Whether you&apos;re looking to mentor others, find a mentor, or connect with accountability partners, Chai Chat is here to support your journey.
+        </p>
       </div>
+
+      <TestimonialsSection />
+      <FAQSection />
+
+      {/* CTA */}
+      <section className="py-16 text-center px-4">
+        <h2 className="text-3xl font-bold mb-4">
+          Ready to <span className="italic text-teal-600">Get Started?</span>
+        </h2>
+        <p className="text-gray-600 mb-8 max-w-xl mx-auto">
+          Whether you want to share your experience or find guidance, there&apos;s a place for you here.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/mentor" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-teal-600 text-white font-semibold rounded-xl hover:bg-teal-500 transition-all">
+            Find a Mentor
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+          <Link href="/mentor/become" className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-teal-600 text-teal-600 font-semibold rounded-xl hover:bg-teal-50 transition-all">
+            Become a Mentor
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
