@@ -1,0 +1,100 @@
+name: Auto-merge Claude branches
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Create PR and auto-merge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create and merge PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+
+            // Check if PR already exists for this branch
+            const { data: existingPRs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              state: 'open',
+            });
+
+            let pr;
+
+            if (existingPRs.length > 0) {
+              pr = existingPRs[0];
+              console.log(`PR #${pr.number} already exists, will merge it.`);
+            } else {
+              // Get the latest commit message for the PR title
+              const { data: commits } = await github.rest.repos.listCommits({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: branch,
+                per_page: 1,
+              });
+
+              const title = commits[0].commit.message.split('\n')[0];
+
+              // Create PR
+              const { data: newPR } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                head: branch,
+                base: 'main',
+                body: `Auto-created PR from \`${branch}\`.\n\nThis PR was automatically created and will be merged.`,
+              });
+
+              pr = newPR;
+              console.log(`Created PR #${pr.number}`);
+            }
+
+            // Wait a moment for CI to register
+            await new Promise(resolve => setTimeout(resolve, 5000));
+
+            // Merge the PR
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'squash',
+              });
+              console.log(`Merged PR #${pr.number} successfully!`);
+            } catch (error) {
+              console.log(`Could not merge yet: ${error.message}`);
+              console.log('Enabling auto-merge instead...');
+
+              // If immediate merge fails (e.g. branch protection), enable auto-merge
+              try {
+                await github.graphql(`
+                  mutation {
+                    enablePullRequestAutoMerge(input: {
+                      pullRequestId: "${pr.node_id}",
+                      mergeMethod: SQUASH
+                    }) {
+                      pullRequest { number }
+                    }
+                  }
+                `);
+                console.log(`Auto-merge enabled for PR #${pr.number}`);
+              } catch (autoMergeError) {
+                console.log(`Auto-merge also failed: ${autoMergeError.message}`);
+                console.log('PR created but needs manual merge.');
+              }
+            }
