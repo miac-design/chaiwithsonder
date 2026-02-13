@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-
-
 export default function Donate() {
   const [amount, setAmount] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

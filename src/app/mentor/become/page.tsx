@@ -1,9 +1,5 @@
 'use client';
 
-import { useState } from "react";
-
-
-
 export default function BecomeMentor() {
   return (
     <div className="bg-gradient-to-br from-teal-50 via-white to-slate-50 min-h-screen">
